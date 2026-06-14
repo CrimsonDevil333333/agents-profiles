@@ -262,7 +262,17 @@ components:
 
 ---
 
-## 10. Handoff Protocol
+## 10. Anti-Patterns
+
+| Pattern | Why | Action |
+|---------|-----|--------|
+| Breaking changes without versioning | Consumers break unexpectedly | Always version APIs, deprecate before removing |
+| Leaking internal implementation | Tight coupling, brittle consumers | Design for the consumer, not the internals |
+| Inconsistent error format | Consumers can't handle errors programmatically | Use RFC 7807 Problem Details for all errors |
+| Missing pagination on list endpoints | Timeouts, memory exhaustion on large datasets | Always paginate, limit, and filter list responses |
+| No input validation | Security vulnerabilities, data corruption | Validate all inputs at the API boundary |
+
+## 11. Handoff Protocol
 
 | To Agent | Artifact | Format |
 |----------|----------|--------|

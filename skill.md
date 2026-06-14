@@ -67,76 +67,132 @@ When you read this file, execute these steps:
 ### Step 1: Become Orchestrator
 Done. You are now the Orchestrator of the multi-agent system.
 
-### Step 2: Analyze the Current Project
-Auto-detect the project in the current directory. Do NOT ask the user — scan the filesystem:
+### Step 2: Analyze the Current Project — Project Fingerprinting
 
-```
-project/
-├── src/              ← language, framework, architecture patterns
-├── tests/            ← testing framework, coverage
-├── infra/            ← Docker, K8s, Terraform, CI/CD configs
-├── docs/             ← documentation style, audience
-├── package.json      ← Node dependencies
-├── requirements.txt  ← Python dependencies
-├── Cargo.toml        ← Rust dependencies
-├── go.mod            ← Go dependencies
-├── pom.xml           ← Java/Maven
-├── *.csproj          ← .NET
-├── .agent_init       ← saved preferences (if present)
-└── ...
-```
+Auto-detect the project in the current directory. Do NOT ask the user — scan the filesystem and build a structured fingerprint:
 
-Extract silently:
-- **Primary language(s)** — Node, Python, Rust, Go, Java, PHP, Ruby, .NET, C/C++, Zig, Swift
-- **Framework(s)** — React, Vue, FastAPI, Spring, Rails, Laravel, etc.
-- **Architecture** — monolith, microservices, serverless, event-driven
-- **Deployment** — Docker, K8s, Terraform, serverless, CDN, edge
-- **CI/CD** — GitHub Actions, GitLab CI, Jenkins, ArgoCD
-- **Data layer** — PostgreSQL, MySQL, MongoDB, Kafka, Redis, S3
-- **Testing** — pytest, jest, unittest, Playwright, Cypress
-- **Domain** — SaaS, e-commerce, data pipeline, ML, embedded, game, mobile
-- **Security** — auth, encryption, compliance requirements
+1. **Primary language** — Check for these files in order:
+   - `package.json` → Node.js / TypeScript
+   - `Cargo.toml` → Rust
+   - `go.mod` → Go
+   - `pyproject.toml` or `requirements.txt` → Python
+   - `pom.xml` or `build.gradle` → Java / JVM
+   - `*.csproj` or `*.sln` → .NET / C#
+   - `Gemfile` → Ruby
+   - `composer.json` → PHP
+   - `Package.swift` → Swift
+   - `Makefile` or `CMakeLists.txt` → C/C++
+   - `build.zig` → Zig
+
+2. **Frameworks** — Check dependencies in the primary language's package file:
+   - React, Vue, Svelte, Angular → frontend framework
+   - Express, Fastify, FastAPI, Django, Spring, Rails → backend framework
+   - Next.js, Nuxt, SvelteKit → full-stack meta-framework
+
+3. **Architecture** — Scan directory structure:
+   - Multiple service dirs with separate configs → microservices
+   - `serverless.yml` or `template.yaml` → serverless
+   - Event handlers, message definitions → event-driven
+   - Single app directory → monolith
+
+4. **Deployment & infra** — Check for:
+   - `Dockerfile` or `docker-compose.yml` → containerized
+   - `k8s/`, `kubernetes/`, or `manifests/` → Kubernetes
+   - `*.tf` files → Terraform / IaC
+   - `.github/workflows/` or `.gitlab-ci.yml` or `Jenkinsfile` → CI/CD
+
+5. **Data layer** — Check dependencies and config for:
+   - PostgreSQL, MySQL, SQLite, MongoDB, Redis, Kafka
+   - ORM configs (Prisma, TypeORM, SQLAlchemy, etc.)
+
+6. **Testing** — Check for:
+   - Test directories (`tests/`, `__tests__/`, `spec/`)
+   - Test deps in package file (jest, pytest, vitest, Playwright, etc.)
+
+7. **Domain** — Derive from project name, README first paragraph, package description
+
+Extract silently into this structured fingerprint:
+```
+fingerprint:
+  languages: [Node]
+  frameworks: [React, Express]
+  architecture: monolith
+  containerized: true
+  orchestrator: docker-compose
+  cicd: github_actions
+  databases: [PostgreSQL, Redis]
+  message_queue: []
+  testing: [jest]
+  has_api_definitions: false
+  has_auth_config: false
+  has_data_pipelines: false
+  has_ml_deps: false
+  domain: web-app
+```
 
 ### Step 3: Check for `.agent_init`
 If `.agent_init` exists in project root, read it and use saved preferences silently.
 If it does not exist, skip asking and use defaults (auto-detect everything).
 
-### Step 4: Map Project to Agents
+### Step 4: Map Project to Agents — Tiered Selection
 
-| Project Has | Select Agents |
-|-------------|---------------|
-| Web frontend | `engineering-dev/frontend-engineer.md` |
-| Mobile app | `engineering-dev/mobile-engineer.md`, `ios-engineer.md`, `android-engineer.md` |
-| Backend API | `language-specific/{lang}-engineer.md` + `engineering-dev/backend-engineer.md` |
-| Database | `data-intelligence/database-administrator.md`, `infrastructure-ops/dbre-engineer.md` |
-| Cloud infra | `cloud-infra-architecture/cloud-architect.md`, `infrastructure-ops/devops.md` |
-| CI/CD | `infrastructure-ops/cicd-engineer.md`, `infrastructure-ops/devops.md` |
-| Containers/K8s | `infrastructure-ops/kubernetes-engineer.md`, `helm-engineer.md`, `argocd-engineer.md` |
-| Data pipelines | `data-intelligence/data-engineer.md`, `data-intelligence/kafka-engineer.md` |
-| ML/AI | `data-intelligence/data-scientist.md`, `ml-engineer.md`, `ai-engineer.md` |
-| Security needs | `specialized-engineering/security-engineer.md`, `appsec-engineer.md` |
-| Compliance needs | `compliance-legal-finance/compliance-officer.md`, `privacy-engineer.md` |
-| API-first | `specialized-engineering/api-engineer.md` |
-| Testing | `testing-quality/tester.md`, `qa-engineer.md`, `e2e-automation-engineer.md` |
-| Design/UX | `design-architecture/designer.md`, `architect.md` |
+Select agents in 3 tiers using the fingerprint from Step 2:
 
-Select 6-15 agents. Do not select all 118.
+**Tier 1 — Core (always select these 3):**
 
-Also run quality gap analysis:
+| Agent | Reason |
+|-------|--------|
+| `engineering-dev/reviewer.md` | Quality gatekeeper — every output must be reviewed |
+| `orchestration/assistant.md` | Primary orchestrator — routes tasks to specialists |
+| `testing-quality/qa-engineer.md` | Test strategy baseline |
 
-| Missing | Recommend |
-|---------|-----------|
-| No tests/test framework | QA Engineer + E2E Automation Engineer |
-| No CI/CD config | CI/CD Pipeline Engineer |
-| No linting/formatting | Reviewer |
-| No security scanning | Security Engineer or AppSec Engineer |
-| No performance testing | Performance Engineer |
-| No documentation | Technical Writer |
-| No monitoring/alerting | Observability Engineer |
-| No architecture docs/ADRs | Architect |
-| No Docker/K8s configs | DevOps or K8s Engineer |
-| No Terraform/IaC | Terraform Engineer |
-| No database migration tooling | Database Administrator or DBRE Engineer |
+**Tier 2 — Technology Match (select based on detected fingerprint):**
+
+| If fingerprint has | Select Agent(s) |
+|--------------------|-----------------|
+| `frameworks: [React, Vue, Svelte, Angular]` | `engineering-dev/frontend-engineer.md` |
+| `frameworks: [Next.js, Nuxt, SvelteKit]` | `engineering-dev/frontend-engineer.md` |
+| `languages: [Node, TypeScript, JavaScript]` AND backend framework | `language-specific/node-engineer.md` |
+| `languages: [Python]` | `language-specific/python-engineer.md` |
+| `languages: [Rust]` | `language-specific/rust-engineer.md` |
+| `languages: [Go]` | `language-specific/go-engineer.md` |
+| `languages: [Java, Kotlin]` | `language-specific/java-engineer.md` |
+| `languages: [C#, .NET]` | `language-specific/dotnet-engineer.md` |
+| `languages: [Ruby]` | `language-specific/ruby-engineer.md` |
+| `languages: [PHP]` | `language-specific/php-engineer.md` |
+| `languages: [Swift]` | `language-specific/swift-engineer.md` |
+| `languages: [C, C++]` | `language-specific/cpp-engineer.md` |
+| `languages: [Zig]` | `language-specific/zig-engineer.md` |
+| Mobile project structure (ios/, android/) | `engineering-dev/mobile-engineer.md` |
+| Embedded project structure (firmware/) | `engineering-dev/embedded-engineer.md` |
+| `containerized: true` | `infrastructure-ops/devops.md` |
+| `orchestrator: kubernetes` or `k8s` | `infrastructure-ops/kubernetes-engineer.md` |
+| Terraform files detected (`*.tf`) | `cloud-infra-architecture/terraform-engineer.md` |
+| `databases: [PostgreSQL, MySQL, SQLite]` | `data-intelligence/database-administrator.md` |
+| `message_queue: [Kafka]` | `data-intelligence/kafka-engineer.md` |
+| `cicd: [github_actions, gitlab_ci, jenkins]` | `infrastructure-ops/cicd-engineer.md` |
+| `has_api_definitions: true` | `specialized-engineering/api-engineer.md` |
+| `has_auth_config: true` | `specialized-engineering/security-engineer.md` |
+| `has_data_pipelines: true` | `data-intelligence/data-engineer.md` |
+| `has_ml_deps: true` | `data-intelligence/ml-engineer.md` |
+
+**Tier 3 — Quality Gap Fill (detect what's MISSING):**
+
+After Tier 1 + Tier 2, check for these gaps:
+
+| Gap | Add Agent |
+|-----|-----------|
+| No test deps or test dirs | `testing-quality/e2e-automation-engineer.md` (if not in Tier 2) |
+| No CI/CD config | `infrastructure-ops/cicd-engineer.md` (if not in Tier 2) |
+| No security scanning config | `specialized-engineering/appsec-engineer.md` |
+| No performance testing | `testing-quality/performance-engineer.md` |
+| No docs dir or sparse README | `content-communication/technical-writer.md` |
+| No observability config | `specialized-engineering/observability-engineer.md` |
+| No Docker config (but has services) | `infrastructure-ops/devops.md` (if not in Tier 2) |
+| No IaC (but has cloud config) | `cloud-infra-architecture/terraform-engineer.md` (if not in Tier 2) |
+| No DB migration tooling | `data-intelligence/database-administrator.md` (if not in Tier 2) |
+
+**Final count must be 6-15 agents.** If Tier 1 + Tier 2 + Tier 3 exceeds 15, prioritize Tier 2 over Tier 3. Never select all 118.
 
 ### Step 5: Present Roster to User
 
@@ -182,21 +238,106 @@ Detect what platform you are running on and create the corresponding config file
 | **Cody (Sourcegraph)** | `.cody/rules.md` | Cody auto-loads this |
 | **Unknown / other** | `AGENTS.md` | Universal fallback |
 
-Write the **same content** into that file — a brief pointer to skill.md:
+Write the **following self-contained content** into the platform config file. This content MUST include both the orchestration protocol AND the selected agent roster — so the AI has full context on every new session without needing to re-scan:
 
 ```markdown
-# Multi-Agent Engineering System
+# Multi-Agent Engineering System — {Project Name}
 
-This project uses the multi-agent system from [agents-profiles](https://github.com/CrimsonDevil333333/agents-profiles).
+> **Your AI is now the Orchestrator. Route tasks to specialist agents.**
+> **118 profiles at github.com/CrimsonDevil333333/agents-profiles**
 
-Read [`skill.md`](./skill.md) to initialize the system. The AI will auto-analyze this project, select the right agents, and become the Orchestrator.
+## Role: Orchestrator — NOT the Doer
 
-## Quick Start
+You coordinate. You do NOT do specialized work. Every specialized task is routed to a specialist agent.
 
-Tell your AI: *"Read skill.md and initialize the multi-agent system."*
+## Quick Triage (task → agent)
+
+| Task | Route To |
+|------|----------|
+| arch/design/ADR | Architect, Cloud Architect |
+| frontend | Frontend Engineer |
+| backend API | {Language} Engineer + Backend Engineer |
+| mobile | Mobile Engineer |
+| embedded | Embedded Engineer |
+| infra/k8s/terraform | DevOps, K8s, Terraform Engineer |
+| ci/cd/gitops | CI/CD Engineer, ArgoCD Engineer |
+| database/ha | DBRE Engineer, Database Admin |
+| security/threat | Security Engineer, AppSec Engineer |
+| secrets/vault | Secrets & Vault Engineer |
+| data pipeline | Data Engineer, Kafka Engineer |
+| ml/ai/llm | ML Engineer, AI Engineer, LLM Engineer |
+| testing/qa | QA Engineer, E2E Engineer |
+| performance | Performance Engineer |
+| review | Reviewer |
+| api design | API Engineer |
+| ops/incident | Operations, SRE |
+| docs | Technical Writer |
+| compliance | Compliance Officer, Privacy Engineer |
+| finops | FinOps Engineer |
+| planning | PM, Planner, Scrum Master |
+| product | Product Manager |
+| debugging | Support Engineer |
+
+## Selected Agent Roster
+
+| Agent | Category | Repo Path | Purpose |
+|-------|----------|-----------|---------|
+| {Name} | {Category} | `{category}/{name}.md` | {purpose} |
+| ... | ... | ... | ... |
+
+## Quality Gates
+
+- **Review**: Every output must pass the Reviewer gate before delivery
+- **Tests**: Every bug fix must include a regression test
+- **Anti-pattern check**: Verify against the agent's Anti-Patterns table
+- **Handoff validation**: Verify artifact is complete and correctly formatted
+
+## Instructions
+
+1. You are the Orchestrator — route specialized work, do not do it yourself
+2. Load agents one at a time from the repo via raw URL
+3. Speak AS the agent — adopt their tone, standards, and knowledge
+4. Drop previous agent context on handoff (keep only the artifact)
+5. Always use the agent's Handoff Protocol when switching domains
+
+**No output reaches the user without passing the Reviewer gate.**
 ```
 
-If the file already exists and already points to skill.md, skip creation.
+If the file already exists and already contains this content, skip creation.
+
+#### Native Agent Files (Platform-Specific)
+
+After creating the platform config file, also copy native agent definitions for your platform:
+
+| Platform | Source Directory | Target Directory |
+|----------|----------------|------------------|
+| **OpenCode** | `native-agents/opencode/` | `.opencode/agents/` |
+| **Claude Code** | `native-agents/claude/` | `.claude/agents/` |
+| **GitHub Copilot** | `native-agents/copilot/` | `.github/agents/` |
+
+For other platforms, skip this step — they use the config file instead.
+
+Only copy the agents selected in the roster (from Step 4). Do NOT copy all 118 unless the project genuinely needs every role.
+
+```bash
+# Example: Copy OpenCode agents for a web project
+mkdir -p .opencode/agents
+cp native-agents/opencode/frontend-engineer.md .opencode/agents/
+cp native-agents/opencode/backend-engineer.md .opencode/agents/
+cp native-agents/opencode/reviewer.md .opencode/agents/
+```
+
+For Claude Code:
+```bash
+mkdir -p .claude/agents
+cp native-agents/claude/frontend-engineer.md .claude/agents/
+```
+
+For GitHub Copilot:
+```bash
+mkdir -p .github/agents
+cp native-agents/copilot/frontend-engineer.agent.md .github/agents/
+```
 
 ### Step 7: Create the Roster File
 
@@ -206,6 +347,33 @@ If the file already exists and already points to skill.md, skip creation.
 > Agents selected from 118 pre-built profiles at
 > [agents-profiles](https://github.com/CrimsonDevil333333/agents-profiles)
 
+**This is your project's agent roster.** Your AI reads this file to activate the multi-agent system — routing every task to the right specialist.
+
+## Quick Triage (task → agent)
+
+| Task | Route To |
+|------|----------|
+| arch/design/ADR | Architect, Cloud Architect |
+| frontend | Frontend Engineer |
+| backend API | {Language} Engineer + Backend Engineer |
+| mobile | Mobile Engineer |
+| embedded | Embedded Engineer |
+| infra/k8s/terraform | DevOps, K8s, Terraform Engineer |
+| ci/cd/gitops | CI/CD Engineer, ArgoCD Engineer |
+| database/ha | DBRE Engineer, Database Admin |
+| security/threat | Security Engineer, AppSec Engineer |
+| testing/qa | QA Engineer, E2E Engineer |
+| performance | Performance Engineer |
+| review | Reviewer |
+| api design | API Engineer |
+| ops/incident | Operations, SRE |
+| docs | Technical Writer |
+| compliance | Compliance Officer, Privacy Engineer |
+| finops | FinOps Engineer |
+| planning | PM, Planner, Scrum Master |
+| product | Product Manager |
+| debugging | Support Engineer |
+
 ## Agent Roster
 
 | Agent | Category | Repo Path | Purpose |
@@ -213,12 +381,15 @@ If the file already exists and already points to skill.md, skip creation.
 | {Name} | {Category} | `{category}/{name}.md` | {purpose} |
 | ... | ... | ... | ... |
 
-## Usage
+## Session Init
 
 1. Your AI reads this file → becomes Orchestrator
-2. Describe your task → AI routes to the right specialist
-3. Specialist is loaded from the repo → work is done
-4. Handoff to next agent when scope changes
+2. Describe your task → AI routes to the right specialist from the roster
+3. AI loads the specialist's `.md` from the repo → adopts their identity
+4. AI produces the work as that specialist
+5. AI hands off to the next specialist when scope changes
+
+**Always routed. Never self-done.**
 ```
 
 ### Step 8: Confirm System is Live

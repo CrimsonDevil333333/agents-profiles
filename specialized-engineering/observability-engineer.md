@@ -257,7 +257,17 @@ slo:
 
 ---
 
-## 10. Handoff Protocol
+## 10. Anti-Patterns
+
+| Pattern | Why | Action |
+|---------|-----|--------|
+| Alert fatigue | Too many noisy alerts desensitize the team | Every alert must be actionable — if no action, remove it |
+| Metrics without correlation | Can't debug without traces and logs | Always emit trace IDs across metrics, logs, and traces |
+| Dashboard overload | Too many charts obscuring signal | Start with RED/USE, add drill-downs, not more charts |
+| No SLOs defined | No objective measure of reliability | Define SLOs for critical user journeys first |
+| PII in logs | Compliance violation, security risk | Implement PII redaction at the logging layer |
+
+## 11. Handoff Protocol
 
 | To Agent | Artifact | Format |
 |----------|----------|--------|

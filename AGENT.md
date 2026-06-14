@@ -6,14 +6,23 @@
 
 ## What This Repo Is
 
-A collection of **105 structured role description files** (`.md`), each defining a specialized engineering agent. Together they form a complete multi-agent engineering organization covering every domain of modern software development.
+A collection of **118 structured role description files** (`.md`), each defining a specialized engineering agent. Together they form a complete multi-agent engineering organization covering every domain of modern software development.
 
 ## Directory Layout
 
 ```
 /
 ├── AGENT.md              ← This file — how to work with & extend the system
-├── README.md             ← Complete guide: roster, handoffs, workflows, tips
+├── README.md             ← Self-setup, roster, handoffs, workflows, tips
+├── INIT.md               ← Session init protocol (legacy, standalone)
+├── skill.md              ← Auto-configure skill (project analysis + setup)
+├── SETUP.md              ← Platform-by-platform install guides
+├── AGENT_GENERATOR.md    ← Deprecated — redirects to INIT.md + skill.md
+├── native-agents/
+│   ├── generate.py       ← Script to regenerate all 354 native agent files
+│   ├── opencode/         ← 118 native agent files for OpenCode
+│   ├── claude/           ← 118 native agent files for Claude Code
+│   └── copilot/          ← 118 native agent files for GitHub Copilot
 ├── <category>/
 │   ├── <agent>.md        ← Individual agent definitions
 │   └── ...
@@ -24,7 +33,7 @@ A collection of **105 structured role description files** (`.md`), each defining
 
 | Directory | Agents | Focus |
 |-----------|--------|-------|
-| `orchestration/` | 7 | Assistant, Planner, PM, Scrum Master, EM, Agile Coach |
+| `orchestration/` | 8 | Assistant, Planner, PM, Prog Mgr, Scrum Master, EM, Agile Coach |
 | `executive/` | 3 | CEO, CTO, VP Engineering |
 | `business-analysis/` | 2 | Business Analyst, Data Analyst |
 | `people-culture/` | 3 | HR, Recruiter, Training Specialist |
@@ -35,10 +44,10 @@ A collection of **105 structured role description files** (`.md`), each defining
 | `engineering-dev/` | 9 | Frontend, Mobile, iOS, Android, Embedded, Backend, Dev, Reviewer, Automation |
 | `testing-quality/` | 5 | Tester, QA, E2E, Performance, Pen Tester |
 | `cloud-infra-architecture/` | 5 | Cloud Arch, AWS, Azure, GCP, Terraform |
-| `infrastructure-ops/` | 7 | DevOps, Ops, SRE, Platform, Network, Chaos, K8s |
-| `data-intelligence/` | 11 | Data Eng, Data Arch, Analytics, Data Sci, AI, LLM, ML, DL, MLOps, Data Quality, DBA |
-| `specialized-engineering/` | 10 | API, Integration, Migration, Security, DevSecOps, IAM, Incident, Data Protection, Observability, Release |
-| `compliance-legal-finance/` | 4 | Compliance, Legal, Accessibility, FinOps |
+| `infrastructure-ops/` | 13 | DevOps, SRE, Platform, Network, Chaos, K8s, ArgoCD, Helm, Service Mesh, DBRE, CI/CD, Edge, Ops |
+| `data-intelligence/` | 13 | Data Eng, Data Arch, Analytics, Data Sci, AI, LLM, ML, DL, MLOps, Data Quality, DBA, Kafka, BI |
+| `specialized-engineering/` | 13 | API, Integration, Migration, Security, DevSecOps, IAM, Incident Response, Data Protection, Observability, Release, AppSec, SOC, Secrets |
+| `compliance-legal-finance/` | 5 | Compliance, Legal, Accessibility, FinOps, Privacy |
 | `content-communication/` | 6 | Tech Writer, Content Strategist, Translator, Proposal, Localization, Support |
 | `it-support/` | 1 | IT Support |
 | `planning-oversight/` | 4 | Cost Estimator, Risk, Change, Vendor |
@@ -134,7 +143,21 @@ The table format is:
 
 Make sure the link path includes the category directory (e.g., `data-intelligence/agent-file.md`).
 
-### Step 4: Verification Checklist
+### Step 4: Add to AGENT.md
+
+Update the category table in this file (`AGENT.md`) with the correct agent count and focus description if needed.
+
+### Step 5: Regenerate Native Agent Files
+
+Add the new agent's name to the `CLASSIFICATION` dict in `native-agents/generate.py` with the correct permission tier, then regenerate:
+
+```bash
+python3 native-agents/generate.py
+```
+
+This creates native agent definitions for all 3 platforms (OpenCode, Claude Code, Copilot).
+
+### Step 6: Verification Checklist
 
 Run these checks after adding:
 
@@ -151,9 +174,13 @@ done
 # 3. All agents have Handoff Protocol
 find . -name '*.md' ! -path './README.md' -exec grep -L 'Handoff Protocol' {} \;
 
-# 4. No .md files at root (except README.md, AGENT.md, INIT.md, skill.md, AGENT_GENERATOR.md)
+# 4. No .md files at root (except README.md, AGENT.md, INIT.md, skill.md, SETUP.md, AGENT_GENERATOR.md)
 ls *.md
-# Should only show: AGENT.md  AGENT_GENERATOR.md  INIT.md  README.md  skill.md
+
+# 5. Native agent count matches
+echo "OpenCode: $(ls native-agents/opencode/*.md 2>/dev/null | wc -l)"
+echo "Claude: $(ls native-agents/claude/*.md 2>/dev/null | wc -l)"
+echo "Copilot: $(ls native-agents/copilot/*.agent.md 2>/dev/null | wc -l)"
 ```
 
 ## How to Modify an Existing Agent

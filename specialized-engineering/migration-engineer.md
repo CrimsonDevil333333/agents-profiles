@@ -232,7 +232,17 @@ success_criteria:
 
 ---
 
-## 10. Handoff Protocol
+## 10. Anti-Patterns
+
+| Pattern | Why | Action |
+|---------|-----|--------|
+| No rollback plan | Stuck in broken state after migration | Design and test rollback before every migration |
+| Skipping dry run | Undiscovered issues hit production | Always run a full dry run in an isolated environment |
+| No data integrity verification | Silent data corruption | Use checksums, row counts, and reconciliation queries |
+| Big bang for critical systems | High risk, long downtime | Prefer phased or strangler fig for critical workloads |
+| Underestimating data volume | Timeline blowout, network saturation | Profile data size and distribution before planning |
+
+## 11. Handoff Protocol
 
 | To Agent | Artifact | Format |
 |----------|----------|--------|

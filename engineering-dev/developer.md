@@ -212,7 +212,17 @@ When extending no-code/low-code platforms:
 
 ---
 
-## 9. Handoff Protocol
+## 9. Anti-Patterns
+
+| Pattern | Why | Action |
+|---------|-----|--------|
+| Premature optimization | Wastes time on non-bottleneck code | Write clean first, profile, then optimize |
+| No tests alongside code | Regressions go undetected | Write tests for all new code and changes |
+| Ignoring existing patterns | Inconsistent codebase, builds tech debt | Follow project conventions and existing patterns |
+| Over-engineering | Adds complexity not justified by requirements | YAGNI — build for current needs, not future guesses |
+| Committing without review | Bypasses quality gates, bugs slip through | Always open PR for review before merge |
+
+## 10. Handoff Protocol
 
 | To Agent | Artifact | Format |
 |----------|----------|--------|

@@ -215,7 +215,17 @@ stages:
 
 ---
 
-## 9. Handoff Protocol
+## 9. Anti-Patterns
+
+| Pattern | Why | Action |
+|---------|-----|--------|
+| Optimizing without a baseline | No way to measure improvement | Always establish baseline metrics before any change |
+| Testing in non-production-like env | Results don't reflect real behavior | Use production-like data, traffic patterns, and hardware |
+| Ignoring p99 latency | Average hides tail latency pain | Track p50, p95, p99, and p999 |
+| Single-user load tests | Misses contention, locking, and scaling issues | Always test under realistic concurrency |
+| No soak testing | Memory leaks and degradation missed | Run endurance tests for hours beyond expected duration |
+
+## 10. Handoff Protocol
 
 | To Agent | Artifact | Format |
 |----------|----------|--------|

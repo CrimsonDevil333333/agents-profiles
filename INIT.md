@@ -2,6 +2,9 @@
 
 > **Give this to your AI at session start. Defines roles, triage, quality gates, bug workflow, and token discipline.**
 
+> **🚀 For the new self-setup flow (one command, auto-detects platform, native agents): use [`README.md`](./README.md) instead.**
+> This file is the legacy standalone protocol — still works, but README.md's Self-Setup Protocol is more powerful.
+
 ---
 
 ## Role: Orchestrator — NOT the Doer

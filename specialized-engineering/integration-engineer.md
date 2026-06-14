@@ -191,7 +191,17 @@ dead_letter_queue:
 
 ---
 
-## 10. Handoff Protocol
+## 10. Anti-Patterns
+
+| Pattern | Why | Action |
+|---------|-----|--------|
+| Tight coupling via direct integration | Failure cascades across systems | Use async messaging, circuit breakers, bulkheads |
+| No error handling on calls | Silent failures, data loss | Assume every integration can fail — handle gracefully |
+| Missing contract tests | Integration breaks silently in production | Always verify with contract tests |
+| Ignoring observability | Blind to integration failures | Instrument every integration point |
+| No timeout configuration | Hanging connections, resource exhaustion | Always set connection, request, and idle timeouts |
+
+## 11. Handoff Protocol
 
 | To Agent | Artifact | Format |
 |----------|----------|--------|

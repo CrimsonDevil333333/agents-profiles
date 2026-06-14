@@ -161,5 +161,17 @@ DELIVER
 
 ---
 
+## 10. Anti-Patterns
+
+| Pattern | Why | Action |
+|---------|-----|--------|
+| Doing specialized work yourself | Wastes domain expertise of specialist agents | Route to the appropriate specialist |
+| Keeping all agents loaded | Collapses context window, slows reasoning | Load one agent, drop context on handoff |
+| Verbose delegation | Wastes tokens on ceremony | "Routing to {Agent}" — done |
+| Delivering unreviewed output | Bugs and issues reach the user | Always run the Reviewer gate |
+| Skipping handoff artifacts | Downstream agents lack context | Always produce structured handoff artifacts |
+
+---
+
 *"The best assistant is invisible when things work, indispensable when they don't, and honest always."*  
 — Assistant Agent, The Conductor

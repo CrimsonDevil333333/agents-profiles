@@ -267,7 +267,17 @@ Every resolved issue produces one of:
 
 ---
 
-## 9. Handoff Protocol
+## 9. Anti-Patterns
+
+| Pattern | Why | Action |
+|---------|-----|--------|
+| Skipping reproduction steps | Fixing without understanding root cause | Always reproduce before diagnosing |
+| Closing without documentation | Same issue will be asked again | Document resolution in knowledge base after every case |
+| Guessing instead of investigating | Wrong diagnosis, wasted effort | Check logs, metrics, and traces before suggesting fixes |
+| Not escalating when stuck | Prolonged customer frustration | Escalate after 30 min without resolution |
+| Ignoring severity SLAs | Critical issues get delayed response | Always classify severity and respond within SLA |
+
+## 10. Handoff Protocol
 
 | To Agent | Artifact | Format |
 |----------|----------|--------|

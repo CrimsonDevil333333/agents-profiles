@@ -7,6 +7,19 @@
 
 ## Quick Start (All Platforms)
 
+### Recommended: One-Command Self-Setup
+
+Give any AI this command:
+
+```
+Fetch and read https://raw.githubusercontent.com/CrimsonDevil333333/agents-profiles/refs/heads/main/README.md
+Then initialize the multi-agent system for my project.
+```
+
+The AI detects its platform, creates config files, copies native agents, and becomes the Orchestrator — all autonomously.
+
+### Legacy: Manual INIT.md
+
 ```
 1. Copy INIT.md into your AI's system prompt / instructions
 2. The AI becomes the Orchestrator
@@ -54,9 +67,14 @@
 # Option 1: Pipe INIT.md as system prompt
 cat INIT.md | claude -p "Load this multi-agent system. I'm building a Node.js API..."
 
-# Option 2: Use claude.md (Project-level instructions)
-cp INIT.md claude.md
-# Claude Code auto-loads claude.md from the project root
+# Option 2: Use CLAUDE.md (Project-level instructions)
+cp INIT.md CLAUDE.md
+# Claude Code auto-loads CLAUDE.md from the project root
+
+# Option 3: Native agents (118 pre-built agent definitions)
+mkdir -p .claude/agents
+cp native-agents/claude/*.md .claude/agents/
+# Claude Code loads agents from .claude/agents/ automatically
 ```
 
 ### Claude for Work (Team plan)
@@ -69,6 +87,8 @@ Add INIT.md as a **Shared Project Knowledge** document so every team member's Cl
 
 ### Copilot Chat (VS Code / JetBrains)
 
+#### Option A: Workspace Instructions
+
 Add INIT.md content as a **workspace instruction**:
 
 1. Create `.github/copilot-instructions.md`
@@ -77,6 +97,17 @@ Add INIT.md content as a **workspace instruction**:
 
 ```bash
 mkdir -p .github && cp INIT.md .github/copilot-instructions.md
+```
+
+#### Option B: Native Agents (118 pre-built agent definitions)
+
+```bash
+mkdir -p .github/agents
+cp native-agents/copilot/*.agent.md .github/agents/
+# Copilot loads agents from .github/agents/ automatically
+
+# Also add instructions so the Orchestrator knows how to route
+cp INIT.md .github/copilot-instructions.md
 ```
 
 ### Copilot Chat (Manual)
@@ -124,7 +155,7 @@ The AI agent (Cascade) reads these rules on every session and activates the mult
 
 ## OpenCode
 
-OpenCode supports system-level configuration via `opencode.json` and project-level via AGENTS.md.
+OpenCode supports system-level configuration via `opencode.json`, project-level via AGENTS.md, and **native agents** via `.opencode/agents/`.
 
 ### Global Install (All Projects)
 
@@ -132,6 +163,10 @@ OpenCode supports system-level configuration via `opencode.json` and project-lev
 # Linux/macOS
 mkdir -p ~/.config/opencode
 cp INIT.md ~/.config/opencode/AGENTS.md
+
+# Optionally install all native agents
+mkdir -p ~/.config/opencode/agents
+cp native-agents/opencode/*.md ~/.config/opencode/agents/
 
 # Windows
 mkdir %APPDATA%\opencode
@@ -142,9 +177,15 @@ copy INIT.md %APPDATA%\opencode\AGENTS.md
 
 ```bash
 cp INIT.md AGENTS.md
+
+# With native agents (only copy agents relevant to your project)
+mkdir -p .opencode/agents
+cp native-agents/opencode/frontend-engineer.md .opencode/agents/
+cp native-agents/opencode/backend-engineer.md .opencode/agents/
+cp native-agents/opencode/reviewer.md .opencode/agents/
 ```
 
-OpenCode auto-loads AGENTS.md at the start of every session when it exists in the project root — turning OpenCode into the Orchestrator with all 118 specialists on call.
+OpenCode auto-loads AGENTS.md at the start of every session when it exists in the project root — turning OpenCode into the Orchestrator with all 118 specialists on call. Native agent files (`.opencode/agents/*.md`) are loaded as sub-agents with built-in permission controls.
 
 ---
 
@@ -423,11 +464,15 @@ After setup on any platform, verify the system is active:
 
 | File | Purpose | Where to Install |
 |------|---------|-----------------|
-| [`INIT.md`](./INIT.md) | Session init protocol & triage table | System prompt, rules file, first message |
+| [`README.md`](./README.md) | **Self-setup protocol** — ONE command activates everything | AI reads this first, auto-configures |
+| [`INIT.md`](./INIT.md) | Session init protocol & triage table (legacy) | System prompt, rules file, first message |
 | [`skill.md`](./skill.md) | Analyze project & select agents | Run once per project to pick roster |
-| [`README.md`](./README.md) | Full reference: all 118 agents, workflows | AI training data / knowledge base |
+| [`SETUP.md`](./SETUP.md) | Platform-by-platform install guides | Reference for manual setup |
 | [`AGENT.md`](./AGENT.md) | Developer guide for extending the system | For maintainers |
+| `native-agents/opencode/*.md` | Native OpenCode agents (118) | `.opencode/agents/` |
+| `native-agents/claude/*.md` | Native Claude Code agents (118) | `.claude/agents/` |
+| `native-agents/copilot/*.agent.md` | Native GitHub Copilot agents (118) | `.github/agents/` |
 
 ---
 
-*"One system. 118 agents. Every platform. Paste INIT.md, become the Orchestrator, and route like a conductor."*
+*"One system. 118 agents. Every platform. One command. Push the repo, give the README URL, and the AI does the rest."*
