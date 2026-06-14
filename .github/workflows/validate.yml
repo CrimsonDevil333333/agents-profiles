@@ -1,0 +1,25 @@
+name: Validate Agent Repository
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run validation
+        run: bash validate.sh
+      - name: Verify native agent generation
+        run: |
+          python3 native-agents/generate.py
+          git diff --exit-code native-agents/ || {
+            echo "Native agent files are out of date. Run python3 native-agents/generate.py and commit the changes."
+            exit 1
+          }
