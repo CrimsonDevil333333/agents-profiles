@@ -2,7 +2,7 @@
 
 > **📦 Repo: [`github.com/CrimsonDevil333333/agents-profiles`](https://github.com/CrimsonDevil333333/agents-profiles)**
 
-> **118 agents. 18 categories. One command to activate.**
+> **129 agents. 20 categories. One command to activate.**
 
 > **🚀 SELF-SETUP — Give this ONE command to any AI:**
 > ```
@@ -27,9 +27,9 @@
 # Machine-readable metadata — for AI parsing
 system:
   name: "Multi-Agent Engineering System"
-  total_agents: 118
-  categories: 18
-  format_version: 2.0
+  total_agents: 129
+  categories: 20
+  format_version: 2.1
   directory_map:
     orchestration: "8 agents — orchestration & leadership"
     executive: "3 agents — executive & leadership"
@@ -39,16 +39,20 @@ system:
     design-architecture: "6 agents — design & architecture"
     system-extensibility: "6 agents — agent infrastructure & extensibility"
     language-specific: "11 agents — language-specific engineering"
-    engineering-dev: "9 agents — engineering & development"
+    engineering-dev: "10 agents — engineering & development"
     testing-quality: "5 agents — testing & quality"
     cloud-infra-architecture: "5 agents — cloud & infrastructure architecture"
-    infrastructure-ops: "13 agents — infrastructure & operations"
-    data-intelligence: "13 agents — data & intelligence"
-    specialized-engineering: "13 agents — specialized engineering"
+    infrastructure-ops: "14 agents — infrastructure & operations"
+    data-intelligence: "14 agents — data & intelligence"
+    specialized-engineering: "14 agents — specialized engineering"
     compliance-legal-finance: "5 agents — compliance, legal & finance"
-    content-communication: "6 agents — content & communication"
+    content-communication: "8 agents — content & communication"
     it-support: "1 agent — IT & internal support"
     planning-oversight: "4 agents — planning & oversight"
+    game-development: "1 agent — game development"
+    frontend-frameworks: "2 agents — frontend framework specialists"
+    database-specialists: "1 agent — database specialists"
+    cloud-providers: "1 agent — additional cloud providers"
   common_structure:
     sections: ["Identity & Persona", "Core Responsibilities", "Domain-specific sections", "Anti-Patterns", "Handoff Protocol", "Closing Quote"]
     required_sections: ["Handoff Protocol"]
@@ -94,7 +98,7 @@ Scan the user's project directory for:
 
 #### Step 3: Select Agent Roster
 
-From the 118 agents, select 6-15 that match the project's tech stack, architecture, and domain. Include at minimum:
+From the 129 agents, select 6-15 that match the project's tech stack, architecture, and domain. Include at minimum:
 - 1 language-specific engineer (matching the project's primary language)
 - 1 Reviewer (mandatory quality gate)
 - 1 domain specialist (frontend, backend, infra, data, etc.)
@@ -112,7 +116,7 @@ Copy-paste this template, fill in the project details and selected roster:
 # {Project Name} — Multi-Agent Engineering System
 
 > **Your AI is now the Orchestrator. Route tasks to specialist agents.**
-> **118 profiles at github.com/CrimsonDevil333333/agents-profiles**
+> **129 profiles at github.com/CrimsonDevil333333/agents-profiles**
 
 ## Role: Orchestrator — NOT the Doer
 
@@ -197,13 +201,13 @@ Announce: *"Multi-agent system initialized. I am the Orchestrator with {N} speci
 
 ### Rule 1: Selection First — Generation Last
 
-**The 118 agents already exist.** Your default action is to **SELECT from existing profiles**, not generate new ones. Only generate a new agent if ALL of these are true:
-- The role does not exist in any of the 18 categories
+**The 129 agents already exist.** Your default action is to **SELECT from existing profiles**, not generate new ones. Only generate a new agent if ALL of these are true:
+- The role does not exist in any of the 20 categories
 - The role is not a variation of an existing agent
 - The user explicitly requested a custom agent
 
 When asked to work with agents, follow this priority:
-1. **SELECT** — find the closest match from the 118 existing profiles
+1. **SELECT** — find the closest match from the 129 existing profiles
 2. **LOAD** — fetch and read their actual `.md` file from the repo
 3. **DEPLOY** — use them in your current session
 4. **GENERATE** — only as last resort, if no existing profile fits
@@ -248,11 +252,11 @@ https://raw.githubusercontent.com/CrimsonDevil333333/agents-profiles/main/<categ
 
 **No-fetch fallback:** If you cannot access URLs, announce this to the user and rely on your training data for the agent's domain knowledge. Still adopt the agent's identity and delegate via Handoff Protocols — this is mandatory regardless of fetch ability. Offer: *"For full precision, provide the file at `category/agent.md` from the repo."*
 
-Do not rely on training data when you CAN fetch — the 118 `.md` files in this repo are the ground truth. If you are unsure how an agent would respond, read its file instead of guessing.
+Do not rely on training data when you CAN fetch — the 129 `.md` files in this repo are the ground truth. If you are unsure how an agent would respond, read its file instead of guessing.
 
 ### Rule 6: Select Only What's Relevant
 
-Do not select all 118 agents for a project. Analyze the project and select only the agents that match its:
+Do not select all 129 agents for a project. Analyze the project and select only the agents that match its:
 - Language and framework stack
 - Architecture patterns
 - Deployment and infrastructure
@@ -354,7 +358,11 @@ agents-readme/
 ├── data-intelligence/                 (13) — Data Eng, Data Arch, Analytics, Data Sci, AI, LLM, ML, DL, MLOps, Data Quality, DBA, Kafka, BI
 ├── specialized-engineering/           (13) — API, Integration, Migration, Security, DevSecOps, IAM, Incident, Data Protection, Observability, Release, Vault, AppSec, SOC
 ├── compliance-legal-finance/          (5)  — Compliance, Legal, Accessibility, FinOps, Privacy
-├── content-communication/             (6)  — Tech Writer, Content Strategist, Translator, Proposal, Localization, Support
+├── content-communication/             (8)  — Tech Writer, Content Strategist, Translator, Proposal, Localization, Support, Visual Creator, Video Producer
+├── game-development/                  (1)  — Game Engineer
+├── frontend-frameworks/               (2)  — React Engineer, Vue Engineer
+├── database-specialists/              (1)  — PostgreSQL Engineer
+├── cloud-providers/                   (1)  — Oracle Cloud Engineer
 ├── it-support/                        (1)  — IT Support
 └── planning-oversight/                (4)  — Cost Estimator, Risk, Change, Vendor
 ```
@@ -382,7 +390,7 @@ agents-readme/
 
 ## 1. What Is This?
 
-This is a **multi-agent engineering system** — a collection of 105 highly specialized, structured role descriptions, each defining:
+This is a **multi-agent engineering system** — a collection of 129 highly specialized, structured role descriptions, each defining:
 
 - **Who** the agent is (name, archetype, personality)
 - **What** they do (core responsibilities, domains)
@@ -617,6 +625,7 @@ Varies by agent type:
 | [Developer](engineering-dev/developer.md) | The Builder | Code generation, implementation, testing, quality |
 | [Reviewer](engineering-dev/reviewer.md) | The Gatekeeper | Code review, quality gates, security audit, regression prevention |
 | [Automation Engineer](engineering-dev/automation-engineer.md) | The Efficiency Engine | Process automation, CI/CD, RPA, runbook automation, toil elimination |
+| [Flutter Engineer](engineering-dev/flutter-engineer.md) | The Widget Artisan | Cross-platform UI, Dart, mobile/web/desktop with Flutter |
 
 ### Testing & Quality
 
@@ -655,6 +664,7 @@ Varies by agent type:
 | [DBRE Engineer](infrastructure-ops/dbre-engineer.md) | The Data Guardian | Database reliability, HA, backup/recovery, query performance, SRE |
 | [CI/CD Pipeline Engineer](infrastructure-ops/cicd-engineer.md) | The Pipeline Architect | GitHub Actions, GitLab CI, pipeline optimization, quality gates |
 | [Edge / CDN Engineer](infrastructure-ops/edge-engineer.md) | The Edge Runner | CDN config, edge compute, Cloudflare Workers, DDoS mitigation |
+| [Redis Engineer](infrastructure-ops/redis-engineer.md) | The Memory Maestro | Caching, real-time data, session management, Redis infrastructure |
 
 ### Data & Intelligence
 
@@ -673,6 +683,7 @@ Varies by agent type:
 | [Database Administrator](data-intelligence/database-administrator.md) | The Data Steward | Schema design, performance tuning, backup/recovery, HA |
 | [Kafka Engineer](data-intelligence/kafka-engineer.md) | The Stream Master | Event streaming, topic design, Kafka Connect, Streams, Schema Registry |
 | [BI Engineer](data-intelligence/bi-engineer.md) | The Data Visualizer | BI dashboards, semantic layer, Looker/Tableau/PowerBI, metric stores |
+| [Scientific Computing Engineer](data-intelligence/scientific-computing-engineer.md) | The Number Cruncher | Numerical computing, HPC, simulation, bioinformatics, scientific algorithms |
 
 ### Specialized Engineering
 
@@ -691,6 +702,7 @@ Varies by agent type:
 | [Secrets & Vault Engineer](specialized-engineering/secrets-vault-engineer.md) | The Key Guardian | HashiCorp Vault, secrets rotation, encryption, PKI, policy management |
 | [Application Security Engineer](specialized-engineering/appsec-engineer.md) | The Code Sentinel | SAST/DAST/SCA, threat modeling, secure coding, shift-left security |
 | [SOC Analyst](specialized-engineering/soc-analyst.md) | The Signal Watcher | SIEM monitoring, alert triage, threat detection, incident escalation |
+| [Blockchain Engineer](specialized-engineering/blockchain-engineer.md) | The Trustless Architect | Smart contracts, DeFi, Web3, Solidity, EVM, decentralized applications |
 
 ### Compliance, Legal & Finance
 
@@ -712,6 +724,8 @@ Varies by agent type:
 | [Proposal Writer](content-communication/proposal-writer.md) | The Persuasive Architect | Technical proposals, RFP responses, bid management |
 | [Localization Engineer](content-communication/localization-engineer.md) | The Global Connector | i18n/l10n, translation pipelines, RTL support, ICU formatting |
 | [Support Engineer](content-communication/support-engineer.md) | The Troubleshooter | Technical support, issue resolution, debugging, knowledge base |
+| [Visual Creator](content-communication/visual-creator.md) | The Pixel Alchemist | AI image generation, graphic design, visual assets, prompt engineering |
+| [Video Producer](content-communication/video-producer.md) | The Frame Weaver | Video production, editing, motion graphics, post-production |
 
 ### IT & Internal Support
 
@@ -727,6 +741,31 @@ Varies by agent type:
 | [Risk Manager](planning-oversight/risk-manager.md) | The Risk Sentinel | Risk identification, assessment, mitigation planning, monitoring |
 | [Change Manager](planning-oversight/change-manager.md) | The Transition Guide | Organizational change management, adoption, stakeholder engagement |
 | [Vendor Manager](planning-oversight/vendor-manager.md) | The Partnership Steward | Vendor selection, contract management, performance monitoring, risk |
+
+### Game Development
+
+| Agent | Codename | Purpose |
+|-------|----------|---------|
+| [Game Engineer](game-development/game-engineer.md) | The Play Crafter | Game development, engine programming, gameplay, rendering, Unity/Unreal/Godot |
+
+### Frontend Frameworks
+
+| Agent | Codename | Purpose |
+|-------|----------|---------|
+| [React Engineer](frontend-frameworks/react-engineer.md) | The Component Alchemist | React, Next.js, server components, state management, frontend architecture |
+| [Vue Engineer](frontend-frameworks/vue-engineer.md) | The Reactive Craftsman | Vue, Nuxt, composition API, Pinia, reactive frontend development |
+
+### Database Specialists
+
+| Agent | Codename | Purpose |
+|-------|----------|---------|
+| [PostgreSQL Engineer](database-specialists/postgresql-engineer.md) | The Query Whisperer | PostgreSQL performance, query optimization, indexing, replication, migration |
+
+### Cloud Providers
+
+| Agent | Codename | Purpose |
+|-------|----------|---------|
+| [Oracle Cloud Engineer](cloud-providers/oracle-cloud-engineer.md) | The Enterprise Cloud Architect | OCI infrastructure, Autonomous DB, Exadata, enterprise cloud architecture |
 
 ---
 
@@ -773,13 +812,13 @@ Product Manager ──→ Business Analyst ──→ Architect ──→ Develop
 
 ## 7. How to Create a New Agent
 
-> **⚠️ Before creating a new agent: Check the 118 existing profiles first. 99% of roles are already covered. Only create if no existing profile fits.**
+> **⚠️ Before creating a new agent: Check the 129 existing profiles first. 99% of roles are already covered. Only create if no existing profile fits.**
 
 ### Step 1: Verify the Gap
 
-Is there a domain or expertise **not covered** by the 118 existing profiles?
+Is there a domain or expertise **not covered** by the 129 existing profiles?
 
-- Check all 18 categories in [Section 5](#5-complete-agent-roster)
+- Check all 20 categories in [Section 5](#5-complete-agent-roster)
 - Fetch and read at least 3 profiles from the closest-matching category
 - Confirm: no existing agent has this role, responsibility, or domain
 
@@ -896,7 +935,7 @@ description: "Establishes the multi-agent system at session start. Orchestrator 
 1. Give `skill.md` to your AI at the start of EVERY chat session
 2. The AI becomes the **Orchestrator** — routing tasks to specialists
 3. The AI auto-analyzes your project and selects the right agents
-4. The AI loads agents from the repo by task, not by keeping all 118 in context
+4. The AI loads agents from the repo by task, not by keeping all 129 in context
 5. The AI delegates specialized work instead of doing everything itself
 
 This is the single most important file for users who want the multi-agent system to work properly in every session.
@@ -907,16 +946,16 @@ The file **[`skill.md`](skill.md)** at the repository root is a ready-to-use ski
 
 ```yaml
 name: "select-deploy-agents"
-description: "Analyze any project and select the right agents from the 118 pre-built profiles"
+description: "Analyze any project and select the right agents from the 129 pre-built profiles"
 ```
 
 **How to use it:**
 1. Load `skill.md` into any AI agent
-2. The AI will analyze your project and **select** the matching agents from the 118 existing profiles
+2. The AI will analyze your project and **select** the matching agents from the 129 existing profiles
 3. It presents the recommended roster for your confirmation
 4. It only generates a new profile if no existing one covers the role
 
-The primary goal is **selection**, not generation. The 118 profiles are the library.
+The primary goal is **selection**, not generation. The 129 profiles are the library.
 
 ---
 
@@ -1128,7 +1167,7 @@ Try this pattern:
 
 ### Step 3: Add a New Agent (If Genuinely Needed)
 
-Found a gap not covered by the 118 existing profiles? Follow [How to Create a New Agent](#7-how-to-create-a-new-agent). But first verify — 99% of roles already exist.
+Found a gap not covered by the 129 existing profiles? Follow [How to Create a New Agent](#7-how-to-create-a-new-agent). But first verify — 99% of roles already exist.
 
 ### Step 4: Create Your First Skill
 

@@ -6,7 +6,7 @@
 
 ## What This Repo Is
 
-A collection of **118 structured role description files** (`.md`), each defining a specialized engineering agent. Together they form a complete multi-agent engineering organization covering every domain of modern software development.
+A collection of **129 structured role description files** (`.md`), each defining a specialized engineering agent. Together they form a complete multi-agent engineering organization covering every domain of modern software development.
 
 ## Directory Layout
 
@@ -20,16 +20,16 @@ A collection of **118 structured role description files** (`.md`), each defining
 ├── AGENT_GENERATOR.md    ← Deprecated — redirects to INIT.md + skill.md
 ├── native-agents/
 │   ├── generate.py       ← Script to regenerate all 354 native agent files
-│   ├── opencode/         ← 118 native agent files for OpenCode
-│   ├── claude/           ← 118 native agent files for Claude Code
-│   └── copilot/          ← 118 native agent files for GitHub Copilot
+│   ├── opencode/         ← 129 native agent files for OpenCode
+│   ├── claude/           ← 129 native agent files for Claude Code
+│   └── copilot/          ← 129 native agent files for GitHub Copilot
 ├── <category>/
 │   ├── <agent>.md        ← Individual agent definitions
 │   └── ...
 └── ...
 ```
 
-**18 category directories**, each holding related agent files:
+**20 category directories**, each holding related agent files:
 
 | Directory | Agents | Focus |
 |-----------|--------|-------|
@@ -41,16 +41,20 @@ A collection of **118 structured role description files** (`.md`), each defining
 | `design-architecture/` | 6 | Architect, Sol Arch, Designer, UX, Researcher, Workflow |
 | `system-extensibility/` | 6 | Agent Builder, Skill Creator, MCP, Prompt, Knowledge, Evaluator |
 | `language-specific/` | 11 | Node, Python, Rust, Go, Java, PHP, Ruby, .NET, C/C++, Zig, Swift |
-| `engineering-dev/` | 9 | Frontend, Mobile, iOS, Android, Embedded, Backend, Dev, Reviewer, Automation |
+| `engineering-dev/` | 10 | Frontend, Mobile, iOS, Android, Embedded, Backend, Dev, Reviewer, Automation, Flutter |
 | `testing-quality/` | 5 | Tester, QA, E2E, Performance, Pen Tester |
 | `cloud-infra-architecture/` | 5 | Cloud Arch, AWS, Azure, GCP, Terraform |
-| `infrastructure-ops/` | 13 | DevOps, SRE, Platform, Network, Chaos, K8s, ArgoCD, Helm, Service Mesh, DBRE, CI/CD, Edge, Ops |
-| `data-intelligence/` | 13 | Data Eng, Data Arch, Analytics, Data Sci, AI, LLM, ML, DL, MLOps, Data Quality, DBA, Kafka, BI |
-| `specialized-engineering/` | 13 | API, Integration, Migration, Security, DevSecOps, IAM, Incident Response, Data Protection, Observability, Release, AppSec, SOC, Secrets |
+| `infrastructure-ops/` | 14 | DevOps, SRE, Platform, Network, Chaos, K8s, ArgoCD, Helm, Service Mesh, DBRE, CI/CD, Edge, Ops, Redis |
+| `data-intelligence/` | 14 | Data Eng, Data Arch, Analytics, Data Sci, AI, LLM, ML, DL, MLOps, Data Quality, DBA, Kafka, BI, Scientific Computing |
+| `specialized-engineering/` | 14 | API, Integration, Migration, Security, DevSecOps, IAM, Incident Response, Data Protection, Observability, Release, AppSec, SOC, Secrets, Blockchain |
 | `compliance-legal-finance/` | 5 | Compliance, Legal, Accessibility, FinOps, Privacy |
-| `content-communication/` | 6 | Tech Writer, Content Strategist, Translator, Proposal, Localization, Support |
+| `content-communication/` | 8 | Tech Writer, Content Strategist, Translator, Proposal, Localization, Support, Visual Creator, Video Producer |
 | `it-support/` | 1 | IT Support |
 | `planning-oversight/` | 4 | Cost Estimator, Risk, Change, Vendor |
+| `game-development/` | 1 | Game Engineer |
+| `frontend-frameworks/` | 2 | React Engineer, Vue Engineer |
+| `database-specialists/` | 1 | PostgreSQL Engineer |
+| `cloud-providers/` | 1 | Oracle Cloud Engineer |
 
 ## Agent File Format
 
@@ -115,11 +119,16 @@ Does your new agent fit into an existing category, or does it need a new one?
 - Content, writing, localization, support
 - IT support, planning, risk, vendor management
 
-**Potential new categories** (not yet covered):
-- Game development, blockchain, quantum computing, mainframe
-- Bioinformatics, scientific computing, computational physics
+**Recently added categories:**
+- Game development (game-development/)
+- Frontend frameworks (frontend-frameworks/)
+- Database specialists (database-specialists/)
+- Cloud providers (cloud-providers/)
+
+**Still not yet covered:**
+- Quantum computing, mainframe
+- Bioinformatics
 - Specific methodologies (value stream mapping, TOC)
-- Additional cloud providers (Oracle Cloud, IBM Cloud)
 
 ### Step 2: Create the File
 

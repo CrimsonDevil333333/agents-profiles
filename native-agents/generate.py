@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Generate native agent definitions for OpenCode, Claude Code, and GitHub Copilot.
 
-Reads all 118 agent .md files and outputs platform-native agent configs
+Reads all agent .md files and outputs platform-native agent configs
 with full profile context embedded into the system prompt.
 """
 import os
@@ -16,10 +16,12 @@ CATEGORIES = [
     "language-specific", "engineering-dev", "testing-quality",
     "cloud-infra-architecture", "infrastructure-ops", "data-intelligence",
     "specialized-engineering", "compliance-legal-finance",
-    "content-communication", "it-support", "planning-oversight"
+    "content-communication", "it-support", "planning-oversight",
+    "game-development", "frontend-frameworks", "database-specialists",
+    "cloud-providers"
 ]
 
-# Classification: read-only (63), read-write (34), infrastructure (21)
+# Classification: read-only (65), read-write (40), infrastructure (23)
 CLASSIFICATION = {
     # read-only
     "Assistant": "read-only", "Planner": "read-only",
@@ -53,6 +55,7 @@ CLASSIFICATION = {
     "Localization Engineer": "read-only", "Proposal Writer": "read-only",
     "Tech Translator": "read-only", "Support Engineer": "read-only",
     "IT Support Engineer": "read-only",
+    "Visual Creator": "read-only", "Video Producer": "read-only",
     "Cost Estimator": "read-only", "Risk Manager": "read-only",
     "Change Manager": "read-only", "Vendor Manager": "read-only",
     "Data Scientist": "read-only", "Data Architect": "read-only",
@@ -68,6 +71,12 @@ CLASSIFICATION = {
     "PHP Engineer": "read-write", "Ruby Engineer": "read-write",
     ".NET Engineer": "read-write", "Swift Engineer": "read-write",
     "Zig Engineer": "read-write",
+    "React Engineer": "read-write", "Vue Engineer": "read-write",
+    "Flutter Engineer": "read-write",
+    "Game Engineer": "read-write",
+    "PostgreSQL Engineer": "read-write",
+    "Scientific Computing Engineer": "read-write",
+    "Blockchain Engineer": "read-write",
     "Agent Builder": "read-write", "Skill Creator": "read-write",
     "Prompt Engineer": "read-write", "MCP Server Developer": "read-write",
     "AI Engineer": "read-write", "LLM Engineer": "read-write",
@@ -93,10 +102,15 @@ CLASSIFICATION = {
     "Secrets & Vault Engineer": "infrastructure",
     "Database Administrator": "infrastructure",
     "MLOps Engineer": "infrastructure",
+    "Redis Engineer": "infrastructure",
+    "Oracle Cloud Engineer": "infrastructure",
 }
 
 def slugify(name):
-    return name.lower().replace(" ", "-").replace("/", "-").replace(".", "-").replace("&", "and")
+    # Handle .NET specially before generic dot replacement
+    s = name.lower()
+    s = s.replace(".net", "dotnet")
+    return s.replace(" ", "-").replace("/", "-").replace(".", "-").replace("&", "and")
 
 def parse_agent_file(filepath):
     with open(filepath, "r") as f:
