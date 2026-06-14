@@ -1,5 +1,7 @@
 # Multi-Agent Engineering System — Complete Guide
 
+> **📦 Repo: [`github.com/CrimsonDevil333333/agents-profiles`](https://github.com/CrimsonDevil333333/agents-profiles)**
+
 > **Your all-in-one reference for understanding, using, extending, and auto-generating custom multi-agent software engineering systems.**
 
 > **🧑‍💻 Quick start for humans:** Copy-paste this whole README into your AI agent and say: *"Load this multi-agent engineering system. I'm working on [project description]. Help me build [specific task] by routing through the right agents."*

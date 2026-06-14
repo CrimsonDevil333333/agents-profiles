@@ -1,5 +1,7 @@
 # Agent Engineering System — Developer Guide
 
+> **📦 Repo: [`github.com/CrimsonDevil333333/agents-profiles`](https://github.com/CrimsonDevil333333/agents-profiles)**
+
 > **For anyone who needs to understand, maintain, or extend this multi-agent system.**
 
 ## What This Repo Is
