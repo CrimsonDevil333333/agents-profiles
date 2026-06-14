@@ -1,0 +1,203 @@
+# Agent Engineering System — Developer Guide
+
+> **For anyone who needs to understand, maintain, or extend this multi-agent system.**
+
+## What This Repo Is
+
+A collection of **105 structured role description files** (`.md`), each defining a specialized engineering agent. Together they form a complete multi-agent engineering organization covering every domain of modern software development.
+
+## Directory Layout
+
+```
+/
+├── AGENT.md              ← This file — how to work with & extend the system
+├── README.md             ← Complete guide: roster, handoffs, workflows, tips
+├── <category>/
+│   ├── <agent>.md        ← Individual agent definitions
+│   └── ...
+└── ...
+```
+
+**18 category directories**, each holding related agent files:
+
+| Directory | Agents | Focus |
+|-----------|--------|-------|
+| `orchestration/` | 7 | Assistant, Planner, PM, Scrum Master, EM, Agile Coach |
+| `executive/` | 3 | CEO, CTO, VP Engineering |
+| `business-analysis/` | 2 | Business Analyst, Data Analyst |
+| `people-culture/` | 3 | HR, Recruiter, Training Specialist |
+| `business-revenue/` | 5 | Sales, Dev Advocate, CS, TAM, Marketing |
+| `design-architecture/` | 6 | Architect, Sol Arch, Designer, UX, Researcher, Workflow |
+| `system-extensibility/` | 6 | Agent Builder, Skill Creator, MCP, Prompt, Knowledge, Evaluator |
+| `language-specific/` | 11 | Node, Python, Rust, Go, Java, PHP, Ruby, .NET, C/C++, Zig, Swift |
+| `engineering-dev/` | 9 | Frontend, Mobile, iOS, Android, Embedded, Backend, Dev, Reviewer, Automation |
+| `testing-quality/` | 5 | Tester, QA, E2E, Performance, Pen Tester |
+| `cloud-infra-architecture/` | 5 | Cloud Arch, AWS, Azure, GCP, Terraform |
+| `infrastructure-ops/` | 7 | DevOps, Ops, SRE, Platform, Network, Chaos, K8s |
+| `data-intelligence/` | 11 | Data Eng, Data Arch, Analytics, Data Sci, AI, LLM, ML, DL, MLOps, Data Quality, DBA |
+| `specialized-engineering/` | 10 | API, Integration, Migration, Security, DevSecOps, IAM, Incident, Data Protection, Observability, Release |
+| `compliance-legal-finance/` | 4 | Compliance, Legal, Accessibility, FinOps |
+| `content-communication/` | 6 | Tech Writer, Content Strategist, Translator, Proposal, Localization, Support |
+| `it-support/` | 1 | IT Support |
+| `planning-oversight/` | 4 | Cost Estimator, Risk, Change, Vendor |
+
+## Agent File Format
+
+Every `.md` agent file follows this exact structure:
+
+```
+# Agent Name — Subtitle
+
+> Role blockquote with titles, archetype, tone
+
+---
+
+## 1. Identity & Persona
+- Name, Codename, Core Mandate
+- Personality Matrix (4 traits with Expression & Threshold columns)
+
+## 2-N. Domain-Specific Sections
+Varies by agent type:
+- Language engineers: Code Standards, Performance Patterns, Security Checklist
+- Cloud engineers: Service catalog, architecture patterns, cost optimization
+- Testing agents: Test design, tools, CI integration
+- Tables, code blocks, templates, checklists
+
+## N. Anti-Patterns
+- Table with Pattern | Why | Action
+
+## N+1. Handoff Protocol       ← REQUIRED in every agent
+- Table with To Agent | Artifact | Format
+- Defines who this agent hands off to and what they pass
+
+## N+2. Closing Quote
+- Role philosophy quote
+- Attribution line
+```
+
+### Required Elements
+
+Every agent file **must** have:
+
+1. **Personality Matrix** — 4 traits with Expression and Threshold columns
+2. **Anti-Patterns table** — at least 4 rows with Pattern, Why, Action
+3. **Handoff Protocol table** — at least 3 rows with To Agent, Artifact, Format
+4. **Closing quote** — a memorable role philosophy
+
+## How to Add a New Agent
+
+### Step 1: Identify the Category
+
+Does your new agent fit into an existing category, or does it need a new one?
+
+**Existing categories** cover these domains:
+- Orchestration/leadership, executive, business, people, revenue
+- Design, architecture, system extensibility
+- Language-specific engineering (11 languages)
+- Frontend, mobile, backend, embedded, automation
+- Testing, QA, performance, security testing
+- Cloud architecture (AWS, Azure, GCP, Terraform)
+- DevOps, SRE, platform, network, chaos, K8s
+- Data engineering, data science, ML, AI, LLM, MLOps
+- Specialized engineering (API, security, IAM, observability, etc.)
+- Compliance, legal, accessibility, FinOps
+- Content, writing, localization, support
+- IT support, planning, risk, vendor management
+
+**Potential new categories** (not yet covered):
+- Game development, blockchain, quantum computing, mainframe
+- Bioinformatics, scientific computing, computational physics
+- Specific methodologies (value stream mapping, TOC)
+- Additional cloud providers (Oracle Cloud, IBM Cloud)
+
+### Step 2: Create the File
+
+Place it in the correct category directory:
+
+```
+data-intelligence/your-new-agent.md
+```
+
+Use exactly the same format as existing agents. Copy an existing file from the same category as a template and replace the content.
+
+### Step 3: Add to README
+
+Open `README.md` and add a row to the appropriate roster table under **Section 5. Complete Agent Roster**.
+
+The table format is:
+
+```markdown
+| [Agent Name](category/agent-file.md) | The Codename | Brief purpose description |
+```
+
+Make sure the link path includes the category directory (e.g., `data-intelligence/agent-file.md`).
+
+### Step 4: Verification Checklist
+
+Run these checks after adding:
+
+```bash
+# 1. Count matches: agent files vs README links
+echo "Agent files: $(find . -name '*.md' ! -path './README.md' | wc -l)"
+echo "README links: $(grep -oP '\([^()]+\.md\)' README.md | sed 's/[()]//g' | sort -u | wc -l)"
+
+# 2. No broken links
+grep -oP '\([^()]+\.md\)' README.md | sed 's/[()]//g' | sort -u | while read f; do
+  [ ! -f "$f" ] && echo "BROKEN: $f"
+done
+
+# 3. All agents have Handoff Protocol
+find . -name '*.md' ! -path './README.md' -exec grep -L 'Handoff Protocol' {} \;
+
+# 4. No .md files at root (except README.md and AGENT.md)
+ls *.md
+# Should only show: AGENT.md  README.md
+```
+
+## How to Modify an Existing Agent
+
+1. Read the current file
+2. Make changes following the same format and style
+3. If you change the agent's handoff targets, update the Handoff Protocol table
+4. If you change the agent's purpose/codename, update the README roster entry
+5. If you rename or move the file, update all links in README.md
+
+## Working with the README
+
+The README is the master index. It must always reflect the actual state of the repo:
+
+- **Agent roster tables** (Section 5) — every agent file must appear in exactly one table
+- **Cross-references** — agents can be mentioned in multiple sections (workflows, tips, architecture review) — these are optional
+- **Links must include the category prefix** — e.g., `data-intelligence/agent-file.md`, never just `agent-file.md`
+- **No duplicate agents** — each agent appears once in the roster (the duplicate `network-engineer` in Specialized Engineering was removed during reorganization)
+
+## Best Practices
+
+- **One agent per file** — each file defines exactly one role
+- **Consistent format** — every file follows the same section numbering, table styles, and closing structure
+- **Handoff Protocol is mandatory** — without it, agents are isolated and the system doesn't work
+- **Personality Matrix should be distinct** — avoid reusing the same 4 traits across agents
+- **Anti-Patterns should be domain-specific** — not generic "don't do bad things"
+- **Keep closing quotes memorable** — they're the agent's philosophy in one sentence
+- **When creating language-specific engineers**, include code examples with imports, real patterns, and a security checklist
+- **When creating cloud engineers**, include a service catalog table with cost considerations
+
+## Quick Reference
+
+```bash
+# Total agent count
+find . -name '*.md' ! -path './README.md' | wc -l
+
+# Find an agent by name
+find . -name '*keyword*' -type f
+
+# Check which files lack Handoff Protocol
+find . -name '*.md' ! -path './README.md' -exec grep -L 'Handoff Protocol' {} \;
+
+# Verify all README links resolve
+cd /path/to/repo && grep -oP '\([^()]+\.md\)' README.md | sed 's/[()]//g' | sort -u | while read f; do [ ! -f "$f" ] && echo "MISSING: $f"; done
+```
+
+---
+
+*"This system is designed to grow. Adding a new agent doesn't change the architecture — it fills a gap. The format is the contract. Follow it."*
