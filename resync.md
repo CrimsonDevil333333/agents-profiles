@@ -2,178 +2,179 @@
 
 > **Run this against any project that previously used this agent system.**
 > It detects and fixes: stub agent files, wrong permissions, missing agents, stale configs.
+>
+> **Zero cloning required.** Everything is fetched from the public repo via raw URLs.
 
 ---
 
-## 1. Locate the Source Repo
+## 1. Detect Target Project
 
-```bash
-# Check if already cloned
-if [ -d "agents-profiles" ]; then
-  cd agents-profiles && git pull origin main
-else
-  git clone https://github.com/CrimsonDevil333333/agents-profiles.git
-fi
-cd agents-profiles
-```
+- The **current working directory** is the target project.
+- Confirm it exists: `pwd`
+- Check for platform agent directories (at least one should exist):
+  - `.opencode/agents/` — OpenCode
+  - `.claude/agents/` — Claude Code
+  - `.github/agents/` — GitHub Copilot
 
-If the repo is already the current working directory, skip clone and just `git pull`.
+Set `TARGET_DIR` to the current working directory.
 
 ---
 
-## 2. Regenerate Native Agent Files
+## 2. Platform Detection
+
+Detect which platforms are in use:
 
 ```bash
-python3 native-agents/generate.py
-```
+TARGET_DIR=$(pwd)
+RAW_BASE="https://raw.githubusercontent.com/CrimsonDevil333333/agents-profiles/main"
 
-This ensures all 354 files (118 agents × 3 platforms) have full profile content — no stubs.
+for platform in "opencode" "claude" "copilot"; do
+  case "$platform" in
+    opencode) dir="$TARGET_DIR/.opencode/agents";;
+    claude)   dir="$TARGET_DIR/.claude/agents";;
+    copilot)  dir="$TARGET_DIR/.github/agents";;
+  esac
 
----
-
-## 3. Detect the Target Project
-
-- If running inside a consumer project already (`.opencode/`, `.claude/`, `.github/` exist), **that is the target**.
-- If running inside `agents-profiles/` itself, **ask the user** for the project path or default to the parent directory.
-
-Set `TARGET_DIR` to the consumer project root.
-
----
-
-## 4. Scan & Fix — Platform by Platform
-
-For each platform below, check files in the target project and replace stale ones.
-
-### 4a. OpenCode — `.opencode/agents/`
-
-```bash
-target="$TARGET_DIR/.opencode/agents"
-source="native-agents/opencode"
-
-if [ -d "$target" ]; then
-  echo "Scanning OpenCode agents..."
-  for src_file in "$source"/*.md; do
-    slug=$(basename "$src_file")
-    dst_file="$target/$slug"
-    
-    # Determine correct permission tier from the source file
-    perm_tier=$(grep -oP '(?<=edit: )(allow|deny)' "$src_file" | head -1)
-    
-    if [ -f "$dst_file" ]; then
-      # Check if stub (contains placeholder text)
-      if grep -q "Fulfill the role as defined in the full profile" "$dst_file" 2>/dev/null; then
-        echo "  STUB: $slug → replacing"
-        cp "$src_file" "$dst_file"
-      # Check if wrong permissions
-      elif [ "$perm_tier" = "allow" ] && grep -q "edit: deny" "$dst_file" 2>/dev/null; then
-        echo "  WRONG PERMS: $slug → replacing"
-        cp "$src_file" "$dst_file"
-      fi
-    else
-      echo "  MISSING: $slug → copying"
-      cp "$src_file" "$dst_file"
-    fi
-  done
-fi
-```
-
-### 4b. Claude Code — `.claude/agents/`
-
-```bash
-target="$TARGET_DIR/.claude/agents"
-source="native-agents/claude"
-
-if [ -d "$target" ]; then
-  echo "Scanning Claude Code agents..."
-  for src_file in "$source"/*.md; do
-    slug=$(basename "$src_file")
-    dst_file="$target/$slug"
-    
-    if [ -f "$dst_file" ]; then
-      if grep -q "Fulfill the role as defined in the full profile" "$dst_file" 2>/dev/null; then
-        echo "  STUB: $slug → replacing"
-        cp "$src_file" "$dst_file"
-      fi
-    else
-      echo "  MISSING: $slug → copying"
-      cp "$src_file" "$dst_file"
-    fi
-  done
-fi
-```
-
-### 4c. GitHub Copilot — `.github/agents/`
-
-```bash
-target="$TARGET_DIR/.github/agents"
-source="native-agents/copilot"
-
-if [ -d "$target" ]; then
-  echo "Scanning Copilot agents..."
-  for src_file in "$source"/*.agent.md; do
-    slug=$(basename "$src_file")
-    dst_file="$target/$slug"
-    
-    if [ -f "$dst_file" ]; then
-      if grep -q "Fulfill the role as defined in the full profile" "$dst_file" 2>/dev/null; then
-        echo "  STUB: $slug → replacing"
-        cp "$src_file" "$dst_file"
-      fi
-    else
-      echo "  MISSING: $slug → copying"
-      cp "$src_file" "$dst_file"
-    fi
-  done
-fi
-```
-
----
-
-## 5. Check & Fix Config Files
-
-| File | Location | Check | Fix |
-|------|----------|-------|-----|
-| `AGENTS.md` | `$TARGET_DIR` | Exists and has valid YAML frontmatter | Copy from repo `INIT.md` |
-| `CLAUDE.md` | `$TARGET_DIR` | Exists and has valid YAML frontmatter | Copy from repo `INIT.md` |
-| `.github/copilot-instructions.md` | `$TARGET_DIR` | Exists and has valid YAML frontmatter | Copy from repo `INIT.md` |
-| `.cursorrules` | `$TARGET_DIR` | Exists and has valid YAML frontmatter | Copy from repo `INIT.md` |
-
-```bash
-for config_file in "AGENTS.md" "CLAUDE.md" ".github/copilot-instructions.md" ".cursorrules"; do
-  full_path="$TARGET_DIR/$config_file"
-  if [ -f "$full_path" ]; then
-    # Check if it's still using the old INIT.md stub format
-    if grep -q "standalone session init protocol" "$full_path" 2>/dev/null; then
-      echo "  STALE: $config_file → replacing with latest INIT.md"
-      cp INIT.md "$full_path"
-    fi
+  if [ -d "$dir" ]; then
+    echo "Platform: $platform → $dir"
   fi
 done
 ```
 
 ---
 
-## 6. Quick Verification
+## 3. Scan & Fix Agent Files
+
+For each platform detected, scan every existing file. If it's a stub or has wrong permissions, fetch the correct version from the public repo and overwrite.
+
+### 3a. OpenCode — `.opencode/agents/`
 
 ```bash
-echo ""
-echo "=== Verification ==="
-still_stubs=$(grep -rl "Fulfill the role as defined in the full profile" "$TARGET_DIR/.opencode/agents" "$TARGET_DIR/.claude/agents" "$TARGET_DIR/.github/agents" 2>/dev/null | wc -l)
-echo "Remaining stubs: $still_stubs"
+dir="$TARGET_DIR/.opencode/agents"
 
-if [ "$still_stubs" = "0" ]; then
-  echo "✓ All agents are production-ready — no stubs remain."
-else
-  echo "✗ Some files still need attention."
+if [ -d "$dir" ]; then
+  echo "--- OpenCode agents ---"
+  for f in "$dir"/*.md; do
+    [ ! -f "$f" ] && continue
+    slug=$(basename "$f")
+
+    if grep -q "Fulfill the role as defined in the full profile" "$f" 2>/dev/null; then
+      echo "  STUB: $slug → fetching fresh copy"
+      curl -sSL "$RAW_BASE/native-agents/opencode/$slug" -o "$f"
+    else
+      # Check permission correctness by comparing edit field
+      local_perm=$(grep -oP '(?<=edit: )(allow|deny)' "$f" | head -1)
+      remote=$(curl -sSL "$RAW_BASE/native-agents/opencode/$slug")
+      remote_perm=$(echo "$remote" | grep -oP '(?<=edit: )(allow|deny)' | head -1)
+
+      if [ -n "$remote_perm" ] && [ "$local_perm" != "$remote_perm" ]; then
+        echo "  WRONG PERMS: $slug (local=$local_perm, remote=$remote_perm) → replacing"
+        echo "$remote" > "$f"
+      fi
+    fi
+  done
+fi
+```
+
+### 3b. Claude Code — `.claude/agents/`
+
+```bash
+dir="$TARGET_DIR/.claude/agents"
+
+if [ -d "$dir" ]; then
+  echo "--- Claude Code agents ---"
+  for f in "$dir"/*.md; do
+    [ ! -f "$f" ] && continue
+    slug=$(basename "$f")
+
+    if grep -q "Fulfill the role as defined in the full profile" "$f" 2>/dev/null; then
+      echo "  STUB: $slug → fetching fresh copy"
+      curl -sSL "$RAW_BASE/native-agents/claude/$slug" -o "$f"
+    fi
+  done
+fi
+```
+
+### 3c. GitHub Copilot — `.github/agents/`
+
+```bash
+dir="$TARGET_DIR/.github/agents"
+
+if [ -d "$dir" ]; then
+  echo "--- Copilot agents ---"
+  for f in "$dir"/*.agent.md; do
+    [ ! -f "$f" ] && continue
+    slug=$(basename "$f")
+
+    if grep -q "Fulfill the role as defined in the full profile" "$f" 2>/dev/null; then
+      echo "  STUB: $slug → fetching fresh copy"
+      curl -sSL "$RAW_BASE/native-agents/copilot/$slug" -o "$f"
+    fi
+  done
 fi
 ```
 
 ---
 
-## 7. Summary
+## 4. Check & Fix Config Files
+
+| File | Path | Stale check | Fix action |
+|------|------|-------------|------------|
+| `AGENTS.md` | `$TARGET_DIR/AGENTS.md` | Contains "standalone session init protocol" | `curl -sSL $RAW_BASE/INIT.md -o $TARGET_DIR/AGENTS.md` |
+| `CLAUDE.md` | `$TARGET_DIR/CLAUDE.md` | Contains "standalone session init protocol" | `curl -sSL $RAW_BASE/INIT.md -o $TARGET_DIR/CLAUDE.md` |
+| `.github/copilot-instructions.md` | `$TARGET_DIR/.github/copilot-instructions.md` | Contains "standalone session init protocol" | `curl -sSL $RAW_BASE/INIT.md -o $TARGET_DIR/.github/copilot-instructions.md` |
+| `.cursorrules` | `$TARGET_DIR/.cursorrules` | Contains "standalone session init protocol" | `curl -sSL $RAW_BASE/INIT.md -o $TARGET_DIR/.cursorrules` |
+
+```bash
+for config_pair in \
+  "AGENTS.md|INIT.md" \
+  "CLAUDE.md|INIT.md" \
+  ".github/copilot-instructions.md|INIT.md" \
+  ".cursorrules|INIT.md"; do
+
+  config_file="$TARGET_DIR/$(echo "$config_pair" | cut -d'|' -f1)"
+  source_file="$(echo "$config_pair" | cut -d'|' -f2)"
+
+  if [ -f "$config_file" ] && grep -q "standalone session init protocol" "$config_file" 2>/dev/null; then
+    echo "  STALE: $(basename "$config_file") → refreshing"
+    curl -sSL "$RAW_BASE/$source_file" -o "$config_file"
+  fi
+done
+```
+
+---
+
+## 5. Quick Verification
+
+```bash
+echo ""
+echo "=== Verification ==="
+
+stubs=0
+for dir in ".opencode/agents" ".claude/agents" ".github/agents"; do
+  full="$TARGET_DIR/$dir"
+  if [ -d "$full" ]; then
+    count=$(grep -rl "Fulfill the role as defined in the full profile" "$full" 2>/dev/null | wc -l)
+    stubs=$((stubs + count))
+  fi
+done
+
+echo "Remaining stubs: $stubs"
+
+if [ "$stubs" = "0" ]; then
+  echo "✓ All agents are production-ready — no stubs remain."
+else
+  echo "✗ $stubs file(s) still need attention."
+fi
+```
+
+---
+
+## 6. Summary
 
 Report to the user:
-- How many files were replaced (stubs → full profiles)
-- How many missing agents were copied
+- Which platforms were found and scanned
+- How many stub files were replaced with full profiles
+- How many files had wrong permissions fixed
 - How many config files were refreshed
 - Zero remaining stubs (confirm)
