@@ -62,6 +62,26 @@ dependencies:
 
 Follow these steps in order. **Do not skip any step.**
 
+### Config File Auto-Detection — `.agent_init`
+
+Before starting, check if `.agent_init` exists in the project root directory. If it does, **read it** — it contains your saved preferences and you can skip Step 6 (user questions).
+
+```yaml
+# .agent_init — Agent Generator Configuration
+# Save this file in your project root to skip repeated questions.
+# Delete it or omit fields to be asked about them.
+
+project_name: "my-project"          # Name for the agent system
+agent_depth: "detailed"             # focused | detailed | production
+priority_agents: 5                  # How many priority agents (3-10)
+additional_agents: []               # Extra roles beyond auto-detect
+custom_traits: {}                   # Override traits per agent
+```
+
+**If `.agent_init` exists**, use its values silently. **Do not ask the user questions.**
+
+**If `.agent_init` does not exist**, run Step 6 (ask the user), and at the end **offer to create `.agent_init`** with their answers so future runs are fully automatic.
+
 ### Step 1: Analyze the Project
 
 Explore the project directory thoroughly:
@@ -217,9 +237,11 @@ Run the `generate-custom-agents` skill again when the project's tech stack
 or architecture changes significantly.
 ```
 
-### Step 6: Ask the User These Questions
+### Step 6: Ask or Read Config
 
-Before finalizing, pause and ask:
+**If `.agent_init` exists in the project root**, read it silently and skip straight to Step 7. No questions.
+
+**If `.agent_init` does not exist**, pause and ask the user these questions:
 
 1. **Project name** — What should the agent system be called? (default: the directory name)
 2. **Additional agents** — Any roles I missed? (e.g., "add a game designer", "we need a compliance officer")
@@ -232,11 +254,14 @@ Wait for user answers. Do not generate anything until they respond.
 
 ### Step 7: Generate Everything
 
-After user responds:
+After user responds (or config is read from `.agent_init`):
 
 1. Create all agent files with proper content
 2. Create the project README
-3. Print a summary:
+3. **If `.agent_init` was not found earlier**, offer to create it:
+   > *"I can save a `.agent_init` config file with your preferences so future runs are fully automatic with no questions. Create it?"*
+   If the user says yes, write `.agent_init` with their answers.
+4. Print a summary:
    ```
    ✅ Generated {N} agents across {M} categories
    📁 Location: {output_dir}
@@ -260,7 +285,9 @@ After user responds:
 
 4. **Reference validation**: Before writing any agent, the AI MUST review at least 3 reference profiles from `https://github.com/CrimsonDevil333333/agents-profiles` to match format quality and depth.
 
-5. **No skip policy**: The AI MUST NOT skip Step 6 (asking the user questions). The user's input is required before generation.
+5. **No skip policy**: The AI MUST NOT skip Step 6 (asking the user questions) UNLESS an `.agent_init` config file exists — if it does, use it silently and skip straight to generation.
+
+6. **Config persistence**: After the first generation with user answers, the AI MUST offer to create `.agent_init` so the user never has to answer the same questions twice.
 
 ---
 

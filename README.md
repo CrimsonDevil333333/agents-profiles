@@ -94,16 +94,17 @@ Do not create all 118 agents for a project. Analyze the project and create only 
 
 Typical scope: **6-15 agents** per project.
 
-### Rule 6: Ask Before Generating
+### Rule 6: Ask Before Generating (Unless `.agent_init` Exists)
 
-You **MUST** ask the user these questions before writing any files:
+Check for `.agent_init` in the project root. If it exists, use its values silently and skip to generation. If it doesn't, you **MUST** ask the user these questions before writing any files:
+
 1. What should the agent system be named?
 2. Any additional agents beyond what you identified?
 3. Agent depth: focused (~100 lines), detailed (~200 lines), or production (~300+ lines)?
 4. Which 3-5 agents are highest priority?
 5. Any custom personality traits for key agents?
 
-Do not write a single file until the user has responded.
+After generating, **offer to create `.agent_init`** so future runs are fully automatic with zero questions.
 
 ---
 
