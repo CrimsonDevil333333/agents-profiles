@@ -1,5 +1,11 @@
 # Resync — Audit & Fix Stale Agent Files
 
+> **🚀 ONE COMMAND — Give this to any AI:**
+> ```
+> Fetch and read https://raw.githubusercontent.com/CrimsonDevil333333/agents-profiles/refs/heads/main/resync.md
+> Then execute the resync for my project at <path>
+> ```
+
 > **Run this against any project that previously used this agent system.**
 > It detects and fixes: stub agent files, wrong permissions, missing agents, stale configs.
 >
