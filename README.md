@@ -1,6 +1,10 @@
 # Multi-Agent Engineering System — Complete Guide
 
-> **Your reference for understanding, using, and extending a multi-agent software engineering system.**
+> **Your all-in-one reference for understanding, using, extending, and auto-generating custom multi-agent software engineering systems.**
+
+> **🧑‍💻 Quick start for humans:** Copy-paste this whole README into your AI agent and say: *"Load this multi-agent engineering system. I'm working on [project description]. Help me build [specific task] by routing through the right agents."*
+
+> **🤖 Quick start for agents:** See `AGENT_GENERATOR.md` at the repo root for the autonomous project-analysis → custom-agent-generation workflow. Point any AI agent at that file to generate a tailored agent system for any codebase.
 
 ---
 
@@ -8,11 +12,11 @@
 # Machine-readable metadata — for AI parsing
 system:
   name: "Multi-Agent Engineering System"
-  total_agents: 110
+  total_agents: 118
   categories: 18
   format_version: 2.0
   directory_map:
-    orchestration: "7 agents — orchestration & leadership"
+    orchestration: "8 agents — orchestration     orchestration: "7 agents — orchestration & leadership" leadership"
     executive: "3 agents — executive & leadership"
     business-analysis: "2 agents — business & analysis"
     people-culture: "3 agents — people & culture"
@@ -23,10 +27,10 @@ system:
     engineering-dev: "9 agents — engineering & development"
     testing-quality: "5 agents — testing & quality"
     cloud-infra-architecture: "5 agents — cloud & infrastructure architecture"
-    infrastructure-ops: "10 agents — infrastructure & operations"
-    data-intelligence: "12 agents — data & intelligence"
-    specialized-engineering: "11 agents — specialized engineering"
-    compliance-legal-finance: "4 agents — compliance, legal & finance"
+    infrastructure-ops: "13 agents — infrastructure     infrastructure-ops: "10 agents — infrastructure & operations" operations"
+    data-intelligence: "13 agents — data     data-intelligence: "12 agents — data & intelligence" intelligence"
+    specialized-engineering: "13 agents — specialized engineering"
+    compliance-legal-finance: "5 agents — compliance, legal     compliance-legal-finance: "4 agents — compliance, legal & finance" finance"
     content-communication: "6 agents — content & communication"
     it-support: "1 agent — IT & internal support"
     planning-oversight: "4 agents — planning & oversight"
@@ -37,7 +41,7 @@ system:
 
 ---
 
-This directory defines **110 specialized agent roles** — each an expert in a specific domain of software engineering. Together, they form a complete, collaborative engineering organization that can design, build, test, deploy, and operate software systems of any scale.
+This directory defines **118 specialized agent roles** — each an expert in a specific domain of software engineering. Together, they form a complete, collaborative engineering organization that can design, build, test, deploy, and operate software systems of any scale.
 
 ---
 
@@ -46,7 +50,7 @@ This directory defines **110 specialized agent roles** — each an expert in a s
 ```
 agents-readme/
 ├── README.md                          ← You are here
-├── orchestration/                     (7)  — Assistant, Planner, PM, SM, EM, Agile Coach
+├── orchestration/                     (8)  — Assistant, Planner, PM, SM, EM, Agile Coach, Program Mgr
 ├── executive/                         (3)  — CEO, CTO, VP Engineering
 ├── business-analysis/                 (2)  — Business Analyst, Data Analyst
 ├── people-culture/                    (3)  — HR, Recruiter, Training Specialist
@@ -57,10 +61,10 @@ agents-readme/
 ├── engineering-dev/                   (9)  — Frontend, Mobile, iOS, Android, Embedded, Backend, Dev, Reviewer, Automation
 ├── testing-quality/                   (5)  — Tester, QA, E2E, Performance, Pen Tester
 ├── cloud-infra-architecture/          (5)  — Cloud Arch, AWS, Azure, GCP, Terraform
-├── infrastructure-ops/                (10) — DevOps, Ops, SRE, Platform, Network, Chaos, K8s, ArgoCD, Mesh, Helm
-├── data-intelligence/                 (12) — Data Eng, Data Arch, Analytics, Data Sci, AI, LLM, ML, DL, MLOps, Data Quality, DBA, Kafka
-├── specialized-engineering/           (11) — API, Integration, Migration, Security, DevSecOps, IAM, Incident, Data Protection, Observability, Release, Vault
-├── compliance-legal-finance/          (4)  — Compliance, Legal, Accessibility, FinOps
+├── infrastructure-ops/                (13) — DevOps, Ops, SRE, Platform, Network, Chaos, K8s, ArgoCD, Mesh, Helm, DBRE, CI/CD, Edge
+├── data-intelligence/                 (13) — Data Eng, Data Arch, Analytics, Data Sci, AI, LLM, ML, DL, MLOps, Data Quality, DBA, Kafka, BI
+├── specialized-engineering/           (13) — API, Integration, Migration, Security, DevSecOps, IAM, Incident, Data Protection, Observability, Release, Vault, AppSec, SOC
+├── compliance-legal-finance/          (5)  — Compliance, Legal, Accessibility, FinOps, Privacy
 ├── content-communication/             (6)  — Tech Writer, Content Strategist, Translator, Proposal, Localization, Support
 ├── it-support/                        (1)  — IT Support
 └── planning-oversight/                (4)  — Cost Estimator, Risk, Change, Vendor
@@ -238,6 +242,7 @@ Varies by agent type:
 | [Project Manager](orchestration/project-manager.md) | The Delivery Driver | Project planning, execution, budget tracking, vendor management |
 | [Agile Coach](orchestration/agile-coach.md) | The Agile Catalyst | Agile transformation, organizational coaching, maturity improvement |
 | [Engineering Manager](orchestration/engineering-manager.md) | The Team Builder | People management, career growth, team delivery, 1:1 coaching |
+| [Program Manager](orchestration/program-manager.md) | The Delivery Orchestrator | Cross-team programs, dependency tracking, risk, stakeholder comms |
 
 ### Executive & Leadership
 
@@ -358,6 +363,9 @@ Varies by agent type:
 | [ArgoCD Engineer](infrastructure-ops/argocd-engineer.md) | The GitOps Guardian | GitOps deployments, ApplicationSets, sync strategies, multi-cluster |
 | [Service Mesh Engineer](infrastructure-ops/service-mesh-engineer.md) | The Mesh Weaver | Istio, Linkerd, mTLS, traffic policies, observability |
 | [Helm Engineer](infrastructure-ops/helm-engineer.md) | The Chart Smith | Chart authoring, packaging, templating, dependency management |
+| [DBRE Engineer](infrastructure-ops/dbre-engineer.md) | The Data Guardian | Database reliability, HA, backup/recovery, query performance, SRE |
+| [CI/CD Pipeline Engineer](infrastructure-ops/cicd-engineer.md) | The Pipeline Architect | GitHub Actions, GitLab CI, pipeline optimization, quality gates |
+| [Edge / CDN Engineer](infrastructure-ops/edge-engineer.md) | The Edge Runner | CDN config, edge compute, Cloudflare Workers, DDoS mitigation |
 
 ### Data & Intelligence
 
@@ -375,6 +383,7 @@ Varies by agent type:
 | [Data Quality Engineer](data-intelligence/data-quality-engineer.md) | The Data Purifier | Data cleaning, quality monitoring, validation automation, observability |
 | [Database Administrator](data-intelligence/database-administrator.md) | The Data Steward | Schema design, performance tuning, backup/recovery, HA |
 | [Kafka Engineer](data-intelligence/kafka-engineer.md) | The Stream Master | Event streaming, topic design, Kafka Connect, Streams, Schema Registry |
+| [BI Engineer](data-intelligence/bi-engineer.md) | The Data Visualizer | BI dashboards, semantic layer, Looker/Tableau/PowerBI, metric stores |
 
 ### Specialized Engineering
 
@@ -391,6 +400,8 @@ Varies by agent type:
 | [Observability Engineer](specialized-engineering/observability-engineer.md) | The Signal Analyst | Metrics, logging, tracing, alerting, SLOs, dashboards |
 | [Release Engineer](specialized-engineering/release-engineer.md) | The Release Conductor | Release planning, artifact management, deployment orchestration |
 | [Secrets & Vault Engineer](specialized-engineering/secrets-vault-engineer.md) | The Key Guardian | HashiCorp Vault, secrets rotation, encryption, PKI, policy management |
+| [Application Security Engineer](specialized-engineering/appsec-engineer.md) | The Code Sentinel | SAST/DAST/SCA, threat modeling, secure coding, shift-left security |
+| [SOC Analyst](specialized-engineering/soc-analyst.md) | The Signal Watcher | SIEM monitoring, alert triage, threat detection, incident escalation |
 
 ### Compliance, Legal & Finance
 
@@ -400,6 +411,7 @@ Varies by agent type:
 | [Legal Engineer](compliance-legal-finance/legal-engineer.md) | The Compliance Automator | Privacy engineering, contract automation, data governance, open source compliance |
 | [Accessibility Engineer](compliance-legal-finance/accessibility-engineer.md) | The Inclusion Champion | WCAG compliance, auditing, inclusive design, ARIA implementation |
 | [FinOps Engineer](compliance-legal-finance/finops-engineer.md) | The Cost Optimizer | Cloud cost optimization, savings plans, cost allocation, anomaly detection |
+| [Privacy Engineer](compliance-legal-finance/privacy-engineer.md) | The Privacy Guardian | Consent management, DSR automation, data mapping, privacy-by-design |
 
 ### Content & Communication
 
@@ -825,5 +837,5 @@ Found a gap? Follow [How to Create a New Agent](#7-how-to-create-a-new-agent).
 
 ---
 
-*"A single developer is a generalist. One hundred and ten specialized agents are an engineering organization. The system is only as strong as the handoffs between them."*
+*"A single developer is a generalist. One hundred and eighteen specialized agents are an engineering organization. The system is only as strong as the handoffs between them."*
 — Multi-Agent Engineering System
