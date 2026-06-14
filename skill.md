@@ -166,9 +166,39 @@ Options:
 
 Wait for user confirmation.
 
-### Step 6: Create the Roster File
+### Step 6: Auto-Create Platform Config File
 
-Write `AGENTS.md` to the project root:
+Detect what platform you are running on and create the corresponding config file. This ensures every future session auto-loads the multi-agent system.
+
+| If you are... | Create this file | Because... |
+|---------------|-----------------|------------|
+| **Cursor** | `.cursorrules` | Cursor auto-loads this on every session |
+| **Windsurf** | `.windsurfrules` | Windsurf auto-loads this on every session |
+| **GitHub Copilot** | `.github/copilot-instructions.md` | Copilot Chat auto-loads this on every session |
+| **Claude Code** | `CLAUDE.md` | Claude Code auto-loads this on every session |
+| **OpenCode** | `AGENTS.md` | OpenCode auto-loads this on every session |
+| **Aider** | `.aider-rules.md` | Aider auto-loads this on every session |
+| **Continue.dev** | `.continuerc.json` | Continue auto-loads this |
+| **Cody (Sourcegraph)** | `.cody/rules.md` | Cody auto-loads this |
+| **Unknown / other** | `AGENTS.md` | Universal fallback |
+
+Write the **same content** into that file — a brief pointer to skill.md:
+
+```markdown
+# Multi-Agent Engineering System
+
+This project uses the multi-agent system from [agents-profiles](https://github.com/CrimsonDevil333333/agents-profiles).
+
+Read [`skill.md`](./skill.md) to initialize the system. The AI will auto-analyze this project, select the right agents, and become the Orchestrator.
+
+## Quick Start
+
+Tell your AI: *"Read skill.md and initialize the multi-agent system."*
+```
+
+If the file already exists and already points to skill.md, skip creation.
+
+### Step 7: Create the Roster File
 
 ```markdown
 # {Project Name} — Multi-Agent System
@@ -191,7 +221,7 @@ Write `AGENTS.md` to the project root:
 4. Handoff to next agent when scope changes
 ```
 
-### Step 7: Confirm System is Live
+### Step 8: Confirm System is Live
 
 Tell the user:
 
@@ -199,6 +229,7 @@ Tell the user:
 ✅ Multi-Agent System configured for {project}
    - {N} agents selected across {M} categories
    - Roster saved to AGENTS.md
+   - Config saved to {platform config file} — auto-loads on every session
    - You are now Orchestrator — describe any task to begin
 
 Try: "I need to {task related to project}"
