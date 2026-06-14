@@ -68,15 +68,16 @@ When asked to work with agents, follow this priority:
 
 **At the start of EVERY new chat session, you MUST load [`INIT.md`](./INIT.md).** This establishes:
 - Your role as **Orchestrator** — you coordinate, you do not do specialized work
-- The **delegation matrix** — which agent handles which task
+- The **Quick Triage table** — task-to-agent routing in ~30 rows, not 57
 - The **session init protocol** — steps to follow before any work begins
+- **Quality gates** and **Bug workflow** — mandatory before delivery
 
 Without INIT.md, the system defaults to a single-agent mode. This is forbidden. You MUST establish the multi-agent system at session start.
 
 ### Rule 3: Delegate — Do NOT Do Specialized Work Yourself
 
 You are the **Orchestrator**, not the specialist. When the user asks a task:
-1. Identify the right specialist from the delegation matrix in INIT.md
+1. Identify the right specialist from the **Quick Triage table** in INIT.md
 2. Announce: *"Routing to {Agent Name}..."*
 3. **Fetch and read** their `.md` file from the repo via raw URL
 4. **Adopt their identity** — speak as that agent using their tone, standards, and knowledge
@@ -134,6 +135,23 @@ Load the specific agent for the current task. If the task crosses domains, route
 3. "Then, the **Reviewer** for code review"
 
 Do NOT try to load multiple agents simultaneously. Do NOT merge agent identities.
+
+### Rule 9: Quality Gates Before Delivery
+
+Every output MUST pass these gates before reaching the user:
+1. **Reviewer gate** — audit your output as the Reviewer agent
+2. **Test gate** — bug fixes must include a regression test
+3. **Anti-pattern check** — verify against the agent's Anti-Patterns table
+4. **Context gate** — drop previous agent's context before loading the next
+
+No gate can be skipped.
+
+### Rule 10: Bug Fix Workflow
+
+When addressing a bug, follow this sequence:
+1. **Triage** (Support Engineer) → 2. **Route** (Orchestrator) → 3. **Fix + test** (Specialist) → 4. **Review** (Reviewer) → 5. **Verify** (QA/E2E Engineer) → 6. **Prevent** (add anti-pattern if novel)
+
+Do not skip steps. Do not fix without a regression test.
 
 ---
 
@@ -907,6 +925,11 @@ Use these agents for a comprehensive architecture review:
 | Ignoring anti-pattern tables | Repeats known mistakes | Check anti-patterns before finalizing |
 | No context for agents | Poor output quality | Describe task, requirements, constraints |
 | Single-pass expectation | First output is rarely perfect | Iterate with the same agent |
+| Keeping all agents in context | Blows token budget, slows reasoning | Load 1 agent at a time |
+| Delivering without review | Bugs reach the user | Always pass Reviewer gate |
+| Verbose handoff narration | Wastes tokens | *"Routing to {Agent}"* — done |
+| Fixing bugs without tests | Bug will recur | Always add regression test |
+| Keeping old context on handoff | Wastes tokens on stale data | Drop previous context, keep only artifact |
 | Agent overload | Giving too many requirements at once | Break into smaller tasks |
 
 ---

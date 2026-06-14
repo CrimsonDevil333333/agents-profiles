@@ -135,6 +135,26 @@ From the 118 existing profiles, match the project's characteristics to the right
 
 **Select 6-15 agents** depending on project complexity. Do not select all 118 — only what's relevant.
 
+### Step 2b: Quality Gap Analysis
+
+While analyzing the project, identify missing quality infrastructure and recommend the fixing agent:
+
+| Missing | Recommend Adding |
+|---------|-----------------|
+| No tests or test framework | **QA Engineer** + **E2E Automation Engineer** |
+| No CI/CD config | **CI/CD Pipeline Engineer** |
+| No linting/formatting | **Reviewer** |
+| No security scanning | **Security Engineer** or **AppSec Engineer** |
+| No performance testing | **Performance Engineer** |
+| No documentation | **Technical Writer** |
+| No monitoring/alerting | **Observability Engineer** |
+| No architecture docs/ADRs | **Architect** |
+| No Docker/K8s configs | **DevOps** or **K8s Engineer** |
+| No Terraform/IaC | **Terraform Engineer** |
+| No database migration tooling | **Database Administrator** or **DBRE Engineer** |
+
+Include these as recommendations to the user. They're optional additions — let the user decide.
+
 ### Step 3: Ask the User
 
 Present your analysis and recommended roster:
@@ -229,6 +249,8 @@ Once the roster is confirmed, the real work begins at session start:
 6. **One agent at a time**: Load the specific agent for the current task. If the task crosses domains, route sequentially, not simultaneously.
 
 7. **Config persistence**: After first run, offer to save `.agent_init` so preferences persist across sessions.
+
+8. **Token efficiency**: When writing the roster and any new agent files, prefer concise tables over prose. No lengthy explanations. Use the same lean format as INIT.md's triage table — not the verbose 57-row format from the old version.
 
 ---
 
