@@ -8,6 +8,8 @@
 
 > **🤖 Quick start for agents:** See `AGENT_GENERATOR.md` at the repo root for the autonomous project-analysis → custom-agent-generation workflow. Point any AI agent at that file to generate a tailored agent system for any codebase.
 
+> **⚡ For AI agents: Load `skill.md` first** — this curated skill enforces proper agent format, auto-detects project context, and asks you for customizations before generating. Run it with: *"Load skill.md and generate custom agents for this project."*
+
 ---
 
 ```yaml
@@ -594,6 +596,23 @@ dependencies:
 - **Composition** — "Run `security-scan` then `code-review`"
 - **Workflow** — "Every PR should run `lint`, `test`, and `code-review` in sequence"
 
+### Pre-Built Skill at Repo Root
+
+The file **[`skill.md`](skill.md)** at the repository root is a ready-to-use skill for auto-generating custom agent systems:
+
+```yaml
+name: "generate-custom-agents"
+description: "Analyze any project and generate a tailored multi-agent engineering system"
+```
+
+**How to use it:**
+1. Load `skill.md` into any AI agent (Copilot, Claude, opencode, etc.)
+2. The AI will analyze your project, determine relevant agent categories, and create custom agent files
+3. It will ask you for customizations before generating
+4. It enforces proper format, Handoff Protocol, and coverage — same standard as the 118 reference agents
+
+This is the fastest way to create a project-specific multi-agent system.
+
 ---
 
 ## 9. Workflow Patterns: Common Agent Teams
@@ -831,6 +850,7 @@ Found a gap? Follow [How to Create a New Agent](#7-how-to-create-a-new-agent).
 | Handoff protocol guide | [Section 6](#6-how-agents-communicate-handoff-protocol) |
 | Agent creation guide | [Section 7](#7-how-to-create-a-new-agent) |
 | Skill creation guide | [Section 8](#8-how-to-create-and-use-skills) |
+| **Curated skill (load first)** | **[`skill.md`](skill.md)** — auto-generate custom agents for any project |
 | Workflow patterns | [Section 9](#9-workflow-patterns-common-agent-teams) |
 | Developer tips | [Section 10](#10-for-developers-how-to-get-the-best-from-each-agent) |
 | QA/SDET tips | [Section 11](#11-for-sdets--qa-testing-with-the-agent-system) |

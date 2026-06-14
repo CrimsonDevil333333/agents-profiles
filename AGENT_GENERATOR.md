@@ -6,6 +6,8 @@
 
 > **📦 Reference system: [`https://github.com/CrimsonDevil333333/agents-profiles`](https://github.com/CrimsonDevil333333/agents-profiles)** — 118 pre-built agent profiles covering every engineering domain. Use as templates, examples, or directly load into your AI agent.
 
+> **⚡ For AI agents: Load [`skill.md`](skill.md) instead of this file for the structured skill format** — it enforces proper agent generation with auto-detection, user customization prompts, and format validation. Run: *"Load skill.md and generate custom agents for this project."*
+
 ---
 
 ## How to Use
