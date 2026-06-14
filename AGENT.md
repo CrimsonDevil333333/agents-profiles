@@ -6,7 +6,7 @@
 
 ## What This Repo Is
 
-A collection of **127 structured role description files** (`.md`), each defining a specialized engineering agent. Together they form a complete multi-agent engineering organization covering every domain of modern software development.
+A collection of **129 structured role description files** (`.md`), each defining a specialized engineering agent. Together they form a complete multi-agent engineering organization covering every domain of modern software development.
 
 ## Directory Layout
 
@@ -20,9 +20,9 @@ A collection of **127 structured role description files** (`.md`), each defining
 ├── AGENT_GENERATOR.md    ← Deprecated — redirects to INIT.md + skill.md
 ├── native-agents/
 │   ├── generate.py       ← Script to regenerate all 354 native agent files
-│   ├── opencode/         ← 127 native agent files for OpenCode
-│   ├── claude/           ← 127 native agent files for Claude Code
-│   └── copilot/          ← 127 native agent files for GitHub Copilot
+│   ├── opencode/         ← 129 native agent files for OpenCode
+│   ├── claude/           ← 129 native agent files for Claude Code
+│   └── copilot/          ← 129 native agent files for GitHub Copilot
 ├── <category>/
 │   ├── <agent>.md        ← Individual agent definitions
 │   └── ...
