@@ -48,7 +48,7 @@ A collection of **127 structured role description files** (`.md`), each defining
 | `data-intelligence/` | 14 | Data Eng, Data Arch, Analytics, Data Sci, AI, LLM, ML, DL, MLOps, Data Quality, DBA, Kafka, BI, Scientific Computing |
 | `specialized-engineering/` | 14 | API, Integration, Migration, Security, DevSecOps, IAM, Incident Response, Data Protection, Observability, Release, AppSec, SOC, Secrets, Blockchain |
 | `compliance-legal-finance/` | 5 | Compliance, Legal, Accessibility, FinOps, Privacy |
-| `content-communication/` | 6 | Tech Writer, Content Strategist, Translator, Proposal, Localization, Support |
+| `content-communication/` | 8 | Tech Writer, Content Strategist, Translator, Proposal, Localization, Support, Visual Creator, Video Producer |
 | `it-support/` | 1 | IT Support |
 | `planning-oversight/` | 4 | Cost Estimator, Risk, Change, Vendor |
 | `game-development/` | 1 | Game Engineer |

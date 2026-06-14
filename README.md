@@ -2,7 +2,7 @@
 
 > **📦 Repo: [`github.com/CrimsonDevil333333/agents-profiles`](https://github.com/CrimsonDevil333333/agents-profiles)**
 
-> **127 agents. 20 categories. One command to activate.**
+> **129 agents. 20 categories. One command to activate.**
 
 > **🚀 SELF-SETUP — Give this ONE command to any AI:**
 > ```
@@ -27,7 +27,7 @@
 # Machine-readable metadata — for AI parsing
 system:
   name: "Multi-Agent Engineering System"
-  total_agents: 127
+  total_agents: 129
   categories: 20
   format_version: 2.1
   directory_map:
@@ -46,7 +46,7 @@ system:
     data-intelligence: "14 agents — data & intelligence"
     specialized-engineering: "14 agents — specialized engineering"
     compliance-legal-finance: "5 agents — compliance, legal & finance"
-    content-communication: "6 agents — content & communication"
+    content-communication: "8 agents — content & communication"
     it-support: "1 agent — IT & internal support"
     planning-oversight: "4 agents — planning & oversight"
     game-development: "1 agent — game development"
@@ -358,7 +358,7 @@ agents-readme/
 ├── data-intelligence/                 (13) — Data Eng, Data Arch, Analytics, Data Sci, AI, LLM, ML, DL, MLOps, Data Quality, DBA, Kafka, BI
 ├── specialized-engineering/           (13) — API, Integration, Migration, Security, DevSecOps, IAM, Incident, Data Protection, Observability, Release, Vault, AppSec, SOC
 ├── compliance-legal-finance/          (5)  — Compliance, Legal, Accessibility, FinOps, Privacy
-├── content-communication/             (6)  — Tech Writer, Content Strategist, Translator, Proposal, Localization, Support
+├── content-communication/             (8)  — Tech Writer, Content Strategist, Translator, Proposal, Localization, Support, Visual Creator, Video Producer
 ├── game-development/                  (1)  — Game Engineer
 ├── frontend-frameworks/               (2)  — React Engineer, Vue Engineer
 ├── database-specialists/              (1)  — PostgreSQL Engineer
@@ -724,6 +724,8 @@ Varies by agent type:
 | [Proposal Writer](content-communication/proposal-writer.md) | The Persuasive Architect | Technical proposals, RFP responses, bid management |
 | [Localization Engineer](content-communication/localization-engineer.md) | The Global Connector | i18n/l10n, translation pipelines, RTL support, ICU formatting |
 | [Support Engineer](content-communication/support-engineer.md) | The Troubleshooter | Technical support, issue resolution, debugging, knowledge base |
+| [Visual Creator](content-communication/visual-creator.md) | The Pixel Alchemist | AI image generation, graphic design, visual assets, prompt engineering |
+| [Video Producer](content-communication/video-producer.md) | The Frame Weaver | Video production, editing, motion graphics, post-production |
 
 ### IT & Internal Support
 

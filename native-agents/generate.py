@@ -21,7 +21,7 @@ CATEGORIES = [
     "cloud-providers"
 ]
 
-# Classification: read-only (63), read-write (40), infrastructure (23)
+# Classification: read-only (65), read-write (40), infrastructure (23)
 CLASSIFICATION = {
     # read-only
     "Assistant": "read-only", "Planner": "read-only",
@@ -55,6 +55,7 @@ CLASSIFICATION = {
     "Localization Engineer": "read-only", "Proposal Writer": "read-only",
     "Tech Translator": "read-only", "Support Engineer": "read-only",
     "IT Support Engineer": "read-only",
+    "Visual Creator": "read-only", "Video Producer": "read-only",
     "Cost Estimator": "read-only", "Risk Manager": "read-only",
     "Change Manager": "read-only", "Vendor Manager": "read-only",
     "Data Scientist": "read-only", "Data Architect": "read-only",
