@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Generate native agent definitions for OpenCode, Claude Code, and GitHub Copilot.
 
-Reads all 118 agent .md files and outputs platform-native agent configs.
+Reads all 118 agent .md files and outputs platform-native agent configs
+with full profile context embedded into the system prompt.
 """
 import os
 import re
@@ -41,7 +42,7 @@ CLASSIFICATION = {
     "Penetration Tester": "read-only", "Performance Engineer": "read-only",
     "E2E Automation Engineer": "read-only",
     "Cloud Architect": "read-only",
-    "Security Engineer": "read-only", "AppSec Engineer": "read-only",
+    "Security Engineer": "read-only", "Application Security Engineer": "read-only",
     "SOC Analyst": "read-only", "IAM Engineer": "read-only",
     "Incident Response Engineer": "read-only",
     "Data Protection Engineer": "read-only",
@@ -80,10 +81,11 @@ CLASSIFICATION = {
     "DevOps": "infrastructure", "Site Reliability Engineer": "infrastructure",
     "Kubernetes Engineer": "infrastructure", "Platform Engineer": "infrastructure",
     "Operations": "infrastructure", "Network Engineer": "infrastructure",
-    "Chaos Engineer": "infrastructure", "Edge/CDN Engineer": "infrastructure",
-    "CI/CD Pipeline Engineer": "infrastructure", "DBRE Engineer": "infrastructure",
+    "Chaos Engineer": "infrastructure", "Edge / CDN Engineer": "infrastructure",
+    "CI/CD Pipeline Engineer": "infrastructure",
     "Helm Engineer": "infrastructure", "Service Mesh Engineer": "infrastructure",
     "ArgoCD Engineer": "infrastructure",
+    "Database Reliability Engineer (DBRE)": "infrastructure",
     "Terraform Engineer": "infrastructure",
     "AWS Engineer": "infrastructure", "Azure Engineer": "infrastructure",
     "GCP Engineer": "infrastructure",
@@ -100,15 +102,15 @@ def parse_agent_file(filepath):
     with open(filepath, "r") as f:
         content = f.read()
     lines = content.split("\n")
+
     name = ""
     subtitle = ""
-    archetype = ""
-    core_mandate = ""
-    tone = ""
-    responsibilities = []
     role = ""
+    archetype = ""
+    tone = ""
+    core_mandate = ""
 
-    # Extract title: # Name — Subtitle
+    # Title: # Name — Subtitle
     for line in lines:
         m = re.match(r"^# (.+?) — (.+)$", line)
         if m:
@@ -116,7 +118,7 @@ def parse_agent_file(filepath):
             subtitle = m.group(2).strip()
             break
 
-    # Extract role/archetype/tone from blockquote
+    # Role / Archetype / Tone from blockquote
     for line in lines:
         m = re.match(r"> \*\*Role:\*\* (.+)$", line)
         if m:
@@ -128,27 +130,20 @@ def parse_agent_file(filepath):
         if m:
             tone = m.group(1).strip()
 
-    # Extract core mandate
+    # Core Mandate
     for line in lines:
         m = re.match(r"\*\*Core Mandate:\*\* (.+)$", line)
         if m:
             core_mandate = m.group(1).strip()
             break
 
-    # Extract responsibilities (list items under ## 2. Core Responsibilities)
-    in_resp = False
-    for line in lines:
-        if re.match(r"^## 2\. Core Responsibilities", line):
-            in_resp = True
-            continue
-        if in_resp:
-            if line.startswith("## "):
-                break
-            m = re.match(r"^- \*\*(.+?)\*\*:? (.+)$", line)
-            if m:
-                responsibilities.append(f"{m.group(1)}: {m.group(2).strip()}")
+    # Body = everything after the first line (title)
+    first_newline = content.find("\n")
+    if first_newline != -1:
+        body = content[first_newline:].strip()
+    else:
+        body = ""
 
-    # Determine classification
     classification = CLASSIFICATION.get(name, "read-only")
 
     return {
@@ -157,10 +152,10 @@ def parse_agent_file(filepath):
         "subtitle": subtitle,
         "archetype": archetype,
         "tone": tone,
+        "role": role,
         "core_mandate": core_mandate,
-        "responsibilities": responsibilities,
+        "body": body,
         "classification": classification,
-        "source_path": filepath,
     }
 
 
@@ -210,40 +205,14 @@ def get_permissions(classification, platform):
 
 
 def build_system_prompt(info):
-    lines = []
-    lines.append(f"# {info['name']} — {info['subtitle']}")
-    lines.append("")
-    if info["archetype"]:
-        lines.append(f"**Archetype:** {info['archetype']}")
-    if info["core_mandate"]:
-        lines.append(f"**Core Mandate:** {info['core_mandate']}")
-    lines.append("")
-    lines.append("## Core Responsibilities")
-    if info["responsibilities"]:
-        for r in info["responsibilities"]:
-            lines.append(f"- {r}")
-    else:
-        lines.append("- Fulfill the role as defined in the full profile")
-    lines.append("")
-    lines.append("## Standards")
-    lines.append("- Follow domain-specific best practices and conventions")
-    lines.append("- Produce structured, reviewed output")
-    lines.append("- Use Handoff Protocol to route work to downstream agents")
-    lines.append("- Check Anti-Patterns before finalizing")
-    lines.append(f"- Communicate with a {info['tone'].lower() if info['tone'] else 'professional'} tone")
-    return "\n".join(lines)
-
-
-def strip_agent_name_suffix(name):
-    """Remove 'Agent', 'Engineer', 'Manager', etc. for description brevity when helpful."""
-    return name
+    """Return the full profile body (all domain-specific content)."""
+    return info["body"]
 
 
 def generate_opencode(info):
     perms = get_permissions(info["classification"], "opencode")
     perm_yaml = "\n".join(f"    {k}: {v}" for k, v in perms.items())
     prompt = build_system_prompt(info)
-    # Escape any YAML-special characters in description
     desc = f"{info['archetype']} — {info['core_mandate']}" if info['archetype'] else info['core_mandate']
     desc = desc.replace('"', "'")
     return f"""---
@@ -252,6 +221,8 @@ mode: subagent
 permission:
 {perm_yaml}
 ---
+
+# {info['name']} — {info['subtitle']}
 
 {prompt}
 """
@@ -272,6 +243,8 @@ tools: {', '.join(tools)}"""]
     parts.append(f"""model: sonnet
 ---
 
+# {info['name']} — {info['subtitle']}
+
 {prompt}""")
     return "\n".join(parts)
 
@@ -286,6 +259,8 @@ name: {info['slug']}
 description: "{desc}"
 tools: {tools_json}
 ---
+
+# {info['name']} — {info['subtitle']}
 
 {prompt}
 """
