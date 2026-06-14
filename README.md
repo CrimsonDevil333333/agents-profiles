@@ -79,9 +79,15 @@ No exceptions. Every generated `.md` file must include:
 
 Every agent file must include a Handoff Protocol that links to at least 3 other agents. The system only works if agents can hand off work to each other. An agent with no handoffs is isolated and useless.
 
-### Rule 4: Reference the 118 Profiles
+### Rule 4: Read Real Template Files from the Repo
 
-Before generating any custom agent, you **MUST** review at least 3 reference profiles from the category directories in this repo to match format quality and depth. Do not guess the format — read actual files from the categories relevant to the project.
+Before generating any custom agent, you **MUST fetch and read at least 3 actual `.md` files** from the corresponding category directory in this repo. For example:
+
+- Fetch `https://raw.githubusercontent.com/CrimsonDevil333333/agents-profiles/main/engineering-dev/developer.md`
+- Fetch `https://raw.githubusercontent.com/CrimsonDevil333333/agents-profiles/main/language-specific/node-engineer.md`
+- Fetch one more from the relevant category
+
+These are **exact format blueprints**. Copy the section structure, Personality Matrix style, code block formatting, and depth. Do not rely on training data — the 118 `.md` files in this repo are the ground truth for format quality. If you are unsure how a section should look, read an actual file from the repo instead of guessing.
 
 ### Rule 5: Generate Only What's Relevant
 

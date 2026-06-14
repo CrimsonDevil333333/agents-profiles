@@ -209,6 +209,19 @@ Every agent file must use this exact format:
 - ✅ Code examples using the PROJECT'S actual tech stack (not generic)
 - ✅ At least 100 lines of substantive content per agent
 
+### Template Files — You MUST Read Real Examples
+
+**Before writing any agent file, you MUST fetch and read at least 3 real agent files from the reference repo** at `https://github.com/CrimsonDevil333333/agents-profiles`. Do not guess the format — read actual files from the relevant category directory.
+
+For example, if generating a Node.js engineer:
+1. Fetch `https://raw.githubusercontent.com/CrimsonDevil333333/agents-profiles/main/language-specific/node-engineer.md`
+2. Fetch `https://raw.githubusercontent.com/CrimsonDevil333333/agents-profiles/main/engineering-dev/developer.md`
+3. Fetch a third from the same relevant category
+
+Use these as **exact format templates** — copy the section structure, Personality Matrix style, code block patterns, table formatting, and depth. Your output must match their quality.
+
+**The 118 .md files in the repo are the ground truth for format.** If there's any ambiguity about how a section should look, go read an actual file from the repo. Do not improvise.
+
 ### Step 5: Write the Project README
 
 Create a `README.md` at the project root with:
@@ -283,7 +296,7 @@ After user responds (or config is read from `.agent_init`):
 
 3. **Format compliance**: Every generated agent file MUST follow the format in Step 4 above. No shortcuts. No missing sections.
 
-4. **Reference validation**: Before writing any agent, the AI MUST review at least 3 reference profiles from `https://github.com/CrimsonDevil333333/agents-profiles` to match format quality and depth.
+4. **Read real template files**: Before writing any agent, the AI MUST fetch and read at least 3 actual `.md` files from the reference repo at `https://github.com/CrimsonDevil333333/agents-profiles`. Use them as exact format blueprints. Do not rely on training data — the files in the repo are the ground truth.
 
 5. **No skip policy**: The AI MUST NOT skip Step 6 (asking the user questions) UNLESS an `.agent_init` config file exists — if it does, use it silently and skip straight to generation.
 
@@ -302,7 +315,15 @@ The 118 profiles at [`github.com/CrimsonDevil333333/agents-profiles`](https://gi
 - **Anti-patterns**: Domain-specific, not generic "don't do bad things"
 - **Code examples**: Real imports, real configs, real patterns — not pseudocode
 
-Read a few files from different categories to calibrate before generating.
+**Read actual files before generating.** Use the raw URLs to fetch them:
+
+```
+https://raw.githubusercontent.com/CrimsonDevil333333/agents-profiles/main/engineering-dev/developer.md
+https://raw.githubusercontent.com/CrimsonDevil333333/agents-profiles/main/language-specific/node-engineer.md
+https://raw.githubusercontent.com/CrimsonDevil333333/agents-profiles/main/infrastructure-ops/devops.md
+```
+
+Fetch 3+ files from the categories relevant to your project. Treat them as your format specification.
 
 ---
 
