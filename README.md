@@ -49,21 +49,43 @@ system:
 
 > **Any AI agent reading this README MUST follow these rules. They are not optional.**
 
-### Rule 1: Always Load `skill.md` First
+### Rule 1: Selection First — Generation Last
 
-When asked to create, generate, or customize agent profiles for any project, you **MUST**:
-1. Immediately reference and load [`skill.md`](skill.md) from this repository
-2. Follow its structured workflow: analyze → map → create → ask user → generate
-3. Do NOT skip the user customization questions in Step 6 of the skill
+**The 118 agents already exist.** Your default action is to **SELECT from existing profiles**, not generate new ones. Only generate a new agent if ALL of these are true:
+- The role does not exist in any of the 18 categories
+- The role is not a variation of an existing agent
+- The user explicitly requested a custom agent
 
-If the user says "just create agents" without referencing `skill.md`, you **MUST** respond:
-> *"I need to load the 'generate-custom-agents' skill from skill.md first to ensure proper format and coverage. One moment."*
+When asked to work with agents, follow this priority:
+1. **SELECT** — find the closest match from the 118 existing profiles
+2. **LOAD** — fetch and read their actual `.md` file from the repo
+3. **DEPLOY** — use them in your current session
+4. **GENERATE** — only as last resort, if no existing profile fits
 
-Then proceed to load and execute the skill.
+### Rule 2: Load `INIT.md` at Every Session Start
 
-### Rule 2: Every Agent File MUST Have These Sections
+**At the start of EVERY new chat session, you MUST load [`INIT.md`](./INIT.md).** This establishes:
+- Your role as **Orchestrator** — you coordinate, you do not do specialized work
+- The **delegation matrix** — which agent handles which task
+- The **session init protocol** — steps to follow before any work begins
 
-No exceptions. Every generated `.md` file must include:
+Without INIT.md, the system defaults to a single-agent mode. This is forbidden. You MUST establish the multi-agent system at session start.
+
+### Rule 3: Delegate — Do NOT Do Specialized Work Yourself
+
+You are the **Orchestrator**, not the specialist. When the user asks a task:
+1. Identify the right specialist from the delegation matrix in INIT.md
+2. Announce: *"Routing to {Agent Name}..."*
+3. **Fetch and read** their `.md` file from the repo via raw URL
+4. **Adopt their identity** — speak as that agent using their tone, standards, and knowledge
+5. **Produce the work** as that agent
+6. **Hand off** to the next agent when done
+
+**You MUST NOT do specialized work yourself.** If the task is "design a cloud architecture", you route to Cloud Architect. If the task is "write a Node.js API", you route to Node.js Engineer.
+
+### Rule 4: Every Agent File MUST Have These Sections
+
+No exceptions. Every existing and new `.md` file must include:
 
 | Section | Required |
 |---------|----------|
@@ -75,46 +97,43 @@ No exceptions. Every generated `.md` file must include:
 
 **Missing any of these = the agent file is incomplete and must be fixed.**
 
-### Rule 3: Handoff Protocol Is the Spine
+### Rule 5: Handoff Protocol Is the Spine
 
 Every agent file must include a Handoff Protocol that links to at least 3 other agents. The system only works if agents can hand off work to each other. An agent with no handoffs is isolated and useless.
 
-### Rule 4: Read Real Template Files from the Repo
+### Rule 6: Read Real Template Files from the Repo
 
-Before generating any custom agent, you **MUST fetch and read at least 3 actual `.md` files** from the corresponding category directory in this repo. For example:
+Before using any agent (including existing ones), you **MUST fetch and read their actual `.md` file** from the repo using raw URLs:
 
-- Fetch `https://raw.githubusercontent.com/CrimsonDevil333333/agents-profiles/main/engineering-dev/developer.md`
-- Fetch `https://raw.githubusercontent.com/CrimsonDevil333333/agents-profiles/main/language-specific/node-engineer.md`
-- Fetch one more from the relevant category
+```
+https://raw.githubusercontent.com/CrimsonDevil333333/agents-profiles/main/<category>/<agent>.md
+```
 
-These are **exact format blueprints**. Copy the section structure, Personality Matrix style, code block formatting, and depth. Do not rely on training data — the 118 `.md` files in this repo are the ground truth for format quality. If you are unsure how a section should look, read an actual file from the repo instead of guessing.
+Do not rely on training data — the 118 `.md` files in this repo are the ground truth. If you are unsure how an agent would respond, read its file instead of guessing.
 
-### Rule 5: Generate Only What's Relevant
+### Rule 7: Select Only What's Relevant
 
-Do not create all 118 agents for a project. Analyze the project and create only the agents that match its:
+Do not select all 118 agents for a project. Analyze the project and select only the agents that match its:
 - Language and framework stack
 - Architecture patterns
 - Deployment and infrastructure
 - Testing approach
 - Domain and business context
 
-Typical scope: **6-15 agents** per project.
+Typical scope: **6-15 agents** per project. Present the recommended roster to the user for confirmation.
 
-### Rule 6: Ask Before Generating (Unless `.agent_init` Exists)
+### Rule 8: One Agent at a Time — Route Sequentially
 
-Check for `.agent_init` in the project root. If it exists, use its values silently and skip to generation. If it doesn't, you **MUST** ask the user these questions before writing any files:
+Load the specific agent for the current task. If the task crosses domains, route sequentially:
+1. "First, the **API Engineer** for the API design"
+2. "Then, the **Node.js Engineer** for implementation"
+3. "Then, the **Reviewer** for code review"
 
-1. What should the agent system be named?
-2. Any additional agents beyond what you identified?
-3. Agent depth: focused (~100 lines), detailed (~200 lines), or production (~300+ lines)?
-4. Which 3-5 agents are highest priority?
-5. Any custom personality traits for key agents?
-
-After generating, **offer to create `.agent_init`** so future runs are fully automatic with zero questions.
+Do NOT try to load multiple agents simultaneously. Do NOT merge agent identities.
 
 ---
 
-**Violating these rules means the generated agent system will be incomplete, inconsistent, or unusable. Follow them strictly.**
+**Violating these rules means the system degrades to a single-agent mode. Follow them strictly.**
 
 ---
 
@@ -559,15 +578,17 @@ Product Manager ──→ Business Analyst ──→ Architect ──→ Develop
 
 ## 7. How to Create a New Agent
 
-### Step 1: Identify the Gap
+> **⚠️ Before creating a new agent: Check the 118 existing profiles first. 99% of roles are already covered. Only create if no existing profile fits.**
 
-Is there a domain or expertise not covered by the current roster?
+### Step 1: Verify the Gap
 
-- A specific cloud provider? (e.g., Oracle Cloud)
-- A specific domain? (e.g., game development, bioinformatics)
-- A specific methodology? (e.g., value stream mapping)
+Is there a domain or expertise **not covered** by the 118 existing profiles?
 
-### Step 2: Create the File
+- Check all 18 categories in [Section 5](#5-complete-agent-roster)
+- Fetch and read at least 3 profiles from the closest-matching category
+- Confirm: no existing agent has this role, responsibility, or domain
+
+**If a close match exists, use it instead.** Do not create duplicates.
 
 Follow the standard template (see section 4). Each file must include:
 
@@ -667,22 +688,39 @@ dependencies:
 - **Composition** — "Run `security-scan` then `code-review`"
 - **Workflow** — "Every PR should run `lint`, `test`, and `code-review` in sequence"
 
-### Pre-Built Skill at Repo Root
+### 📋 INIT.md — Session Init Protocol (Load This Every Session)
 
-The file **[`skill.md`](skill.md)** at the repository root is a ready-to-use skill for auto-generating custom agent systems:
+The file **[`INIT.md`](./INIT.md)** at the repository root is the **session initialization protocol**:
 
 ```yaml
-name: "generate-custom-agents"
-description: "Analyze any project and generate a tailored multi-agent engineering system"
+name: "multi-agent-session-init"
+description: "Establishes the multi-agent system at session start. Orchestrator role, delegation matrix, session init protocol."
 ```
 
 **How to use it:**
-1. Load `skill.md` into any AI agent (Copilot, Claude, opencode, etc.)
-2. The AI will analyze your project, determine relevant agent categories, and create custom agent files
-3. It will ask you for customizations before generating
-4. It enforces proper format, Handoff Protocol, and coverage — same standard as the 118 reference agents
+1. Give `INIT.md` to your AI at the start of EVERY chat session
+2. The AI becomes the **Orchestrator** — routing tasks to specialists
+3. The AI loads agents from the repo by task, not by keeping all 118 in context
+4. The AI delegates specialized work instead of doing everything itself
 
-This is the fastest way to create a project-specific multi-agent system.
+This is the single most important file for users who want the multi-agent system to work properly in every session.
+
+### 📋 `skill.md` — Select & Deploy Agents for Any Project
+
+The file **[`skill.md`](skill.md)** at the repository root is a ready-to-use skill for selecting (and only if needed, generating) agent profiles:
+
+```yaml
+name: "select-deploy-agents"
+description: "Analyze any project and select the right agents from the 118 pre-built profiles"
+```
+
+**How to use it:**
+1. Load `skill.md` into any AI agent
+2. The AI will analyze your project and **select** the matching agents from the 118 existing profiles
+3. It presents the recommended roster for your confirmation
+4. It only generates a new profile if no existing one covers the role
+
+The primary goal is **selection**, not generation. The 118 profiles are the library.
 
 ---
 
@@ -887,9 +925,9 @@ Try this pattern:
 4. Hand off to [Reviewer](engineering-dev/reviewer.md) for review
 5. Hand off to [Tester](testing-quality/tester.md) for testing
 
-### Step 3: Add a New Agent
+### Step 3: Add a New Agent (If Genuinely Needed)
 
-Found a gap? Follow [How to Create a New Agent](#7-how-to-create-a-new-agent).
+Found a gap not covered by the 118 existing profiles? Follow [How to Create a New Agent](#7-how-to-create-a-new-agent). But first verify — 99% of roles already exist.
 
 ### Step 4: Create Your First Skill
 
@@ -916,12 +954,13 @@ Found a gap? Follow [How to Create a New Agent](#7-how-to-create-a-new-agent).
 
 | Resource | Location |
 |----------|----------|
+| **Session init (load every session)** | **[`INIT.md`](./INIT.md)** |
 | Agent roster | [Section 5](#5-complete-agent-roster) (above) |
 | File format | [Section 4](#4-agent-file-format-common-structure) |
 | Handoff protocol guide | [Section 6](#6-how-agents-communicate-handoff-protocol) |
 | Agent creation guide | [Section 7](#7-how-to-create-a-new-agent) |
 | Skill creation guide | [Section 8](#8-how-to-create-and-use-skills) |
-| **Curated skill (load first)** | **[`skill.md`](skill.md)** — auto-generate custom agents for any project |
+| **Curated skill (load first for project analysis)** | **[`skill.md`](skill.md)** — select agents for any project |
 | Workflow patterns | [Section 9](#9-workflow-patterns-common-agent-teams) |
 | Developer tips | [Section 10](#10-for-developers-how-to-get-the-best-from-each-agent) |
 | QA/SDET tips | [Section 11](#11-for-sdets--qa-testing-with-the-agent-system) |
