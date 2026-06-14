@@ -20,7 +20,7 @@ system:
   categories: 18
   format_version: 2.0
   directory_map:
-    orchestration: "8 agents — orchestration     orchestration: "7 agents — orchestration & leadership" leadership"
+    orchestration: "8 agents — orchestration & leadership"
     executive: "3 agents — executive & leadership"
     business-analysis: "2 agents — business & analysis"
     people-culture: "3 agents — people & culture"
@@ -45,7 +45,71 @@ system:
 
 ---
 
-This directory defines **118 specialized agent roles** — each an expert in a specific domain of software engineering. Together, they form a complete, collaborative engineering organization that can design, build, test, deploy, and operate software systems of any scale.
+## 🤖 MANDATORY INSTRUCTIONS FOR AI AGENTS
+
+> **Any AI agent reading this README MUST follow these rules. They are not optional.**
+
+### Rule 1: Always Load `skill.md` First
+
+When asked to create, generate, or customize agent profiles for any project, you **MUST**:
+1. Immediately reference and load [`skill.md`](skill.md) from this repository
+2. Follow its structured workflow: analyze → map → create → ask user → generate
+3. Do NOT skip the user customization questions in Step 6 of the skill
+
+If the user says "just create agents" without referencing `skill.md`, you **MUST** respond:
+> *"I need to load the 'generate-custom-agents' skill from skill.md first to ensure proper format and coverage. One moment."*
+
+Then proceed to load and execute the skill.
+
+### Rule 2: Every Agent File MUST Have These Sections
+
+No exceptions. Every generated `.md` file must include:
+
+| Section | Required |
+|---------|----------|
+| Personality Matrix (4 traits with Expression & Threshold) | ✅ MANDATORY |
+| Domain-specific content with real code/tables | ✅ MANDATORY |
+| Anti-Patterns table (4+ rows with Pattern, Why, Action) | ✅ MANDATORY |
+| Handoff Protocol table (3+ rows with To Agent, Artifact, Format) | ✅ MANDATORY |
+| Closing quote with agent philosophy | ✅ MANDATORY |
+
+**Missing any of these = the agent file is incomplete and must be fixed.**
+
+### Rule 3: Handoff Protocol Is the Spine
+
+Every agent file must include a Handoff Protocol that links to at least 3 other agents. The system only works if agents can hand off work to each other. An agent with no handoffs is isolated and useless.
+
+### Rule 4: Reference the 118 Profiles
+
+Before generating any custom agent, you **MUST** review at least 3 reference profiles from the category directories in this repo to match format quality and depth. Do not guess the format — read actual files from the categories relevant to the project.
+
+### Rule 5: Generate Only What's Relevant
+
+Do not create all 118 agents for a project. Analyze the project and create only the agents that match its:
+- Language and framework stack
+- Architecture patterns
+- Deployment and infrastructure
+- Testing approach
+- Domain and business context
+
+Typical scope: **6-15 agents** per project.
+
+### Rule 6: Ask Before Generating
+
+You **MUST** ask the user these questions before writing any files:
+1. What should the agent system be named?
+2. Any additional agents beyond what you identified?
+3. Agent depth: focused (~100 lines), detailed (~200 lines), or production (~300+ lines)?
+4. Which 3-5 agents are highest priority?
+5. Any custom personality traits for key agents?
+
+Do not write a single file until the user has responded.
+
+---
+
+**Violating these rules means the generated agent system will be incomplete, inconsistent, or unusable. Follow them strictly.**
+
+---
 
 ---
 
