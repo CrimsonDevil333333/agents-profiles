@@ -8,7 +8,7 @@
 # Machine-readable metadata — for AI parsing
 system:
   name: "Multi-Agent Engineering System"
-  total_agents: 105
+  total_agents: 110
   categories: 18
   format_version: 2.0
   directory_map:
@@ -23,9 +23,9 @@ system:
     engineering-dev: "9 agents — engineering & development"
     testing-quality: "5 agents — testing & quality"
     cloud-infra-architecture: "5 agents — cloud & infrastructure architecture"
-    infrastructure-ops: "7 agents — infrastructure & operations"
-    data-intelligence: "11 agents — data & intelligence"
-    specialized-engineering: "10 agents — specialized engineering"
+    infrastructure-ops: "10 agents — infrastructure & operations"
+    data-intelligence: "12 agents — data & intelligence"
+    specialized-engineering: "11 agents — specialized engineering"
     compliance-legal-finance: "4 agents — compliance, legal & finance"
     content-communication: "6 agents — content & communication"
     it-support: "1 agent — IT & internal support"
@@ -37,7 +37,7 @@ system:
 
 ---
 
-This directory defines **105 specialized agent roles** — each an expert in a specific domain of software engineering. Together, they form a complete, collaborative engineering organization that can design, build, test, deploy, and operate software systems of any scale.
+This directory defines **110 specialized agent roles** — each an expert in a specific domain of software engineering. Together, they form a complete, collaborative engineering organization that can design, build, test, deploy, and operate software systems of any scale.
 
 ---
 
@@ -57,9 +57,9 @@ agents-readme/
 ├── engineering-dev/                   (9)  — Frontend, Mobile, iOS, Android, Embedded, Backend, Dev, Reviewer, Automation
 ├── testing-quality/                   (5)  — Tester, QA, E2E, Performance, Pen Tester
 ├── cloud-infra-architecture/          (5)  — Cloud Arch, AWS, Azure, GCP, Terraform
-├── infrastructure-ops/                (7)  — DevOps, Ops, SRE, Platform, Network, Chaos, K8s
-├── data-intelligence/                 (11) — Data Eng, Data Arch, Analytics Eng, Data Sci, AI, LLM, ML, DL, MLOps, Data Quality, DBA
-├── specialized-engineering/           (10) — API, Integration, Migration, Security, DevSecOps, IAM, Incident, Data Protection, Observability, Release
+├── infrastructure-ops/                (10) — DevOps, Ops, SRE, Platform, Network, Chaos, K8s, ArgoCD, Mesh, Helm
+├── data-intelligence/                 (12) — Data Eng, Data Arch, Analytics, Data Sci, AI, LLM, ML, DL, MLOps, Data Quality, DBA, Kafka
+├── specialized-engineering/           (11) — API, Integration, Migration, Security, DevSecOps, IAM, Incident, Data Protection, Observability, Release, Vault
 ├── compliance-legal-finance/          (4)  — Compliance, Legal, Accessibility, FinOps
 ├── content-communication/             (6)  — Tech Writer, Content Strategist, Translator, Proposal, Localization, Support
 ├── it-support/                        (1)  — IT Support
@@ -355,6 +355,9 @@ Varies by agent type:
 | [Network Engineer](infrastructure-ops/network-engineer.md) | The Connectivity Architect | Network architecture, routing, segmentation, NetDevOps |
 | [Chaos Engineer](infrastructure-ops/chaos-engineer.md) | The Mayhem Conductor | Resilience testing, fault injection, game days, chaos experiments |
 | [Kubernetes Engineer](infrastructure-ops/kubernetes-engineer.md) | The Cluster Whisperer | K8s cluster lifecycle, networking, security, GitOps |
+| [ArgoCD Engineer](infrastructure-ops/argocd-engineer.md) | The GitOps Guardian | GitOps deployments, ApplicationSets, sync strategies, multi-cluster |
+| [Service Mesh Engineer](infrastructure-ops/service-mesh-engineer.md) | The Mesh Weaver | Istio, Linkerd, mTLS, traffic policies, observability |
+| [Helm Engineer](infrastructure-ops/helm-engineer.md) | The Chart Smith | Chart authoring, packaging, templating, dependency management |
 
 ### Data & Intelligence
 
@@ -371,6 +374,7 @@ Varies by agent type:
 | [MLOps Engineer](data-intelligence/mlops-engineer.md) | The ML Guardian | ML infrastructure, model serving, feature stores, training pipelines |
 | [Data Quality Engineer](data-intelligence/data-quality-engineer.md) | The Data Purifier | Data cleaning, quality monitoring, validation automation, observability |
 | [Database Administrator](data-intelligence/database-administrator.md) | The Data Steward | Schema design, performance tuning, backup/recovery, HA |
+| [Kafka Engineer](data-intelligence/kafka-engineer.md) | The Stream Master | Event streaming, topic design, Kafka Connect, Streams, Schema Registry |
 
 ### Specialized Engineering
 
@@ -386,6 +390,7 @@ Varies by agent type:
 | [Data Protection Engineer](specialized-engineering/data-protection-engineer.md) | The Data Guardian | Encryption, key management, tokenization, data security standards |
 | [Observability Engineer](specialized-engineering/observability-engineer.md) | The Signal Analyst | Metrics, logging, tracing, alerting, SLOs, dashboards |
 | [Release Engineer](specialized-engineering/release-engineer.md) | The Release Conductor | Release planning, artifact management, deployment orchestration |
+| [Secrets & Vault Engineer](specialized-engineering/secrets-vault-engineer.md) | The Key Guardian | HashiCorp Vault, secrets rotation, encryption, PKI, policy management |
 
 ### Compliance, Legal & Finance
 
@@ -820,5 +825,5 @@ Found a gap? Follow [How to Create a New Agent](#7-how-to-create-a-new-agent).
 
 ---
 
-*"A single developer is a generalist. One hundred and five specialized agents are an engineering organization. The system is only as strong as the handoffs between them."*
+*"A single developer is a generalist. One hundred and ten specialized agents are an engineering organization. The system is only as strong as the handoffs between them."*
 — Multi-Agent Engineering System
