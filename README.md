@@ -2,13 +2,13 @@
 
 > **📦 Repo: [`github.com/CrimsonDevil333333/agents-profiles`](https://github.com/CrimsonDevil333333/agents-profiles)**
 
-> **Your all-in-one reference for understanding, using, extending, and auto-generating custom multi-agent software engineering systems.**
+> **Your all-in-one reference for understanding, using, and selecting the right multi-agent software engineering system for any project.**
 
 > **🧑‍💻 Quick start for humans:** Copy-paste this whole README into your AI agent and say: *"Load this multi-agent engineering system. I'm working on [project description]. Help me build [specific task] by routing through the right agents."*
 
-> **🤖 Quick start for agents:** See `AGENT_GENERATOR.md` at the repo root for the autonomous project-analysis → custom-agent-generation workflow. Point any AI agent at that file to generate a tailored agent system for any codebase.
+> **🤖 Every session: Load [`INIT.md`](./INIT.md) first** — this file establishes the Orchestrator role, delegation matrix, and session init protocol. Give it to your AI at the START of every chat. Run: *"Load INIT.md and initialize the multi-agent system."*
 
-> **⚡ For AI agents: Load `skill.md` first** — this curated skill enforces proper agent format, auto-detects project context, and asks you for customizations before generating. Run it with: *"Load skill.md and generate custom agents for this project."*
+> **⚡ First-time project setup: Load [`skill.md`](skill.md)** — this skill analyzes your project and selects the right agents from the 118 existing profiles. Run: *"Load skill.md and select agents for this project."*
 
 ---
 
@@ -48,6 +48,8 @@ system:
 ## 🤖 MANDATORY INSTRUCTIONS FOR AI AGENTS
 
 > **Any AI agent reading this README MUST follow these rules. They are not optional.**
+
+> **👤 USERS: Give [`INIT.md`](./INIT.md) to your AI at the start of EVERY chat session. This is the only way the multi-agent system activates. Without it, the AI will default to single-agent mode.**
 
 ### Rule 1: Selection First — Generation Last
 
@@ -109,7 +111,9 @@ Before using any agent (including existing ones), you **MUST fetch and read thei
 https://raw.githubusercontent.com/CrimsonDevil333333/agents-profiles/main/<category>/<agent>.md
 ```
 
-Do not rely on training data — the 118 `.md` files in this repo are the ground truth. If you are unsure how an agent would respond, read its file instead of guessing.
+**No-fetch fallback:** If you cannot access URLs, announce this to the user and rely on your training data for the agent's domain knowledge. Still adopt the agent's identity and delegate via Handoff Protocols — this is mandatory regardless of fetch ability. Offer: *"For full precision, provide the file at `category/agent.md` from the repo."*
+
+Do not rely on training data when you CAN fetch — the 118 `.md` files in this repo are the ground truth. If you are unsure how an agent would respond, read its file instead of guessing.
 
 ### Rule 7: Select Only What's Relevant
 

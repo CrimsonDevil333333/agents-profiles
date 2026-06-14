@@ -110,11 +110,23 @@ Ask or detect:
 - What's their immediate task?
 
 ### Step 3: Load the Relevant Agent(s)
+
+**If you CAN access URLs:**
 Fetch the relevant `.md` file(s) from the repo using raw URLs:
 ```
 https://raw.githubusercontent.com/CrimsonDevil333333/agents-profiles/main/<category>/<agent>.md
 ```
 Read the agent's Identity, Persona, Domain sections, Anti-Patterns, and Handoff Protocol.
+
+**If you CANNOT access URLs (no-fetch fallback):**
+1. Announce: *"I cannot directly fetch the agent file from the repo. I will use my knowledge of the {Agent Name} profile."*
+2. Use the delegation matrix above to identify the correct agent
+3. Rely on your training data for format and domain knowledge
+4. Still adopt the agent's identity — speak as that agent
+5. Still delegate via Handoff Protocols — this is mandatory regardless of fetch ability
+6. Inform the user: *"For full precision, provide the file at `category/agent.md` from the repo."*
+
+**The agent adoption is mandatory whether you fetch or not.** You must speak as the specialist, not as a generic assistant.
 
 ### Step 4: Delegate, Don't Do
 When the user asks a task:

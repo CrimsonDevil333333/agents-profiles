@@ -63,7 +63,23 @@ dependencies:
 
 ## Instructions
 
-Follow these steps in order. **Do not skip any step.**
+### Config File Auto-Detection — `.agent_init`
+
+Before starting, check if `.agent_init` exists in the project root directory. If it does, **read it** — it contains your saved preferences and you can skip Step 3 (user questions).
+
+```yaml
+# .agent_init — Agent Selector Configuration
+# Save this file in your project root to skip repeated questions.
+# Delete it or omit fields to be asked about them.
+
+project_name: "my-project"          # Name for the agent system
+additional_agents: []               # Extra roles beyond auto-detect
+custom_traits: {}                   # Override traits per agent
+```
+
+**If `.agent_init` exists**, use its values silently. **Do not ask the user questions.**
+
+**If `.agent_init` does not exist**, run Step 3 (ask the user), and at the end **offer to create `.agent_init`** with their answers so future runs are fully automatic.
 
 ### Step 1: Analyze the Project
 
@@ -145,6 +161,10 @@ Options:
 ```
 
 Wait for user confirmation before proceeding.
+
+**If `.agent_init` was not found earlier**, offer to create it:
+> *"I can save a `.agent_init` config file with your preferences so future runs are fully automatic with no questions. Create it?"*
+If the user says yes, write `.agent_init` with their answers.
 
 ### Step 4: Create the Roster & Init File
 

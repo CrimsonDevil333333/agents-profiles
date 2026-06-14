@@ -151,9 +151,9 @@ done
 # 3. All agents have Handoff Protocol
 find . -name '*.md' ! -path './README.md' -exec grep -L 'Handoff Protocol' {} \;
 
-# 4. No .md files at root (except README.md and AGENT.md)
+# 4. No .md files at root (except README.md, AGENT.md, INIT.md, skill.md, AGENT_GENERATOR.md)
 ls *.md
-# Should only show: AGENT.md  README.md
+# Should only show: AGENT.md  AGENT_GENERATOR.md  INIT.md  README.md  skill.md
 ```
 
 ## How to Modify an Existing Agent
