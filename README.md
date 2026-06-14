@@ -4,11 +4,12 @@
 
 > **Your all-in-one reference for understanding, using, and selecting the right multi-agent software engineering system for any project.**
 
-> **🧑‍💻 Quick start for humans:** Copy-paste this whole README into your AI agent and say: *"Load this multi-agent engineering system. I'm working on [project description]. Help me build [specific task] by routing through the right agents."*
-
-> **🤖 Every session: Load [`INIT.md`](./INIT.md) first** — this file establishes the Orchestrator role, delegation matrix, and session init protocol. Give it to your AI at the START of every chat. Run: *"Load INIT.md and initialize the multi-agent system."*
-
-> **⚡ First-time project setup: Load [`skill.md`](skill.md)** — this skill analyzes your project and selects the right agents from the 118 existing profiles. Run: *"Load skill.md and select agents for this project."*
+> **🧑‍💻 HOW TO USE (SINGLE COMMAND):**
+> 1. Tell your AI: *"Read [`skill.md`](./skill.md) and initialize the multi-agent system for my project."*
+> 2. The AI auto-scans your project, selects 6-15 matching agents, creates `AGENTS.md`, and becomes the Orchestrator.
+> 3. Then just describe any task — the AI routes it to the right specialist agent.
+>
+> **That's it. One file. One command. No manual setup.**
 
 ---
 
@@ -49,7 +50,7 @@ system:
 
 > **Any AI agent reading this README MUST follow these rules. They are not optional.**
 
-> **👤 USERS: Give [`INIT.md`](./INIT.md) to your AI at the start of EVERY chat session. This is the only way the multi-agent system activates. Without it, the AI will default to single-agent mode.**
+> **👤 USERS: Give [`skill.md`](./skill.md) to your AI at the start of EVERY chat session. This is the only way the multi-agent system activates. Without it, the AI will default to single-agent mode.**
 
 ### Rule 1: Selection First — Generation Last
 
@@ -64,20 +65,21 @@ When asked to work with agents, follow this priority:
 3. **DEPLOY** — use them in your current session
 4. **GENERATE** — only as last resort, if no existing profile fits
 
-### Rule 2: Load `INIT.md` at Every Session Start
+### Rule 2: Load `skill.md` at Every Session Start
 
-**At the start of EVERY new chat session, you MUST load [`INIT.md`](./INIT.md).** This establishes:
+**At the start of EVERY new chat session, you MUST load [`skill.md`](./skill.md).** This establishes:
 - Your role as **Orchestrator** — you coordinate, you do not do specialized work
-- The **Quick Triage table** — task-to-agent routing in ~30 rows, not 57
+- The **Quick Triage table** — task-to-agent routing
 - The **session init protocol** — steps to follow before any work begins
 - **Quality gates** and **Bug workflow** — mandatory before delivery
+- **Auto project analysis** — scans your project and selects the right agents
 
-Without INIT.md, the system defaults to a single-agent mode. This is forbidden. You MUST establish the multi-agent system at session start.
+Without skill.md, the system defaults to a single-agent mode. This is forbidden. You MUST establish the multi-agent system at session start.
 
 ### Rule 3: Delegate — Do NOT Do Specialized Work Yourself
 
 You are the **Orchestrator**, not the specialist. When the user asks a task:
-1. Identify the right specialist from the **Quick Triage table** in INIT.md
+1. Identify the right specialist from the **Quick Triage table** in skill.md
 2. Announce: *"Routing to {Agent Name}..."*
 3. **Fetch and read** their `.md` file from the repo via raw URL
 4. **Adopt their identity** — speak as that agent using their tone, standards, and knowledge
@@ -710,20 +712,21 @@ dependencies:
 - **Composition** — "Run `security-scan` then `code-review`"
 - **Workflow** — "Every PR should run `lint`, `test`, and `code-review` in sequence"
 
-### 📋 INIT.md — Session Init Protocol (Load This Every Session)
+### 📋 skill.md — Session Init + Auto-Config (Load This Every Session)
 
-The file **[`INIT.md`](./INIT.md)** at the repository root is the **session initialization protocol**:
+The file **[`skill.md`](./skill.md)** at the repository root is the **session initialization and auto-config protocol**:
 
 ```yaml
 name: "multi-agent-session-init"
-description: "Establishes the multi-agent system at session start. Orchestrator role, delegation matrix, session init protocol."
+description: "Establishes the multi-agent system at session start. Orchestrator role, delegation matrix, auto project analysis, agent selection."
 ```
 
 **How to use it:**
-1. Give `INIT.md` to your AI at the start of EVERY chat session
+1. Give `skill.md` to your AI at the start of EVERY chat session
 2. The AI becomes the **Orchestrator** — routing tasks to specialists
-3. The AI loads agents from the repo by task, not by keeping all 118 in context
-4. The AI delegates specialized work instead of doing everything itself
+3. The AI auto-analyzes your project and selects the right agents
+4. The AI loads agents from the repo by task, not by keeping all 118 in context
+5. The AI delegates specialized work instead of doing everything itself
 
 This is the single most important file for users who want the multi-agent system to work properly in every session.
 
@@ -981,13 +984,12 @@ Found a gap not covered by the 118 existing profiles? Follow [How to Create a Ne
 
 | Resource | Location |
 |----------|----------|
-| **Session init (load every session)** | **[`INIT.md`](./INIT.md)** |
+| **Session init + auto-config (single file)** | **[`skill.md`](./skill.md)** |
 | Agent roster | [Section 5](#5-complete-agent-roster) (above) |
 | File format | [Section 4](#4-agent-file-format-common-structure) |
 | Handoff protocol guide | [Section 6](#6-how-agents-communicate-handoff-protocol) |
 | Agent creation guide | [Section 7](#7-how-to-create-a-new-agent) |
 | Skill creation guide | [Section 8](#8-how-to-create-and-use-skills) |
-| **Curated skill (load first for project analysis)** | **[`skill.md`](skill.md)** — select agents for any project |
 | Workflow patterns | [Section 9](#9-workflow-patterns-common-agent-teams) |
 | Developer tips | [Section 10](#10-for-developers-how-to-get-the-best-from-each-agent) |
 | QA/SDET tips | [Section 11](#11-for-sdets--qa-testing-with-the-agent-system) |
