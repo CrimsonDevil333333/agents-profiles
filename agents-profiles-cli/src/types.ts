@@ -44,8 +44,19 @@ export interface DetectedProject {
   frameworks: string[]
   packageManager: string | null
   hasDocker: boolean
+  hasDockerCompose: boolean
+  hasKubernetes: boolean
+  hasTerraform: boolean
   hasCiCd: boolean
+  hasMobile: boolean
+  hasEmbedded: boolean
+  hasGame: boolean
   testFrameworks: string[]
+  databases: string[]
+  messageQueues: string[]
+  cloudProviders: string[]
+  aiMl: boolean
+  monitoring: boolean
 }
 
 export interface AICredentials {
@@ -72,10 +83,11 @@ export interface InitOptions {
   customAgents: AgentProfile[]
   aiCredentials?: AICredentials
   aiAnalysis?: AIAnalysisResult
+  online?: boolean
 }
 
 export interface GeneratorOutput {
   platform: string
   files: Array<{ path: string; content: string }>
-  agentFiles: Array<{ src: string; dest: string }>
+  agentFiles: Array<{ src?: string; content?: string; dest: string }>
 }

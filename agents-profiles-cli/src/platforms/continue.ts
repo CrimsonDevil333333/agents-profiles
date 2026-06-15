@@ -1,6 +1,5 @@
 import type { InitOptions, GeneratorOutput, PlatformInfo } from '../types.js'
 import { copyNativeAgents, buildCuratedConfig } from './helpers.js'
-import { logWarn } from '../utils/logger.js'
 
 export const continueInfo: PlatformInfo = {
   id: 'continue', name: 'Continue.dev', description: 'Open-source AI code assistant',
@@ -22,8 +21,11 @@ async function generateConfig(
 
   const copyResults = await copyNativeAgents(options, platform, cwd)
   for (const r of copyResults) {
-    if (r.copied) agentFiles.push({ src: r.src, dest: r.dest })
-    else logWarn(`Agent file not found for ${r.id}`)
+    if (r.copied && r.fetched && r.content) {
+      agentFiles.push({ content: r.content, dest: r.dest })
+    } else if (r.copied && r.src) {
+      agentFiles.push({ src: r.src, dest: r.dest })
+    }
   }
 
   if (format === 'json') {
@@ -42,10 +44,7 @@ async function generateConfig(
     files.push({ path: configPath, content: JSON.stringify(continuerc, null, 2) })
   } else {
     files.push({ path: configPath, content: buildCuratedConfig(options, platform.name, platform.agentDir,
-      `## For Generic AI Users
-- Use this as a system prompt for ChatGPT, Gemini, DeepSeek, Grok, or any LLM
-- Copy and paste this file as context before starting your session
-- The AI will become the Orchestrator with ${options.agents.length} specialist agents`
+      `## For Generic AI Users\n- Use this as a system prompt for ChatGPT, Gemini, DeepSeek, Grok, or any LLM\n- Copy and paste this file as context before starting your session\n- The AI will become the Orchestrator with ${options.agents.length} specialist agents`
     )})
   }
 

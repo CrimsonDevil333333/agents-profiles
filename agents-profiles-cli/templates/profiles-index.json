@@ -588,5 +588,135 @@
     "category": "testing-quality",
     "title": "Tester — Quality Assurance & Test Engineer",
     "role": "QA Engineer | Test Automation Engineer | SDET"
+  },
+  "elixir-engineer": {
+    "category": "language-specific",
+    "title": "Elixir Engineer — Fault-Tolerant & Concurrent Systems",
+    "role": "Elixir Engineer | Phoenix Developer | BEAM/OTP Specialist"
+  },
+  "haskell-engineer": {
+    "category": "language-specific",
+    "title": "Haskell Engineer — Pure Functional Programming Specialist",
+    "role": "Haskell Engineer | Functional Programmer | Type-Level Developer"
+  },
+  "kotlin-engineer": {
+    "category": "language-specific",
+    "title": "Kotlin Engineer — JVM & Modern Multiplatform Developer",
+    "role": "Kotlin Engineer | Android Developer | JVM Architect"
+  },
+  "scala-engineer": {
+    "category": "language-specific",
+    "title": "Scala Engineer — Functional/OOP & Type-Level Architecture",
+    "role": "Scala Engineer | JVM Functional Developer | Akka/ZIO Specialist"
+  },
+  "r-engineer": {
+    "category": "language-specific",
+    "title": "R Engineer — Statistical Computing & Data Visualization",
+    "role": "R Engineer | Data Scientist | Statistical Programmer"
+  },
+  "typescript-engineer": {
+    "category": "language-specific",
+    "title": "TypeScript Engineer — Type-Safe Full-Stack Development",
+    "role": "TypeScript Engineer | Type-System Architect | Full-Stack Developer"
+  },
+  "flutter-engineer": {
+    "category": "engineering-dev",
+    "title": "Flutter Engineer — Cross-Platform UI Development",
+    "role": "Flutter Engineer | Dart Developer | Cross-Platform Specialist"
+  },
+  "redis-infra-engineer": {
+    "category": "infrastructure-ops",
+    "title": "Redis Engineer (Infrastructure) — Caching & Real-Time Data Infrastructure",
+    "role": "Redis Engineer | Cache Architect | Real-Time Data Specialist"
+  },
+  "scientific-computing-engineer": {
+    "category": "data-intelligence",
+    "title": "Scientific Computing Engineer — Numerical Computing & HPC",
+    "role": "Scientific Computing Engineer | HPC Specialist | Numerical Analyst"
+  },
+  "blockchain-engineer": {
+    "category": "specialized-engineering",
+    "title": "Blockchain Engineer — Smart Contracts & Decentralized Applications",
+    "role": "Blockchain Engineer | Solidity Developer | Web3 Engineer"
+  },
+  "temporal-engineer": {
+    "category": "specialized-engineering",
+    "title": "Temporal Engineer — Durable Execution & Workflow Orchestration",
+    "role": "Temporal Engineer | Workflow Architect | Durable Execution Specialist"
+  },
+  "visual-creator": {
+    "category": "content-communication",
+    "title": "Visual Creator — AI Image Generation & Graphic Design",
+    "role": "Visual Creator | Graphic Designer | AI Image Artist"
+  },
+  "video-producer": {
+    "category": "content-communication",
+    "title": "Video Producer — Video Production & Motion Graphics",
+    "role": "Video Producer | Video Editor | Motion Graphics Artist"
+  },
+  "game-engineer": {
+    "category": "game-development",
+    "title": "Game Engineer — Game Development & Engine Programming",
+    "role": "Game Engineer | Unity/Unreal/Godot Developer | Gameplay Programmer"
+  },
+  "react-engineer": {
+    "category": "frontend-frameworks",
+    "title": "React Engineer — Component Architecture & Frontend Engineering",
+    "role": "React Engineer | Next.js Developer | Frontend Architect"
+  },
+  "vue-engineer": {
+    "category": "frontend-frameworks",
+    "title": "Vue Engineer — Reactive Frontend Development",
+    "role": "Vue Engineer | Nuxt Developer | Reactive UI Specialist"
+  },
+  "postgresql-engineer": {
+    "category": "database-specialists",
+    "title": "PostgreSQL Engineer — Query Optimization & Database Performance",
+    "role": "PostgreSQL Engineer | DBA | Query Optimizer"
+  },
+  "mongodb-engineer": {
+    "category": "database-specialists",
+    "title": "MongoDB Engineer — Document Modeling & Aggregation",
+    "role": "MongoDB Engineer | NoSQL Architect | Document Database Specialist"
+  },
+  "redis-engineer": {
+    "category": "database-specialists",
+    "title": "Redis Engineer — Caching, Data Structures & Cluster Topology",
+    "role": "Redis Engineer | Cache Architect | Data Structure Specialist"
+  },
+  "elasticsearch-engineer": {
+    "category": "database-specialists",
+    "title": "Elasticsearch Engineer — Search & Relevance Engineering",
+    "role": "Elasticsearch Engineer | Search Architect | Relevance Engineer"
+  },
+  "cassandra-engineer": {
+    "category": "database-specialists",
+    "title": "Cassandra Engineer — Distributed Database & Consistency Tuning",
+    "role": "Cassandra Engineer | NoSQL Architect | Distributed Database Specialist"
+  },
+  "pinecone-engineer": {
+    "category": "database-specialists",
+    "title": "Pinecone Engineer — Vector Search & Embedding Strategy",
+    "role": "Pinecone Engineer | Vector Database Specialist | Embedding Architect"
+  },
+  "qdrant-engineer": {
+    "category": "database-specialists",
+    "title": "Qdrant Engineer — Vector Search & HNSW Optimization",
+    "role": "Qdrant Engineer | Vector Search Specialist | Quantization Expert"
+  },
+  "neo4j-engineer": {
+    "category": "database-specialists",
+    "title": "Neo4j Engineer — Graph Modeling & Cypher Query Optimization",
+    "role": "Neo4j Engineer | Graph Database Architect | Cypher Specialist"
+  },
+  "influxdb-engineer": {
+    "category": "database-specialists",
+    "title": "InfluxDB Engineer — Time-Series Data & Flux Query Optimization",
+    "role": "InfluxDB Engineer | Time-Series Architect | Flux Specialist"
+  },
+  "oracle-cloud-engineer": {
+    "category": "cloud-providers",
+    "title": "Oracle Cloud Engineer — OCI Infrastructure & Autonomous Database",
+    "role": "Oracle Cloud Engineer | OCI Architect | Enterprise Cloud Specialist"
   }
 }

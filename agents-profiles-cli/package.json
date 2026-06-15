@@ -1,7 +1,7 @@
 {
   "name": "agents-profiles-cli",
-  "version": "0.2.0",
-  "description": "Interactive CLI to configure AI agent profiles for your project — supports OpenCode, Claude Code, GitHub Copilot, Cursor, Aider, Continue.dev, and more.",
+  "version": "0.2.1",
+  "description": "Multi-Agent System Setup Wizard — Configure any AI coding assistant with 144 specialist agents across 22 categories. Supports OpenCode, Claude Code, Copilot, Cursor, Windsurf, Aider, Continue.dev, and custom providers.",
   "type": "module",
   "bin": {
     "agents-profiles-cli": "./dist/bin/cli.js"
@@ -17,7 +17,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "dev": "tsx watch src/bin/cli.ts",
+    "dev": "tsx src/bin/cli.ts",
     "start": "node dist/bin/cli.js",
     "prepublishOnly": "npm run build",
     "lint": "tsc --noEmit",
@@ -26,15 +26,24 @@
   "keywords": [
     "ai",
     "agents",
+    "multi-agent",
+    "orchestrator",
     "cli",
     "opencode",
     "claude",
+    "claude-code",
     "copilot",
     "cursor",
+    "windsurf",
     "aider",
     "continue",
     "setup",
-    "configuration"
+    "configuration",
+    "agent-profiles",
+    "llm",
+    "devops",
+    "project-setup",
+    "scaffolding"
   ],
   "license": "MIT",
   "dependencies": {
@@ -51,5 +60,11 @@
     "type": "git",
     "url": "git+https://github.com/CrimsonDevil333333/agents-profiles.git"
   },
-  "homepage": "https://github.com/CrimsonDevil333333/agents-profiles"
+  "homepage": "https://github.com/CrimsonDevil333333/agents-profiles",
+  "bugs": {
+    "url": "https://github.com/CrimsonDevil333333/agents-profiles/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
 }
