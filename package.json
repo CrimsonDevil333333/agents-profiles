@@ -1,7 +1,7 @@
 {
   "name": "agents-profiles",
   "version": "2.1.0",
-  "description": "Multi-Agent Engineering System — 127 agent profiles across 20 categories",
+  "description": "Multi-Agent Engineering System — 144 agent profiles across 20 categories",
   "private": true,
   "scripts": {
     "validate": "bash validate.sh",

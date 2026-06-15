@@ -6,7 +6,7 @@
 
 ## What This Repo Is
 
-A collection of **138 structured role description files** (`.md`), each defining a specialized engineering agent. Together they form a complete multi-agent engineering organization covering every domain of modern software development.
+A collection of **144 structured role description files** (`.md`), each defining a specialized engineering agent. Together they form a complete multi-agent engineering organization covering every domain of modern software development.
 
 ## Directory Layout
 
@@ -40,7 +40,7 @@ A collection of **138 structured role description files** (`.md`), each defining
 | `business-revenue/` | 5 | Sales, Dev Advocate, CS, TAM, Marketing |
 | `design-architecture/` | 6 | Architect, Sol Arch, Designer, UX, Researcher, Workflow |
 | `system-extensibility/` | 6 | Agent Builder, Skill Creator, MCP, Prompt, Knowledge, Evaluator |
-| `language-specific/` | 11 | Node, Python, Rust, Go, Java, PHP, Ruby, .NET, C/C++, Zig, Swift |
+| `language-specific/` | 17 | Node, Python, Rust, Go, Java, PHP, Ruby, .NET, C/C++, Zig, Swift, Scala, Kotlin, TypeScript, R, Elixir, Haskell |
 | `engineering-dev/` | 10 | Frontend, Mobile, iOS, Android, Embedded, Backend, Dev, Reviewer, Automation, Flutter |
 | `testing-quality/` | 5 | Tester, QA, E2E, Performance, Pen Tester |
 | `cloud-infra-architecture/` | 5 | Cloud Arch, AWS, Azure, GCP, Terraform |
@@ -108,7 +108,7 @@ Does your new agent fit into an existing category, or does it need a new one?
 **Existing categories** cover these domains:
 - Orchestration/leadership, executive, business, people, revenue
 - Design, architecture, system extensibility
-- Language-specific engineering (11 languages)
+- Language-specific engineering (17 languages)
 - Frontend, mobile, backend, embedded, automation
 - Testing, QA, performance, security testing
 - Cloud architecture (AWS, Azure, GCP, Terraform)

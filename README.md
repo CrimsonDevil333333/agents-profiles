@@ -2,7 +2,7 @@
 
 > **📦 Repo: [`github.com/CrimsonDevil333333/agents-profiles`](https://github.com/CrimsonDevil333333/agents-profiles)**
 
-> **138 agents. 20 categories. One command to activate.**
+> **144 agents. 20 categories. One command to activate.**
 
 > **🚀 SELF-SETUP — Give this ONE command to any AI:**
 > ```
@@ -27,7 +27,7 @@
 # Machine-readable metadata — for AI parsing
 system:
   name: "Multi-Agent Engineering System"
-  total_agents: 138
+  total_agents: 144
   categories: 20
   format_version: 2.1
   directory_map:
@@ -38,7 +38,7 @@ system:
     business-revenue: "5 agents — business & revenue"
     design-architecture: "6 agents — design & architecture"
     system-extensibility: "6 agents — agent infrastructure & extensibility"
-    language-specific: "11 agents — language-specific engineering"
+    language-specific: "17 agents — language-specific engineering"
     engineering-dev: "10 agents — engineering & development"
     testing-quality: "5 agents — testing & quality"
     cloud-infra-architecture: "5 agents — cloud & infrastructure architecture"
@@ -98,7 +98,7 @@ Scan the user's project directory for:
 
 #### Step 3: Select Agent Roster
 
-From the 138 agents, select 6-15 that match the project's tech stack, architecture, and domain. Include at minimum:
+From the 144 agents, select 6-15 that match the project's tech stack, architecture, and domain. Include at minimum:
 - 1 language-specific engineer (matching the project's primary language)
 - 1 Reviewer (mandatory quality gate)
 - 1 domain specialist (frontend, backend, infra, data, etc.)
@@ -116,7 +116,7 @@ Copy-paste this template, fill in the project details and selected roster:
 # {Project Name} — Multi-Agent Engineering System
 
 > **Your AI is now the Orchestrator. Route tasks to specialist agents.**
-> **138 profiles at github.com/CrimsonDevil333333/agents-profiles**
+> **144 profiles at github.com/CrimsonDevil333333/agents-profiles**
 
 ## Role: Orchestrator — NOT the Doer
 
@@ -201,13 +201,13 @@ Announce: *"Multi-agent system initialized. I am the Orchestrator with {N} speci
 
 ### Rule 1: Selection First — Generation Last
 
-**The 138 agents already exist.** Your default action is to **SELECT from existing profiles**, not generate new ones. Only generate a new agent if ALL of these are true:
+**The 144 agents already exist.** Your default action is to **SELECT from existing profiles**, not generate new ones. Only generate a new agent if ALL of these are true:
 - The role does not exist in any of the 20 categories
 - The role is not a variation of an existing agent
 - The user explicitly requested a custom agent
 
 When asked to work with agents, follow this priority:
-1. **SELECT** — find the closest match from the 138 existing profiles
+1. **SELECT** — find the closest match from the 144 existing profiles
 2. **LOAD** — fetch and read their actual `.md` file from the repo
 3. **DEPLOY** — use them in your current session
 4. **GENERATE** — only as last resort, if no existing profile fits
@@ -252,11 +252,11 @@ https://raw.githubusercontent.com/CrimsonDevil333333/agents-profiles/main/<categ
 
 **No-fetch fallback:** If you cannot access URLs, announce this to the user and rely on your training data for the agent's domain knowledge. Still adopt the agent's identity and delegate via Handoff Protocols — this is mandatory regardless of fetch ability. Offer: *"For full precision, provide the file at `category/agent.md` from the repo."*
 
-Do not rely on training data when you CAN fetch — the 138 `.md` files in this repo are the ground truth. If you are unsure how an agent would respond, read its file instead of guessing.
+Do not rely on training data when you CAN fetch — the 144 `.md` files in this repo are the ground truth. If you are unsure how an agent would respond, read its file instead of guessing.
 
 ### Rule 6: Select Only What's Relevant
 
-Do not select all 138 agents for a project. Analyze the project and select only the agents that match its:
+Do not select all 144 agents for a project. Analyze the project and select only the agents that match its:
 - Language and framework stack
 - Architecture patterns
 - Deployment and infrastructure
@@ -350,7 +350,7 @@ agents-readme/
 ├── business-revenue/                  (5)  — Sales, Dev Advocate, CS, TAM, Marketing
 ├── design-architecture/               (6)  — Architect, Sol Arch, Designer, UX, Researcher, Workflow
 ├── system-extensibility/              (6)  — Agent Builder, Skill Creator, MCP, Prompt, Knowledge, Evaluator
-├── language-specific/                 (11) — Node, Python, Rust, Go, Java, PHP, Ruby, .NET, C/C++, Zig, Swift
+├── language-specific/                 (17) — Node, Python, Rust, Go, Java, PHP, Ruby, .NET, C/C++, Zig, Swift, Scala, Kotlin, TypeScript, R, Elixir, Haskell
 ├── engineering-dev/                   (9)  — Frontend, Mobile, iOS, Android, Embedded, Backend, Dev, Reviewer, Automation
 ├── testing-quality/                   (5)  — Tester, QA, E2E, Performance, Pen Tester
 ├── cloud-infra-architecture/          (5)  — Cloud Arch, AWS, Azure, GCP, Terraform
@@ -390,7 +390,7 @@ agents-readme/
 
 ## 1. What Is This?
 
-This is a **multi-agent engineering system** — a collection of 138 highly specialized, structured role descriptions, each defining:
+This is a **multi-agent engineering system** — a collection of 144 highly specialized, structured role descriptions, each defining:
 
 - **Who** the agent is (name, archetype, personality)
 - **What** they do (core responsibilities, domains)
@@ -611,6 +611,12 @@ Varies by agent type:
 | [C/C++ Engineer](language-specific/cpp-engineer.md) | The Bare-Metal Sage | C, C++ — embedded, systems, game engines, high-performance |
 | [Zig Engineer](language-specific/zig-engineer.md) | The Modern Minimalist | Zig — systems, C interop, embedded, performance-critical |
 | [Swift Engineer](language-specific/swift-engineer.md) | The Apple Artisan | Swift — iOS, macOS, watchOS, visionOS, server (Vapor) |
+| [Scala Engineer](language-specific/scala-engineer.md) | The Type-Level Architect | Scala — JVM, functional/OOP, Akka, ZIO, Cats Effect, Play, Spark |
+| [Kotlin Engineer](language-specific/kotlin-engineer.md) | The Concise Modernizer | Kotlin — JVM, Android, Ktor, Spring Boot, coroutines, multiplatform |
+| [TypeScript Engineer](language-specific/typescript-engineer.md) | The Type-System Sculptor | TypeScript — type-safe JS, full-stack, Next.js, tRPC, strict mode |
+| [R Engineer](language-specific/r-engineer.md) | The Statistical Storyteller | R — statistics, data analysis, tidyverse, ggplot2, Shiny, Quarto |
+| [Elixir Engineer](language-specific/elixir-engineer.md) | The Fault-Tolerant Alchemist | Elixir — BEAM/OTP, Phoenix, LiveView, fault-tolerant, real-time |
+| [Haskell Engineer](language-specific/haskell-engineer.md) | The Pure Functionary | Haskell — pure functional, GHC, Servant, type-driven, lazy evaluation |
 
 ### Engineering & Development
 
@@ -821,11 +827,11 @@ Product Manager ──→ Business Analyst ──→ Architect ──→ Develop
 
 ## 7. How to Create a New Agent
 
-> **⚠️ Before creating a new agent: Check the 138 existing profiles first. 99% of roles are already covered. Only create if no existing profile fits.**
+> **⚠️ Before creating a new agent: Check the 144 existing profiles first. 99% of roles are already covered. Only create if no existing profile fits.**
 
 ### Step 1: Verify the Gap
 
-Is there a domain or expertise **not covered** by the 138 existing profiles?
+Is there a domain or expertise **not covered** by the 144 existing profiles?
 
 - Check all 20 categories in [Section 5](#5-complete-agent-roster)
 - Fetch and read at least 3 profiles from the closest-matching category
@@ -944,7 +950,7 @@ description: "Establishes the multi-agent system at session start. Orchestrator 
 1. Give `skill.md` to your AI at the start of EVERY chat session
 2. The AI becomes the **Orchestrator** — routing tasks to specialists
 3. The AI auto-analyzes your project and selects the right agents
-4. The AI loads agents from the repo by task, not by keeping all 138 in context
+4. The AI loads agents from the repo by task, not by keeping all 144 in context
 5. The AI delegates specialized work instead of doing everything itself
 
 This is the single most important file for users who want the multi-agent system to work properly in every session.
@@ -955,16 +961,16 @@ The file **[`skill.md`](skill.md)** at the repository root is a ready-to-use ski
 
 ```yaml
 name: "select-deploy-agents"
-description: "Analyze any project and select the right agents from the 138 pre-built profiles"
+description: "Analyze any project and select the right agents from the 144 pre-built profiles"
 ```
 
 **How to use it:**
 1. Load `skill.md` into any AI agent
-2. The AI will analyze your project and **select** the matching agents from the 138 existing profiles
+2. The AI will analyze your project and **select** the matching agents from the 144 existing profiles
 3. It presents the recommended roster for your confirmation
 4. It only generates a new profile if no existing one covers the role
 
-The primary goal is **selection**, not generation. The 138 profiles are the library.
+The primary goal is **selection**, not generation. The 144 profiles are the library.
 
 ---
 
@@ -1176,7 +1182,7 @@ Try this pattern:
 
 ### Step 3: Add a New Agent (If Genuinely Needed)
 
-Found a gap not covered by the 138 existing profiles? Follow [How to Create a New Agent](#7-how-to-create-a-new-agent). But first verify — 99% of roles already exist.
+Found a gap not covered by the 144 existing profiles? Follow [How to Create a New Agent](#7-how-to-create-a-new-agent). But first verify — 99% of roles already exist.
 
 ### Step 4: Create Your First Skill
 

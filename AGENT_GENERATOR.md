@@ -1,6 +1,6 @@
 # Agent Generator — Select & Extend the Agent System
 
-> **Your job is to SELECT from 138 existing agents, not create from scratch.**
+> **Your job is to SELECT from 144 existing agents, not create from scratch.**
 > Only generate a new agent when no existing profile covers the role.
 
 ---
@@ -18,7 +18,7 @@
 
 ## Selection First
 
-The 138 agents across 20 categories cover every common engineering role. Before creating:
+The 144 agents across 20 categories cover every common engineering role. Before creating:
 1. Check the [Complete Agent Roster](./README.md#5-complete-agent-roster) in README
 2. Search existing files: `find . -name '*keyword*' -type f`
 3. Only create if no match exists

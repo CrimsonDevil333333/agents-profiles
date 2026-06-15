@@ -1,7 +1,7 @@
 # SETUP — Install the Multi-Agent System on Any AI Platform
 
 > **Use this multi-agent engineering system on any AI coding assistant, LLM chat, or agent platform.**
-> **138 agents. 20 categories. One system. Every platform.**
+> **144 agents. 20 categories. One system. Every platform.**
 
 ---
 
@@ -475,4 +475,4 @@ After setup on any platform, verify the system is active:
 
 ---
 
-*"One system. 138 agents. Every platform. One command. Push the repo, give the README URL, and the AI does the rest."*
+*"One system. 144 agents. Every platform. One command. Push the repo, give the README URL, and the AI does the rest."*
