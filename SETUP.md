@@ -1,7 +1,7 @@
 # SETUP — Install the Multi-Agent System on Any AI Platform
 
 > **Use this multi-agent engineering system on any AI coding assistant, LLM chat, or agent platform.**
-> **118 agents. 18 categories. One system. Every platform.**
+> **144 agents. 20 categories. One system. Every platform.**
 
 ---
 
@@ -71,7 +71,7 @@ cat INIT.md | claude -p "Load this multi-agent system. I'm building a Node.js AP
 cp INIT.md CLAUDE.md
 # Claude Code auto-loads CLAUDE.md from the project root
 
-# Option 3: Native agents (118 pre-built agent definitions)
+# Option 3: Native agents (pre-built agent definitions)
 mkdir -p .claude/agents
 cp native-agents/claude/*.md .claude/agents/
 # Claude Code loads agents from .claude/agents/ automatically
@@ -99,7 +99,7 @@ Add INIT.md content as a **workspace instruction**:
 mkdir -p .github && cp INIT.md .github/copilot-instructions.md
 ```
 
-#### Option B: Native Agents (118 pre-built agent definitions)
+#### Option B: Native Agents (pre-built agent definitions)
 
 ```bash
 mkdir -p .github/agents
@@ -185,7 +185,7 @@ cp native-agents/opencode/backend-engineer.md .opencode/agents/
 cp native-agents/opencode/reviewer.md .opencode/agents/
 ```
 
-OpenCode auto-loads AGENTS.md at the start of every session when it exists in the project root — turning OpenCode into the Orchestrator with all 118 specialists on call. Native agent files (`.opencode/agents/*.md`) are loaded as sub-agents with built-in permission controls.
+OpenCode auto-loads AGENTS.md at the start of every session when it exists in the project root — turning OpenCode into the Orchestrator with all specialists on call. Native agent files (`.opencode/agents/*.md`) are loaded as sub-agents with built-in permission controls.
 
 ---
 
@@ -444,7 +444,7 @@ user_message: |
 
 If the AI cannot fetch agent files from GitHub, say:
 
-> *"I can't fetch from the repo right now. Rely on your training data for the 118 agent profiles. Still adopt agent identities, use Handoff Protocols, and pass through the Reviewer gate."*
+> *"I can't fetch from the repo right now. Rely on your training data for the agent profiles. Still adopt agent identities, use Handoff Protocols, and pass through the Reviewer gate."*
 
 ---
 
@@ -469,10 +469,10 @@ After setup on any platform, verify the system is active:
 | [`skill.md`](./skill.md) | Analyze project & select agents | Run once per project to pick roster |
 | [`SETUP.md`](./SETUP.md) | Platform-by-platform install guides | Reference for manual setup |
 | [`AGENT.md`](./AGENT.md) | Developer guide for extending the system | For maintainers |
-| `native-agents/opencode/*.md` | Native OpenCode agents (118) | `.opencode/agents/` |
-| `native-agents/claude/*.md` | Native Claude Code agents (118) | `.claude/agents/` |
-| `native-agents/copilot/*.agent.md` | Native GitHub Copilot agents (118) | `.github/agents/` |
+| `native-agents/opencode/*.md` | Native OpenCode agents | `.opencode/agents/` |
+| `native-agents/claude/*.md` | Native Claude Code agents | `.claude/agents/` |
+| `native-agents/copilot/*.agent.md` | Native GitHub Copilot agents | `.github/agents/` |
 
 ---
 
-*"One system. 118 agents. Every platform. One command. Push the repo, give the README URL, and the AI does the rest."*
+*"One system. 144 agents. Every platform. One command. Push the repo, give the README URL, and the AI does the rest."*
