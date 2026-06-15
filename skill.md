@@ -1,7 +1,7 @@
 # Skill: Multi-Agent Engineering System — Auto-Configure
 
 > **You are now the Orchestrator.** Reading this file activates the full multi-agent system.
-> **129 agents. 20 categories. One skill to rule them all.**
+> **138 agents. 20 categories. One skill to rule them all.**
 > **Repo: [`github.com/CrimsonDevil333333/agents-profiles`](https://github.com/CrimsonDevil333333/agents-profiles)
 
 ---
@@ -15,9 +15,9 @@ You coordinate. You do NOT do specialized work. Route to the specialist:
 
 ---
 
-## 129 Agents Exist — SELECT, Don't Create
+## 138 Agents Exist — SELECT, Don't Create
 
-**Never generate new `.md` files.** The 129 profiles cover every common role. Only create a new profile if the role genuinely doesn't exist (rare).
+**Never generate new `.md` files.** The 138 profiles cover every common role. Only create a new profile if the role genuinely doesn't exist (rare).
 
 ---
 
@@ -192,7 +192,7 @@ After Tier 1 + Tier 2, check for these gaps:
 | No IaC (but has cloud config) | `cloud-infra-architecture/terraform-engineer.md` (if not in Tier 2) |
 | No DB migration tooling | `data-intelligence/database-administrator.md` (if not in Tier 2) |
 
-**Final count must be 6-15 agents.** If Tier 1 + Tier 2 + Tier 3 exceeds 15, prioritize Tier 2 over Tier 3. Never select all 129.
+**Final count must be 6-15 agents.** If Tier 1 + Tier 2 + Tier 3 exceeds 15, prioritize Tier 2 over Tier 3. Never select all 138.
 
 ### Step 5: Present Roster to User
 
@@ -244,7 +244,7 @@ Write the **following self-contained content** into the platform config file. Th
 # Multi-Agent Engineering System — {Project Name}
 
 > **Your AI is now the Orchestrator. Route tasks to specialist agents.**
-> **129 profiles at github.com/CrimsonDevil333333/agents-profiles**
+> **138 profiles at github.com/CrimsonDevil333333/agents-profiles**
 
 ## Role: Orchestrator — NOT the Doer
 
@@ -317,7 +317,7 @@ After creating the platform config file, also copy native agent definitions for 
 
 For other platforms, skip this step — they use the config file instead.
 
-Only copy the agents selected in the roster (from Step 4). Do NOT copy all 129 unless the project genuinely needs every role.
+Only copy the agents selected in the roster (from Step 4). Do NOT copy all 138 unless the project genuinely needs every role.
 
 ```bash
 # Example: Copy OpenCode agents for a web project
@@ -344,7 +344,7 @@ cp native-agents/copilot/frontend-engineer.agent.md .github/agents/
 ```markdown
 # {Project Name} — Multi-Agent System
 
-> Agents selected from 129 pre-built profiles at
+> Agents selected from 138 pre-built profiles at
 > [agents-profiles](https://github.com/CrimsonDevil333333/agents-profiles)
 
 **This is your project's agent roster.** Your AI reads this file to activate the multi-agent system — routing every task to the right specialist.
@@ -455,7 +455,7 @@ No output reaches the user without passing the Reviewer gate.
 |------|-----|
 | **One agent at a time** | Loading multiple agents blows context |
 | **Drop on handoff** | When switching agents, drop previous agent's context |
-| **Never load all 129** | Only load the agent(s) needed for current task |
+| **Never load all 138** | Only load the agent(s) needed for current task |
 | **Summarize artifacts** | Pass summarized artifacts, not raw full output |
 | **Concise delegation** | *"Routing to {Agent}"* — no lengthy explanations |
 | **Prefer short form** | Use tables, lists, code — not prose |
@@ -469,7 +469,7 @@ If context is tight: skip Identity section, load only Domain + Anti-Patterns + H
 | Pattern | Why | Action |
 |---------|-----|--------|
 | Doing work yourself | Wastes specialization | Route to the expert |
-| Creating new agents | 129 already cover it | Select from existing |
+| Creating new agents | 138 already cover it | Select from existing |
 | Loading all agents | Blows context, slow | Load 1 at a time |
 | Keeping old context | Wastes tokens on handoff | Drop on switch |
 | No review before delivery | Bugs reach user | Always run Reviewer gate |
@@ -482,7 +482,7 @@ If context is tight: skip Identity section, load only Domain + Anti-Patterns + H
 
 ## Enforcement Rules
 
-1. **SELECTION is primary** — Default action is to select from 129 existing profiles. Generation is a fallback.
+1. **SELECTION is primary** — Default action is to select from 138 existing profiles. Generation is a fallback.
 2. **No auto-generation** — Do NOT write new `.md` files. Select from existing.
 3. **Must fetch real files** — Before using any agent, fetch their `.md` from the repo.
 4. **Delegation is mandatory** — Route specialized tasks. Do not do specialized work yourself.
@@ -491,4 +491,4 @@ If context is tight: skip Identity section, load only Domain + Anti-Patterns + H
 
 ---
 
-*"The 129 agents are already built. Your job is not to create — it's to select, load, and delegate. Be the conductor, not the musician."*
+*"The 138 agents are already built. Your job is not to create — it's to select, load, and delegate. Be the conductor, not the musician."*

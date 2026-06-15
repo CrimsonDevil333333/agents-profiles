@@ -6,7 +6,7 @@
 
 ## What This Repo Is
 
-A collection of **129 structured role description files** (`.md`), each defining a specialized engineering agent. Together they form a complete multi-agent engineering organization covering every domain of modern software development.
+A collection of **138 structured role description files** (`.md`), each defining a specialized engineering agent. Together they form a complete multi-agent engineering organization covering every domain of modern software development.
 
 ## Directory Layout
 
@@ -19,10 +19,10 @@ A collection of **129 structured role description files** (`.md`), each defining
 ├── SETUP.md              ← Platform-by-platform install guides
 ├── AGENT_GENERATOR.md    ← Deprecated — redirects to INIT.md + skill.md
 ├── native-agents/
-│   ├── generate.py       ← Script to regenerate all 354 native agent files
-│   ├── opencode/         ← 129 native agent files for OpenCode
-│   ├── claude/           ← 129 native agent files for Claude Code
-│   └── copilot/          ← 129 native agent files for GitHub Copilot
+│   ├── generate.py       ← Script to regenerate all native agent files
+│   ├── opencode/         ← Native agent files for OpenCode
+│   ├── claude/           ← Native agent files for Claude Code
+│   └── copilot/          ← Native agent files for GitHub Copilot
 ├── <category>/
 │   ├── <agent>.md        ← Individual agent definitions
 │   └── ...
@@ -46,14 +46,14 @@ A collection of **129 structured role description files** (`.md`), each defining
 | `cloud-infra-architecture/` | 5 | Cloud Arch, AWS, Azure, GCP, Terraform |
 | `infrastructure-ops/` | 14 | DevOps, SRE, Platform, Network, Chaos, K8s, ArgoCD, Helm, Service Mesh, DBRE, CI/CD, Edge, Ops, Redis |
 | `data-intelligence/` | 14 | Data Eng, Data Arch, Analytics, Data Sci, AI, LLM, ML, DL, MLOps, Data Quality, DBA, Kafka, BI, Scientific Computing |
-| `specialized-engineering/` | 14 | API, Integration, Migration, Security, DevSecOps, IAM, Incident Response, Data Protection, Observability, Release, AppSec, SOC, Secrets, Blockchain |
+| `specialized-engineering/` | 15 | API, Integration, Migration, Security, DevSecOps, IAM, Incident Response, Data Protection, Observability, Release, AppSec, SOC, Secrets, Blockchain, Temporal |
 | `compliance-legal-finance/` | 5 | Compliance, Legal, Accessibility, FinOps, Privacy |
 | `content-communication/` | 8 | Tech Writer, Content Strategist, Translator, Proposal, Localization, Support, Visual Creator, Video Producer |
 | `it-support/` | 1 | IT Support |
 | `planning-oversight/` | 4 | Cost Estimator, Risk, Change, Vendor |
 | `game-development/` | 1 | Game Engineer |
 | `frontend-frameworks/` | 2 | React Engineer, Vue Engineer |
-| `database-specialists/` | 1 | PostgreSQL Engineer |
+| `database-specialists/` | 9 | PostgreSQL, MongoDB, Redis, Elasticsearch, Cassandra, Pinecone, Qdrant, Neo4j, InfluxDB |
 | `cloud-providers/` | 1 | Oracle Cloud Engineer |
 
 ## Agent File Format

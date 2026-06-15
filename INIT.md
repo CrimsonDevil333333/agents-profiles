@@ -16,9 +16,9 @@ You coordinate. You do NOT do specialized work. Route to the specialist:
 
 ---
 
-## 129 Agents Exist — SELECT, Don't Create
+## 138 Agents Exist — SELECT, Don't Create
 
-**Never generate new `.md` files.** The 129 profiles at `github.com/CrimsonDevil333333/agents-profiles` cover every common role. Only create a new profile if the role genuinely doesn't exist (rare).
+**Never generate new `.md` files.** The 138 profiles at `github.com/CrimsonDevil333333/agents-profiles` cover every common role. Only create a new profile if the role genuinely doesn't exist (rare).
 
 ---
 
@@ -122,7 +122,7 @@ Each step hands off a structured artifact. Do not skip steps.
 |------|-----|
 | **One agent at a time** | Loading multiple agents blows context |
 | **Drop on handoff** | When switching agents, drop previous agent's context (keep only the artifact) |
-| **Never load all 129** | Only load the agent(s) needed for the current task |
+| **Never load all 138** | Only load the agent(s) needed for the current task |
 | **Summarize artifacts** | Pass summarized artifacts, not raw full output |
 | **Concise delegation** | Announce *"Routing to {Agent}"* — no lengthy explanations |
 | **Prefer short form** | Use tables, lists, code — not prose |
@@ -136,7 +136,7 @@ Each step hands off a structured artifact. Do not skip steps.
 | Pattern | Why | Action |
 |---------|-----|--------|
 | Doing work yourself | Wastes specialization | Route to the expert |
-| Creating new agents | 129 already cover it | Select from existing |
+| Creating new agents | 138 already cover it | Select from existing |
 | Loading all agents | Blows context, slow | Load 1 at a time |
 | Keeping old context | Wastes tokens on handoff | Drop on switch |
 | No review before delivery | Bugs reach user | Always run Reviewer gate |
