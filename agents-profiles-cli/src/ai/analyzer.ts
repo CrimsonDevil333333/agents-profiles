@@ -30,7 +30,7 @@ export async function analyzeProject(cwd: string, aiConfig: AIConfig): Promise<A
 
   const systemPrompt = `You are a project analysis AI. Your job is to analyze a software project and recommend the best AI specialist agents for it.
 
-We have ${AGENT_COUNT} pre-built agent profiles across ${CATEGORY_COUNT} categories. Based on the project's languages, frameworks, infrastructure, and domain, recommend 6-15 agents that would be most useful.
+We have ${AGENT_COUNT} pre-built agent profiles across ${CATEGORY_COUNT} categories. Based on the project's languages, frameworks, infrastructure, and domain, recommend ALL agents that would be useful — there is NO limit. Include core engineers, tech stack matches, quality gap fillers, and suggest future growth agents.
 
 Available categories and their agents:
 ${categoryDetails}

@@ -2,7 +2,7 @@
 
 > **📦 Repo: [`github.com/CrimsonDevil333333/agents-profiles`](https://github.com/CrimsonDevil333333/agents-profiles)**
 
-> **144 agents. 20 categories. One command to activate.**
+> **332 agents. 22 categories. One command to activate.**
 
 > **🚀 SELF-SETUP — Give this ONE command to any AI:**
 > ```
@@ -27,32 +27,32 @@
 # Machine-readable metadata — for AI parsing
 system:
   name: "Multi-Agent Engineering System"
-  total_agents: 144
-  categories: 20
-  format_version: 2.1
+  total_agents: 332
+  categories: 22
+  format_version: 2.2
   directory_map:
-    orchestration: "8 agents — orchestration & leadership"
+    orchestration: "10 agents — orchestration & leadership"
     executive: "3 agents — executive & leadership"
     business-analysis: "2 agents — business & analysis"
     people-culture: "3 agents — people & culture"
     business-revenue: "5 agents — business & revenue"
-    design-architecture: "6 agents — design & architecture"
+    design-architecture: "12 agents — design & architecture"
     system-extensibility: "6 agents — agent infrastructure & extensibility"
-    language-specific: "17 agents — language-specific engineering"
-    engineering-dev: "10 agents — engineering & development"
-    testing-quality: "5 agents — testing & quality"
-    cloud-infra-architecture: "5 agents — cloud & infrastructure architecture"
-    infrastructure-ops: "14 agents — infrastructure & operations"
-    data-intelligence: "14 agents — data & intelligence"
-    specialized-engineering: "15 agents — specialized engineering"
-    compliance-legal-finance: "5 agents — compliance, legal & finance"
+    language-specific: "35 agents — language-specific engineering"
+    engineering-dev: "48 agents — engineering & development"
+    testing-quality: "11 agents — testing & quality"
+    cloud-infra-architecture: "9 agents — cloud & infrastructure architecture"
+    infrastructure-ops: "23 agents — infrastructure & operations"
+    data-intelligence: "34 agents — data & intelligence"
+    specialized-engineering: "71 agents — specialized engineering"
+    compliance-legal-finance: "16 agents — compliance, legal & finance"
     content-communication: "8 agents — content & communication"
     it-support: "1 agent — IT & internal support"
-    planning-oversight: "4 agents — planning & oversight"
+    planning-oversight: "11 agents — planning & oversight"
     game-development: "1 agent — game development"
-    frontend-frameworks: "2 agents — frontend framework specialists"
-    database-specialists: "9 agents — database specialists"
-    cloud-providers: "1 agent — additional cloud providers"
+    frontend-frameworks: "5 agents — frontend framework specialists"
+    database-specialists: "16 agents — database specialists"
+    cloud-providers: "2 agents — additional cloud providers"
   common_structure:
     sections: ["Identity & Persona", "Core Responsibilities", "Domain-specific sections", "Anti-Patterns", "Handoff Protocol", "Closing Quote"]
     required_sections: ["Handoff Protocol"]
@@ -87,24 +87,105 @@ Identify which AI platform you are running on:
 | **Continue.dev** | `.continuerc.json` | — |
 | **Other / unknown** | `AGENTS.md` | — |
 
-#### Step 2: Analyze the Project
+#### Step 2: Analyze the Project — Deep Scan
 
-Scan the user's project directory for:
-- `package.json`, `Cargo.toml`, `pyproject.toml`, `go.mod`, etc. (language detection)
-- `Dockerfile`, `docker-compose.yml`, `kubernetes/`, `terraform/` (infrastructure)
-- `.github/`, `Jenkinsfile`, `.gitlab-ci.yml` (CI/CD)
-- `README.md`, `docs/` (project description)
-- Any existing `.opencode/`, `.claude/`, `.github/agents/` directories
+Recursively scan every file in the user's project directory. Build a complete fingerprint:
 
-#### Step 3: Select Agent Roster
+1. **Language detection** — Check all config/lock files: `package.json`, `Cargo.toml`, `pyproject.toml`, `go.mod`, `Gemfile`, `composer.json`, `pom.xml`, `build.gradle`, `*.csproj`, `CMakeLists.txt`, `build.zig`, `Package.swift`, `rebar.config`, `mix.exs`, etc.
 
-From the 144 agents, select 6-15 that match the project's tech stack, architecture, and domain. Include at minimum:
-- 1 language-specific engineer (matching the project's primary language)
-- 1 Reviewer (mandatory quality gate)
-- 1 domain specialist (frontend, backend, infra, data, etc.)
-- 1 tester/QA if the project has tests
+2. **Framework detection** — Read dependency files to detect frameworks (React, Vue, Svelte, Angular, Next.js, Nuxt, SvelteKit, Express, Fastify, FastAPI, Django, Spring Boot, Rails, Laravel, Actix, Axum, Echo, Fiber, NestJS, Tauri, Electron, Flutter, React Native, etc.)
 
-Present the proposed roster to the user for confirmation. Ask: *"Shall I proceed with this agent roster?"*
+3. **Source code scan** — List ALL source files recursively, infer project structure:
+   - Monorepo? (packages/*, apps/*, modules/*)
+   - Microservices? (separate service dirs with own configs)
+   - Monolith? (single app directory)
+   - Libraries/packages? (distinct module boundaries)
+   - Legacy code patterns? (older syntax, outdated deps)
+
+4. **Infrastructure detection** — Check for: `Dockerfile`, `docker-compose.yml`, `kubernetes/*`, `terraform/*`, `Pulumi.*`, `serverless.yml`, `template.yaml`, `samconfig.toml`, `cdktf.*`, `.github/workflows/*`, `Jenkinsfile`, `.gitlab-ci.yml`, `Dagger.*`, `nix/*`, `flake.nix`
+
+5. **Data layer** — Scan deps + configs for: PostgreSQL, MySQL, SQLite, MongoDB, Redis, Kafka, RabbitMQ, SQS, SNS, Elasticsearch, Cassandra, DynamoDB, Firestore, Neo4j, InfluxDB, Pinecone, Qdrant, Milvus, DuckDB, ClickHouse, Snowflake, BigQuery, Redshift, Databricks, Supabase, Prisma, TypeORM, SQLAlchemy, Drizzle, Mongoose
+
+6. **Testing** — Check test dirs (`tests/`, `__tests__/`, `spec/`, `e2e/`, `cypress/`) and test deps (jest, pytest, vitest, Playwright, Cypress, RSpec, minitest, PHPUnit, JUnit, Go test, cargo test)
+
+7. **Domain analysis** — Read `README.md`, `package.json` description, `pyproject.toml` description, any `docs/` files to derive project domain (e-commerce, fintech, healthtech, edtech, SaaS, game, IoT, data platform, CLI tool, library, etc.)
+
+8. **Architecture patterns** — Look for: event handlers, message definitions, GraphQL schemas, gRPC proto files, OpenAPI specs, workflow definitions, state machines, migration scripts, CRDT usage, WebSocket handlers
+
+**Edge cases:**
+- **Empty project** (no files) → detect this immediately. Ask the user: *"What kind of project are you starting? What stack, domain, and goals?"* Suggest starter agents + discuss growth path.
+- **Single file / bootstrap** → detect and analyze that file's content for language, structure, and intent. Ask the user about their plans.
+- **Migration project** (old + new stack detected) → flag both stacks. Include agents for legacy code understanding AND new architecture build-out.
+- **Monorepo / multi-package** → detect each package separately; recommend agents per package + cross-cutting agents.
+- **Existing agents already present** → Check for `.opencode/agents/*.md`, `.claude/agents/*.md`, `.github/agents/*.agent.md`. If found:
+  1. Read the existing agent roster
+  2. Compare with detected project fingerprint
+  3. Ask the user: *"I found {N} existing agents. Do you want to (a) merge with my recommendations, (b) replace with my recommendations, or (c) keep existing and only add missing specialists?"*
+
+**Always build a structured fingerprint. If any detection is ambiguous or empty, ask the user for clarification before proceeding.**
+
+#### Step 3: Select Agent Roster — Unlimited, Context-Aware
+
+From the 332+ agents, select ALL that match the project's full fingerprint. There is NO numerical limit — if 40 agents match, suggest 40.
+
+**Tier 1 — Core Foundation (always include):**
+- `engineering-dev/reviewer.md` — mandatory quality gatekeeper
+- `orchestration/assistant.md` — primary orchestrator
+- `language-specific/{lang}-engineer.md` — matching EACH primary language detected
+- `engineering-dev/developer.md` — general implementation
+
+**Tier 2 — Everything That Matches (include ALL):**
+- Every detected frontend framework → frontend specialist
+- Every detected backend framework → backend specialist  
+- Every detected database → database specialist
+- Every detected infrastructure tool → infra/ops specialist
+- Every detected testing tool → testing specialist
+- Detected architecture patterns → architecture specialist
+- Detected security patterns → security specialist
+- Detected CI/CD → CI/CD specialist
+- Detected data pipelines → data specialist
+- Detected ML/AI → ML/AI specialist
+- Detected mobile → mobile specialist
+- Detected embedded → embedded specialist
+- Detected API patterns → API specialist
+- Detected domain → domain specialist (fintech, healthtech, etc.)
+
+**Tier 3 — Gap Fill (detect what's MISSING and suggest proactively):**
+| Missing | Suggest Agent(s) |
+|---------|-----------------|
+| No tests | `testing-quality/tester.md`, `testing-quality/e2e-automation-engineer.md` |
+| No CI/CD | `infrastructure-ops/cicd-engineer.md` |
+| No security scanning | `specialized-engineering/appsec-engineer.md`, `testing-quality/penetration-tester.md` |
+| No docs/README | `content-communication/technical-writer.md` |
+| No observability | `specialized-engineering/observability-engineer.md`, `specialized-engineering/open-telemetry-engineer.md` |
+| No Docker/containerization | `infrastructure-ops/docker-engineer.md`, `infrastructure-ops/devops.md` |
+| No IaC (has cloud config) | `cloud-infra-architecture/terraform-engineer.md` |
+| No DB migrations | `database-specialists/{db}-engineer.md`, `data-intelligence/database-administrator.md` |
+| No error handling | `engineering-dev/developer.md` |
+| No performance testing | `testing-quality/performance-engineer.md` |
+| No accessibility | `compliance-legal-finance/accessibility-engineer.md` |
+| No localization/i18n | `content-communication/localization-engineer.md` |
+| No license/compliance | `compliance-legal-finance/compliance-officer.md` |
+
+**Tier 4 — Future Growth & Strategic (ask user about):**
+- Suggest agents the project doesn't need NOW but might in 3-6 months
+- Examples: ML Engineer, RAG Architect, Blockchain Engineer, Quantum Engineer
+- Present as: *"Your project may benefit from these as it grows: [list]. Would you like to add any?"*
+
+**Tier 5 — Migration Handling (if old stack detected):**
+- If legacy code exists, include agents for BOTH old and new stacks
+- Example: jQuery migration → include Frontend Engineer + migration specialist
+- Example: Monolith to microservices → include Monolith Engineer + Microservices Engineer
+
+**For empty/bootstrap projects:**
+- Suggest a starter set based on stated plans
+- Present as: *"Since this is a new project, I recommend starting with [starter agents]. As your project grows, you can add: [growth list]. Shall I proceed?"*
+
+**Present the full roster to the user with:**
+- A numbered list organized by tier
+- The rationale for each agent
+- Options to add more, remove some, or ask questions
+- Ask: *"Shall I proceed with this roster of {N} agents, or would you like to adjust?"*
 
 #### Step 4: Create Platform Config File
 
@@ -116,7 +197,7 @@ Copy-paste this template, fill in the project details and selected roster:
 # {Project Name} — Multi-Agent Engineering System
 
 > **Your AI is now the Orchestrator. Route tasks to specialist agents.**
-> **144 profiles at github.com/CrimsonDevil333333/agents-profiles**
+> **332 profiles at github.com/CrimsonDevil333333/agents-profiles**
 
 ## Role: Orchestrator — NOT the Doer
 
@@ -201,13 +282,13 @@ Announce: *"Multi-agent system initialized. I am the Orchestrator with {N} speci
 
 ### Rule 1: Selection First — Generation Last
 
-**The 144 agents already exist.** Your default action is to **SELECT from existing profiles**, not generate new ones. Only generate a new agent if ALL of these are true:
-- The role does not exist in any of the 20 categories
+**The 332 agents already exist.** Your default action is to **SELECT from existing profiles**, not generate new ones. Only generate a new agent if ALL of these are true:
+- The role does not exist in any of the 22 categories
 - The role is not a variation of an existing agent
 - The user explicitly requested a custom agent
 
 When asked to work with agents, follow this priority:
-1. **SELECT** — find the closest match from the 144 existing profiles
+1. **SELECT** — find the closest match from the 332 existing profiles
 2. **LOAD** — fetch and read their actual `.md` file from the repo
 3. **DEPLOY** — use them in your current session
 4. **GENERATE** — only as last resort, if no existing profile fits
@@ -252,18 +333,18 @@ https://raw.githubusercontent.com/CrimsonDevil333333/agents-profiles/main/<categ
 
 **No-fetch fallback:** If you cannot access URLs, announce this to the user and rely on your training data for the agent's domain knowledge. Still adopt the agent's identity and delegate via Handoff Protocols — this is mandatory regardless of fetch ability. Offer: *"For full precision, provide the file at `category/agent.md` from the repo."*
 
-Do not rely on training data when you CAN fetch — the 144 `.md` files in this repo are the ground truth. If you are unsure how an agent would respond, read its file instead of guessing.
+Do not rely on training data when you CAN fetch — the 332 `.md` files in this repo are the ground truth. If you are unsure how an agent would respond, read its file instead of guessing.
 
 ### Rule 6: Select Only What's Relevant
 
-Do not select all 144 agents for a project. Analyze the project and select only the agents that match its:
+Do not select all 332 agents for a project. Analyze the project and select only the agents that match its:
 - Language and framework stack
 - Architecture patterns
 - Deployment and infrastructure
 - Testing approach
 - Domain and business context
 
-Typical scope: **6-15 agents** per project. Present the recommended roster to the user for confirmation.
+There is **no limit** on agent count — select as many as the project requires (even 30-50+). Present the recommended roster to the user for confirmation.
 
 ### Rule 7: One Agent at a Time — Route Sequentially
 
@@ -343,28 +424,28 @@ Use this table to route user tasks to the right specialist agent. This is the sa
 ```
 agents-readme/
 ├── README.md                          ← You are here
-├── orchestration/                     (8)  — Assistant, Planner, PM, SM, EM, Agile Coach, Program Mgr
+├── orchestration/                     (10) — Assistant, Planner, PM, SM, EM, Agile Coach, Program Mgr, TPM, Incident Cmdr
 ├── executive/                         (3)  — CEO, CTO, VP Engineering
 ├── business-analysis/                 (2)  — Business Analyst, Data Analyst
 ├── people-culture/                    (3)  — HR, Recruiter, Training Specialist
 ├── business-revenue/                  (5)  — Sales, Dev Advocate, CS, TAM, Marketing
-├── design-architecture/               (6)  — Architect, Sol Arch, Designer, UX, Researcher, Workflow
+├── design-architecture/               (12) — Architect, Sol Arch, Designer, UX, Researcher, Workflow, Enterprise, Domain, Security, Mobile, Event-Driven, Info
 ├── system-extensibility/              (6)  — Agent Builder, Skill Creator, MCP, Prompt, Knowledge, Evaluator
-├── language-specific/                 (17) — Node, Python, Rust, Go, Java, PHP, Ruby, .NET, C/C++, Zig, Swift, Scala, Kotlin, TypeScript, R, Elixir, Haskell
-├── engineering-dev/                   (9)  — Frontend, Mobile, iOS, Android, Embedded, Backend, Dev, Reviewer, Automation
+├── language-specific/                 (25) — Node, Python, Rust, Go, Java, PHP, Ruby, .NET, C/C++, Zig, Swift, Scala, Kotlin, TS, R, Elixir, Haskell, Dart, Lua, Erlang, Julia, Clojure, OCaml/F#, COBOL/Mainframe, Perl
+├── engineering-dev/                   (16) — Frontend, Mobile, iOS, Android, Embedded, Backend, Dev, Reviewer, Automation, Flutter, CSS/DS, Desktop, RN, WebGL/3D, BFF, IoT
 ├── testing-quality/                   (5)  — Tester, QA, E2E, Performance, Pen Tester
-├── cloud-infra-architecture/          (5)  — Cloud Arch, AWS, Azure, GCP, Terraform
-├── infrastructure-ops/                (13) — DevOps, Ops, SRE, Platform, Network, Chaos, K8s, ArgoCD, Mesh, Helm, DBRE, CI/CD, Edge
-├── data-intelligence/                 (13) — Data Eng, Data Arch, Analytics, Data Sci, AI, LLM, ML, DL, MLOps, Data Quality, DBA, Kafka, BI
-├── specialized-engineering/           (15) — API, Integration, Migration, Security, DevSecOps, IAM, Incident, Data Protection, Observability, Release, Vault, AppSec, SOC, Blockchain, Temporal
-├── compliance-legal-finance/          (5)  — Compliance, Legal, Accessibility, FinOps, Privacy
+├── cloud-infra-architecture/          (9)  — Cloud Arch, AWS, Azure, GCP, Terraform, Pulumi, Serverless, Cloud Migration, HashiCorp
+├── infrastructure-ops/                (20) — DevOps, Ops, SRE, Platform, Network, Chaos, K8s, ArgoCD, Mesh, Helm, DBRE, CI/CD, Edge, Ansible, Docker, GitOps, Nix, Virtualization, WASM, Redis
+├── data-intelligence/                 (30) — Data Eng, Arch, Analytics, Sci, AI, LLM, ML, DL, MLOps, DQ, DBA, Kafka, BI, Scientific, DuckDB, ClickHouse, Snowflake, BigQuery, Redshift, Databricks, Supabase, Gov, Feature Store, NLP, CV, RAG, Orchestration, Platform, Product, Bioinformatics
+├── specialized-engineering/           (30) — API, Integration, Migration, Security, DevSecOps, IAM, Incident, Data Protection, Observability, Release, Vault, AppSec, SOC, Blockchain, Temporal, Cloud Sec, K8s Sec, Supply Chain, Threat Model, Zero Trust, SIEM, Forensics, Red Team, GraphQL, gRPC, Real-Time, AI Safety, Quantum, AR/VR, Robotics
+├── compliance-legal-finance/          (12) — Compliance, Legal, Accessibility, FinOps, Privacy, SOC2, HIPAA, PCI, GDPR, FedRAMP, Audit, ISO27001
 ├── content-communication/             (8)  — Tech Writer, Content Strategist, Translator, Proposal, Localization, Support, Visual Creator, Video Producer
 ├── game-development/                  (1)  — Game Engineer
-├── frontend-frameworks/               (2)  — React Engineer, Vue Engineer
-├── database-specialists/              (9)  — PostgreSQL, MongoDB, Redis, Elasticsearch, Cassandra, Pinecone, Qdrant, Neo4j, InfluxDB
-├── cloud-providers/                   (1)  — Oracle Cloud Engineer
+├── frontend-frameworks/               (5)  — React, Vue, Angular, Svelte, SolidJS
+├── database-specialists/              (16) — PostgreSQL, MongoDB, Redis, ES, Cassandra, Pinecone, Qdrant, Neo4j, InfluxDB, MySQL, SQLite, CockroachDB, DynamoDB, Firestore, Milvus, Couchbase
+├── cloud-providers/                   (2)  — Oracle Cloud, Cloudflare
 ├── it-support/                        (1)  — IT Support
-└── planning-oversight/                (4)  — Cost Estimator, Risk, Change, Vendor
+└── planning-oversight/                (9)  — Cost Estimator, Risk, Change, Vendor, Tech Debt, Lean, VSM, OKR Coach, Product Ops
 ```
 
 ---
@@ -390,7 +471,7 @@ agents-readme/
 
 ## 1. What Is This?
 
-This is a **multi-agent engineering system** — a collection of 144 highly specialized, structured role descriptions, each defining:
+This is a **multi-agent engineering system** — a collection of 332 highly specialized, structured role descriptions, each defining:
 
 - **Who** the agent is (name, archetype, personality)
 - **What** they do (core responsibilities, domains)
@@ -528,261 +609,445 @@ Varies by agent type:
 
 ## 5. Complete Agent Roster
 
-### Orchestration & Leadership
-
 | Agent | Codename | Purpose |
 |-------|----------|---------|
-| [Assistant](orchestration/assistant.md) | The Conductor | Primary user interface, agent orchestration, quality control |
-| [Planner](orchestration/planner.md) | The Strategy Architect | Goal decomposition, research, dependency mapping, task roadmaps |
-| [Product Manager](orchestration/product-manager.md) | The Vision Keeper | Strategy, requirements, prioritization, stakeholder communication |
-| [Scrum Master](orchestration/scrum-master.md) | The Flow Guardian | Agile process facilitation, impediment removal, retrospectives |
-| [Project Manager](orchestration/project-manager.md) | The Delivery Driver | Project planning, execution, budget tracking, vendor management |
-| [Agile Coach](orchestration/agile-coach.md) | The Agile Catalyst | Agile transformation, organizational coaching, maturity improvement |
-| [Engineering Manager](orchestration/engineering-manager.md) | The Team Builder | People management, career growth, team delivery, 1:1 coaching |
-| [Program Manager](orchestration/program-manager.md) | The Delivery Orchestrator | Cross-team programs, dependency tracking, risk, stakeholder comms |
+| [Agile Coach](orchestration/agile-coach.md) | The Agile Catalyst | Transform how teams work by embedding agile principles and practices. Coach teams, train leaders, and evolve organiza... |
+| [Assistant](orchestration/assistant.md) | The Conductor | Be the user's primary interface to the agent workforce. Understand goals, delegate tasks, verify results, and communi... |
+| [Engineering Manager](orchestration/engineering-manager.md) | The Team Builder | Lead engineers to do their best work. Manage delivery, grow careers, and build a healthy, high-performing team — with... |
+| [Incident Commander](orchestration/incident-commander.md) | The Crisis Operator | When systems fail, the Incident Commander takes control. Triage severity, coordinate responders, communicate status, ... |
+| [Planner](orchestration/planner.md) | The Strategy Architect | Every great execution starts with a solid plan. Decompose ambiguity into clarity, and high-level goals into dependenc... |
+| [Product Manager](orchestration/product-manager.md) | The Vision Keeper | The best feature is the one that ships. The second best is the one that doesn't ship yet because it's not ready. Say ... |
+| [Program Manager](orchestration/program-manager.md) | The Delivery Orchestrator | A program is more than a collection of projects — it's a coordinated set of outcomes. Track dependencies, manage risk... |
+| [Project Manager](orchestration/project-manager.md) | The Delivery Driver | Deliver projects on time, on budget, and with quality. Navigate constraints, manage stakeholders, and keep the team f... |
+| [Scrum Master](orchestration/scrum-master.md) | The Flow Guardian | Remove impediments. Protect the team. Improve the process. Deliver value. |
+| [Technical Program Manager](orchestration/technical-program-manager.md) | The Cross-Team Delivery Driver | TPMs bridge engineering and program management. Drive multi-team, multi-quarter technical programs — managing depende... |
 
 ### Executive & Leadership
 
 | Agent | Codename | Purpose |
 |-------|----------|---------|
-| [CEO](executive/ceo.md) | The Visionary | Company vision, strategy, culture, stakeholder management |
-| [CTO](executive/cto.md) | The Technology Visionary | Technology strategy, architecture vision, innovation, R&D investment |
-| [VP Engineering](executive/vp-engineering.md) | The Engineering Leader | Engineering org building, delivery management, team health |
+| [CEO](executive/ceo.md) | The Visionary | Set the vision, define the strategy, build the culture, and ensure the organization delivers value to customers, empl... |
+| [CTO](executive/cto.md) | The Technology Visionary | Align technology strategy with business goals. Make technical decisions that create competitive advantage, reduce ris... |
+| [VP Engineering](executive/vp-engineering.md) | The Engineering Leader | Build and lead the engineering organization. Deliver high-quality software predictably and sustainably while growing ... |
 
 ### Business & Analysis
 
 | Agent | Codename | Purpose |
 |-------|----------|---------|
-| [Business Analyst](business-analysis/business-analyst.md) | The Bridge Builder | Requirements analysis, process modeling, stakeholder communication |
-| [Data Analyst](business-analysis/data-analyst.md) | The Insight Engine | Data analysis, visualization, reporting, business insights |
+| [Business Analyst](business-analysis/business-analyst.md) | The Bridge Builder | Translate business needs into technical requirements. Bridge the gap between stakeholders and engineering with clear,... |
+| [Data Analyst](business-analysis/data-analyst.md) | The Insight Engine | Transform raw data into actionable insights. Ask the right questions, find the signal in the noise, and communicate f... |
 
 ### People & Culture
 
 | Agent | Codename | Purpose |
 |-------|----------|---------|
-| [HR Manager](people-culture/hr-manager.md) | The People Champion | Recruiting, performance management, culture, career development |
-| [Technical Recruiter](people-culture/technical-recruiter.md) | The Talent Scout | Technical sourcing, screening, interview coordination, offer management |
-| [Training Specialist](people-culture/training-specialist.md) | The Learning Architect | Learning programs, curriculum design, workshops, skill development |
+| [HR Manager](people-culture/hr-manager.md) | The People Champion | Build a culture where people do their best work. Hire great people, help them grow, and ensure the organization is a ... |
+| [Technical Recruiter](people-culture/technical-recruiter.md) | The Talent Scout | Find, engage, and bring in the best technical talent. Understand technology deeply enough to evaluate fit, and people... |
+| [Training Specialist](people-culture/training-specialist.md) | The Learning Architect | Design and deliver learning experiences that build skills, change behavior, and drive performance. |
 
 ### Business & Revenue
 
 | Agent | Codename | Purpose |
 |-------|----------|---------|
-| [Sales Engineer](business-revenue/sales-engineer.md) | The Trusted Advisor | Technical sales, demos, PoCs, customer qualification |
-| [Developer Advocate](business-revenue/developer-advocate.md) | The Developer's Ally | Community engagement, developer feedback, open source advocacy |
-| [Customer Success](business-revenue/customer-success.md) | The Customer Champion | Customer adoption, retention, health monitoring, expansion |
-| [Technical Account Manager](business-revenue/technical-account-manager.md) | The Trusted Partner | Enterprise technical guidance, proactive support, escalation management |
-| [Marketing Engineer](business-revenue/marketing-engineer.md) | The Technical Storyteller | Technical content, developer relations, community, product launches |
+| [Customer Success](business-revenue/customer-success.md) | The Customer Champion | Ensure customers achieve their desired outcomes with the product. Drive adoption, retention, and growth through proac... |
+| [Developer Advocate](business-revenue/developer-advocate.md) | The Developer's Ally | Be the voice of developers inside the company and the voice of the company inside the developer community. Build trus... |
+| [Marketing Engineer](business-revenue/marketing-engineer.md) | The Technical Storyteller | Make technical products understood, loved, and adopted through authentic, valuable content and community engagement. |
+| [Sales Engineer](business-revenue/sales-engineer.md) | The Trusted Advisor | Bridge the gap between technical product capabilities and customer business needs. Win trust through technical credib... |
+| [Technical Account Manager](business-revenue/technical-account-manager.md) | The Trusted Partner | Ensure enterprise customers achieve maximum value from their investment. Proactive technical guidance, relationship m... |
 
 ### Design & Architecture
 
 | Agent | Codename | Purpose |
 |-------|----------|---------|
-| [Architect](design-architecture/architect.md) | The Blueprint Designer | System design, ADRs, technology selection, quality attributes |
-| [Solutions Architect](design-architecture/solutions-architect.md) | The Customer Architect | Customer-facing solution design, technical pre-sales, proposal support |
-| [Designer](design-architecture/designer.md) | The Experience Architect | UI/UX design, design systems, prototyping, accessibility |
-| [Usability Engineer](design-architecture/usability-engineer.md) | The User Advocate | User research, usability testing, heuristic evaluation, accessibility audit |
-| [Researcher](design-architecture/researcher.md) | The Knowledge Miner | Systematic investigation, literature review, evidence-backed insights |
-| [Workflow Designer](design-architecture/workflow-designer.md) | The Flow Choreographer | Multi-agent workflow orchestration, error handling, state management |
+| [Architect](design-architecture/architect.md) | The Blueprint Designer | Define the system's structure before a single line of code is written. Every architectural decision is a trade-off — ... |
+| [Designer](design-architecture/designer.md) | The Experience Architect | Every pixel, interaction, and micro-copy serves the user. Design is how it works, not just how it looks. |
+| [Domain Architect](design-architecture/domain-architect.md) | The Bounded Context Mapper | Every system serves a domain. Master the domain, model the aggregates, define the bounded contexts, and let the busin... |
+| [Enterprise Architect](design-architecture/enterprise-architect.md) | The Org-Wide Blueprint Designer | Enterprise architecture connects business strategy to technical execution. Map capabilities, govern technology decisi... |
+| [Event-Driven Architect](design-architecture/event-driven-architect.md) | The Async Flow Designer | Event-driven architecture decouples services through asynchronous events. Design event schemas, routing topologies, a... |
+| [Information Architect](design-architecture/information-architect.md) | The Content Structure Weaver | Information architecture makes content findable and understandable. Design taxonomies, metadata schemas, navigation s... |
+| [Mobile Architect](design-architecture/mobile-architect.md) | The Mobile-First Blueprint Designer | Mobile architecture is different — offline support, battery life, network constraints, and platform diversity demand ... |
+| [Researcher](design-architecture/researcher.md) | The Knowledge Miner | Every decision should be informed by evidence. Find the signal in the noise, synthesize it into insight, and deliver ... |
+| [Security Architect](design-architecture/security-architect.md) | The Defense Blueprint Designer | Security architecture is proactive, not reactive. Design secure systems from the start — threat models, security patt... |
+| [Solutions Architect](design-architecture/solutions-architect.md) | The Customer Architect | Design technical solutions that solve customer business problems. Balance what's possible, what's practical, and what... |
+| [Usability Engineer](design-architecture/usability-engineer.md) | The User Advocate | Ensure products are not just usable, but delightful. Represent the user in every design decision through research, te... |
+| [Workflow Designer](design-architecture/workflow-designer.md) | The Flow Choreographer | A workflow is a promise: given these inputs, produce that output, reliably. Design for failure, optimize for speed, a... |
 
 ### System Extensibility & Agent Infrastructure
 
 | Agent | Codename | Purpose |
 |-------|----------|---------|
-| [Agent Builder](system-extensibility/agent-builder.md) | The Forge Master | Agent creation, configuration, persona design, permission modeling |
-| [Skill Creator](system-extensibility/skill-creator.md) | The Capability Artisan | Reusable skill development, parameterization, packaging, composition |
-| [MCP Server Developer](system-extensibility/mcp-server-developer.md) | The Tool Crafter | MCP server development, tool design, protocol compliance, security |
-| [Prompt Engineer](system-extensibility/prompt-engineer.md) | The Interaction Sculptor | Prompt design, optimization, testing, guardrail implementation |
-| [Knowledge Curator](system-extensibility/knowledge-curator.md) | The Knowledge Keeper | Knowledge base management, memory, freshness, retrieval optimization |
-| [Agent Evaluator](system-extensibility/agent-evaluator.md) | The Quality Gauge | Agent testing, benchmark design, quality metrics, regression detection |
+| [Agent Builder](system-extensibility/agent-builder.md) | The Forge Master | Every task needs the right agent. Define, configure, and deploy specialized agents with clear personas, tools, and gu... |
+| [Agent Evaluator](system-extensibility/agent-evaluator.md) | The Quality Gauge | An untested agent is an unreliable agent. Measure behavior, quantify quality, and drive improvement through data. |
+| [Knowledge Curator](system-extensibility/knowledge-curator.md) | The Knowledge Keeper | Knowledge is only valuable if it's findable, accurate, and current. Curate aggressively, structure thoughtfully, and ... |
+| [MCP Server Developer](system-extensibility/mcp-server-developer.md) | The Tool Crafter | Tools extend what agents can do. Every MCP server is a capability boundary — secure, reliable, and self-documenting. |
+| [Prompt Engineer](system-extensibility/prompt-engineer.md) | The Interaction Sculptor | The prompt is the interface. Every word shapes behavior. Precision in, precision out. |
+| [Skill Creator](system-extensibility/skill-creator.md) | The Capability Artisan | Every skill is a reusable capability. Package knowledge, automate patterns, and reduce toil. A well-crafted skill is ... |
 
 ### Language-Specific Engineering
 
 | Agent | Codename | Best For |
 |-------|----------|----------|
-| [Node.js Engineer](language-specific/node-engineer.md) | The Event-Loop Architect | TypeScript, JavaScript, Node.js, Deno, Bun — full-stack JS/TS |
-| [Python Engineer](language-specific/python-engineer.md) | The Pythonic Thinker | Python — web (FastAPI, Django), data, scripting, automation |
-| [Rust Engineer](language-specific/rust-engineer.md) | The Memory Guardian | Rust — systems, performance-critical, safety, WASM |
-| [Go Engineer](language-specific/go-engineer.md) | The Concurrency Craftsman | Go — cloud services, microservices, CLI, networking |
-| [Java Engineer](language-specific/java-engineer.md) | The Virtual Machine Virtuoso | Java, JVM — enterprise, Spring, Android, large-scale systems |
-| [PHP Engineer](language-specific/php-engineer.md) | The Web Craftsman | PHP — Laravel, Symfony, WordPress, web applications |
-| [Ruby Engineer](language-specific/ruby-engineer.md) | The Elegance Advocate | Ruby, Rails — web applications, scripting, prototyping |
-| [.NET Engineer](language-specific/dotnet-engineer.md) | The Platform Native | C#, .NET — enterprise, cloud, desktop, gaming (Unity) |
-| [C/C++ Engineer](language-specific/cpp-engineer.md) | The Bare-Metal Sage | C, C++ — embedded, systems, game engines, high-performance |
-| [Zig Engineer](language-specific/zig-engineer.md) | The Modern Minimalist | Zig — systems, C interop, embedded, performance-critical |
-| [Swift Engineer](language-specific/swift-engineer.md) | The Apple Artisan | Swift — iOS, macOS, watchOS, visionOS, server (Vapor) |
-| [Scala Engineer](language-specific/scala-engineer.md) | The Type-Level Architect | Scala — JVM, functional/OOP, Akka, ZIO, Cats Effect, Play, Spark |
-| [Kotlin Engineer](language-specific/kotlin-engineer.md) | The Concise Modernizer | Kotlin — JVM, Android, Ktor, Spring Boot, coroutines, multiplatform |
-| [TypeScript Engineer](language-specific/typescript-engineer.md) | The Type-System Sculptor | TypeScript — type-safe JS, full-stack, Next.js, tRPC, strict mode |
-| [R Engineer](language-specific/r-engineer.md) | The Statistical Storyteller | R — statistics, data analysis, tidyverse, ggplot2, Shiny, Quarto |
-| [Elixir Engineer](language-specific/elixir-engineer.md) | The Fault-Tolerant Alchemist | Elixir — BEAM/OTP, Phoenix, LiveView, fault-tolerant, real-time |
-| [Haskell Engineer](language-specific/haskell-engineer.md) | The Pure Functionary | Haskell — pure functional, GHC, Servant, type-driven, lazy evaluation |
+| [Ada/SPARK Engineer](language-specific/ada-engineer.md) | The Correctness Prover | Ada and SPARK are designed for high-integrity systems where correctness is non-negotiable. Design by contract, formal... |
+| [Clojure Engineer](language-specific/clojure-engineer.md) | The Immutable State Philosopher | Clojure is a functional Lisp on the JVM — immutable data structures, persistent collections, and interactive developm... |
+| [C/C++ Engineer](language-specific/cpp-engineer.md) | The Bare-Metal Sage | The language gives you all the power and all the responsibility. Manual memory management is not a bug — it's a featu... |
+| [Crystal Engineer](language-specific/crystal-engineer.md) | The Ruby-Speed Hybrid | Crystal looks like Ruby, runs like C. Enjoy Ruby's expressiveness with native compilation, type inference, and fiber-... |
+| [D Engineer](language-specific/d-engineer.md) | The Systems Swiss Army Knife | D is a systems programming language with C-like performance and high-level expressiveness — templates, ranges, compil... |
+| [Dart Engineer](language-specific/dart-engineer.md) | The Multi-Platform Compiler | Dart is the language of Flutter, but it's also a general-purpose language with AOT compilation and strong typing. Bui... |
+| [.NET Engineer](language-specific/dotnet-engineer.md) | The Platform Native | The .NET ecosystem is a unified platform — from desktop to cloud to mobile. Write type-safe, performant, idiomatic C#... |
+| [Elixir Engineer](language-specific/elixir-engineer.md) | The Fault-Tolerant Alchemist | Build concurrent, fault-tolerant, real-time systems on the Erlang VM. Let it crash — supervision trees handle recover... |
+| [Erlang Engineer](language-specific/erlang-engineer.md) | The Fault-Tolerant Founder | Erlang was designed for fault-tolerant, concurrent, distributed systems at Ericsson. Its actor model, OTP, and BEAM V... |
+| [Fortran Engineer](language-specific/fortran-engineer.md) | The Numerical Computation Pioneer | Fortran has driven scientific computing for seven decades. Modern Fortran (90/95/2003/2008/2018) is still the king of... |
+| [Go Engineer](language-specific/go-engineer.md) | The Concurrency Craftsman | Simplicity is maturity. Clear is better than clever. Composition over inheritance. Concurrency is a first-class citizen. |
+| [Haskell Engineer](language-specific/haskell-engineer.md) | The Pure Functionary | Haskell is the language where types prove correctness. Pure functions, strong static typing, lazy evaluation, and mon... |
+| [Java Engineer](language-specific/java-engineer.md) | The Virtual Machine Virtuoso | Write once, run anywhere. The JVM is a battle-tested platform — leverage its maturity, tooling, and ecosystem. |
+| [Julia Engineer](language-specific/julia-engineer.md) | The Scientific JIT | Julia was built for scientific computing. It walks like Python, runs like C, and thinks in math. Multiple dispatch is... |
+| [Kotlin Engineer](language-specific/kotlin-engineer.md) | The Concise Modernizer | Write concise, null-safe, coroutine-driven code that runs on JVM, native, JS, and WASM. Kotlin is Java evolved — use ... |
+| [Lua Engineer](language-specific/lua-engineer.md) | The Lightweight Scripter | Lua is the fastest scripting language — designed for embedding. It powers games (Roblox, WoW, LÖVE), configs (Neovim,... |
+| [Mainframe Engineer](language-specific/mainframe-engineer.md) | The Legacy Keeper | Mainframes process 70% of the world's business transactions. COBOL, CICS, IMS, DB2, and JCL aren't legacy — they're t... |
+| [Mojo Engineer](language-specific/mojo-engineer.md) | The Python++ Performance Architect | Mojo is Python for performance — combining Python's usability with systems programming and MLIR-based compilation for... |
+| [Nim Engineer](language-specific/nim-engineer.md) | The Python-Speed Hybrid | Nim combines Python's expressiveness with C's performance. Design efficient, safe, compiled applications with metapro... |
+| [Node.js Engineer](language-specific/node-engineer.md) | The Event-Loop Architect | JavaScript runs the world — from browser to server to edge. Write type-safe, async-native, maintainable code across t... |
+| [OCaml/F# Engineer](language-specific/ocaml-fsharp-engineer.md) | The Type System Puritan | OCaml and F# represent the ML family of languages — strong type inference, algebraic data types, and pattern matching... |
+| [Odin Engineer](language-specific/odin-engineer.md) | The Game Tooling Artisan | Odin is a C replacement for game development and tooling. Explicit, simple, data-oriented. No hidden control flow, no... |
+| [Perl Engineer](language-specific/perl-engineer.md) | The Swiss Army Scripter | Perl is the duct tape of the internet — and still one of the most powerful text processing and automation languages e... |
+| [PHP Engineer](language-specific/php-engineer.md) | The Web Craftsman | PHP powers the web. Modern PHP is fast, typed, and elegant. Write clean, secure, framework-idiomatic code that scales... |
+| [Prolog Engineer](language-specific/prolog-engineer.md) | The Logic Programmer | Prolog programs are logic statements — facts and rules. Computation is deduction, not instruction. Declare what is tr... |
+| [Python Engineer](language-specific/python-engineer.md) | The Pythonic Thinker | Readability counts. Write explicit, idiomatic, well-tested Python. The standard library is your friend — use it befor... |
+| [R Engineer](language-specific/r-engineer.md) | The Statistical Storyteller | R is the language of data analysis, statistics, and visualization. Write reproducible, literate, statistically rigoro... |
+| [Ruby Engineer](language-specific/ruby-engineer.md) | The Elegance Advocate | Optimize for developer happiness — but not at the expense of production reliability. Convention over configuration, b... |
+| [Rust Engineer](language-specific/rust-engineer.md) | The Memory Guardian | Memory safety without garbage collection. Fearless concurrency. Zero-cost abstractions. If it compiles, it's correct ... |
+| [Scala Engineer](language-specific/scala-engineer.md) | The Type-Level Architect | Leverage Scala's fusion of OOP and FP — use the type system to eliminate runtime errors, model domains precisely, and... |
+| [Scheme/Racket Engineer](language-specific/scheme-racket-engineer.md) | The Macro Expander | In Lisp, code is data and data is code. Macros aren't metaprogramming — they're how you extend the language itself. D... |
+| [Swift Engineer](language-specific/swift-engineer.md) | The Apple Artisan | Swift is safe, fast, and expressive. Write code that leverages value semantics, protocol-oriented design, and the ful... |
+| [TypeScript Engineer](language-specific/typescript-engineer.md) | The Type-System Sculptor | TypeScript is JavaScript with a type system that catches errors before runtime. Use strict mode, model domains precis... |
+| [V Engineer](language-specific/v-engineer.md) | The Safe Systems Programmer | V is a systems language with Go-like simplicity, C-like performance, and Rust-like safety — no GC, no null, no undefi... |
+| [Zig Engineer](language-specific/zig-engineer.md) | The Modern Minimalist | No hidden control flow. No hidden memory allocations. No preprocessor. No hidden allocations. What you see is what th... |
 
 ### Engineering & Development
 
 | Agent | Codename | Purpose |
 |-------|----------|---------|
-| [Frontend Engineer](engineering-dev/frontend-engineer.md) | The Web Alchemist | Web UI, browser APIs, CSS architecture, bundler config |
-| [Mobile Engineer](engineering-dev/mobile-engineer.md) | The Pocket Craftsman | iOS, Android, Flutter, React Native, mobile CI/CD |
-| [iOS Engineer](engineering-dev/ios-engineer.md) | The Apple Artisan | Native iOS/macOS, SwiftUI, UIKit, App Store deployment |
-| [Android Engineer](engineering-dev/android-engineer.md) | The Material Designer | Native Android, Kotlin, Jetpack Compose, Play Store |
-| [Embedded Engineer](engineering-dev/embedded-engineer.md) | The Micro Mage | Firmware, RTOS, microcontrollers, IoT, resource-constrained systems |
-| [Backend Engineer](engineering-dev/backend-engineer.md) | The Server-Side Architect | Server-side APIs, business logic, data access, performance |
-| [Developer](engineering-dev/developer.md) | The Builder | Code generation, implementation, testing, quality |
-| [Reviewer](engineering-dev/reviewer.md) | The Gatekeeper | Code review, quality gates, security audit, regression prevention |
-| [Automation Engineer](engineering-dev/automation-engineer.md) | The Efficiency Engine | Process automation, CI/CD, RPA, runbook automation, toil elimination |
-| [Flutter Engineer](engineering-dev/flutter-engineer.md) | The Widget Artisan | Cross-platform UI, Dart, mobile/web/desktop with Flutter |
+| [Actix/Axum Engineer](engineering-dev/actix-axum-engineer.md) | The Async Rustacean | Build high-performance, type-safe web services in Rust using Actix-web or Axum. Leverage zero-cost abstractions, the ... |
+| [Android Engineer](engineering-dev/android-engineer.md) | The Material Designer | Build Android apps that follow Material Design guidelines, perform well across thousands of device types, and deliver... |
+| [Automation Engineer](engineering-dev/automation-engineer.md) | The Efficiency Engine | If a human does it more than twice, automate it. Remove toil, eliminate human error, and free the team for higher-val... |
+| [Backend Engineer](engineering-dev/backend-engineer.md) | The Server-Side Architect | Build reliable, scalable, secure server-side systems that power client applications. Every API endpoint is a contract... |
+| [BFF Engineer](engineering-dev/bff-engineer.md) | The Frontend's Backend | The Backend-for-Frontend pattern dedicates a backend layer to each client. Aggregate, transform, and optimize data fo... |
+| [Build System Engineer](engineering-dev/build-system-engineer.md) | The Build Architect | A build system is the foundation of developer productivity. Every second saved in build time compounds across every d... |
+| [Caching Engineer](engineering-dev/caching-engineer.md) | The Cache Strategist | Every cache miss is a missed opportunity. The fastest request is the one that never reaches your origin — but stale d... |
+| [CLI Tool Engineer](engineering-dev/cli-tool-engineer.md) | The Terminal Craftsman | CLI tools are the most durable user interface — they outlast every framework and every GUI. Design for composability,... |
+| [CQRS/Event Sourcing Engineer](engineering-dev/cqrs-event-sourcing-engineer.md) | The Event Store Architect | State is derived, never stored. The event stream is the single source of truth — everything else is a projection. |
+| [CSS/Design Systems Engineer](engineering-dev/css-design-systems-engineer.md) | The Style Architect | CSS is the most critical and most neglected part of the frontend. Design systems, component libraries, and CSS archit... |
+| [Desktop Engineer](engineering-dev/desktop-engineer.md) | The Native Wrapper | Desktop apps aren't dead — they're evolving. Electron, Tauri, and Wazm bring web technologies to the desktop with nat... |
+| [Developer](engineering-dev/developer.md) | The Builder | Turn plans into production-ready code. Every line is idiomatic, tested, and deployable. |
+| [Django Engineer](engineering-dev/django-engineer.md) | The Batteries-Included Architect | Leverage Django's complete toolkit — ORM, admin, forms, auth, migrations — to build secure, maintainable web applicat... |
+| [Echo/Fiber Engineer](engineering-dev/echo-fiber-engineer.md) | The Minimalist Go Architect | Build blazingly fast, production-ready web services in Go using Echo or Fiber. Zero unnecessary allocations, minimal ... |
+| [Edge Compute Engineer](engineering-dev/edge-compute-engineer.md) | The Distributed Code Runner | The edge is where the user lives. Deploy code to 300+ locations worldwide, execute near the user, and build applicati... |
+| [ELK Stack Engineer](engineering-dev/elk-stack-engineer.md) | The Log Detective | The ELK Stack turns raw logs into actionable insights. Elasticsearch stores and searches, Logstash transforms and rou... |
+| [Embedded Engineer](engineering-dev/embedded-engineer.md) | The Silicon Whisperer | Every byte counts. Every millisecond matters. The hardware is the platform — understand the datasheet before you writ... |
+| [Express Engineer](engineering-dev/express-engineer.md) | The Middleware Composer | Craft composable, predictable HTTP servers using Express.js middleware architecture. Every request passes through a d... |
+| [FastAPI Engineer](engineering-dev/fastapi-engineer.md) | The Async Pythonista | Build high-performance Python APIs using modern async patterns, automatic OpenAPI generation, and rigorous Pydantic v... |
+| [Flutter Engineer](engineering-dev/flutter-engineer.md) | The Widget Artisan | Flutter is the most productive cross-platform framework — one codebase, native performance, beautiful UI everywhere. ... |
+| [Frontend Build Engineer](engineering-dev/frontend-build-engineer.md) | The Bundle Optimizer | Frontend build tooling evolves monthly — but the fundamentals stay: fast dev servers, optimized production builds, co... |
+| [Frontend Engineer](engineering-dev/frontend-engineer.md) | The Browser Whisperer | The browser is the most universal runtime. Build fast, accessible, responsive interfaces that work for everyone, ever... |
+| [Full-Stack Engineer](engineering-dev/full-stack-engineer.md) | The T-Shaped Builder | Full-stack means you can ship features from database to UI. Not a specialist in everything — but proficient enough in... |
+| [iOS Engineer](engineering-dev/ios-engineer.md) | The Apple Artisan | Build beautiful, responsive, accessible iOS apps that feel native, perform flawlessly, and respect user privacy. |
+| [IoT Engineer](engineering-dev/iot-engineer.md) | The Edge Weaver | IoT connects the physical world to the digital. Design firmware, communication protocols, edge processing, and device... |
+| [JAMstack Engineer](engineering-dev/jamstack-engineer.md) | The Decoupled Architect | JAMstack decouples the frontend from the backend. Pre-render at build time, enhance with APIs, serve from CDN — for s... |
+| [LAMP Stack Engineer](engineering-dev/lamp-stack-engineer.md) | The Classic Web Architect | LAMP has powered the web for 25+ years. Linux, Apache, MySQL, PHP — optimize each layer for performance, security, an... |
+| [Laravel Engineer](engineering-dev/laravel-engineer.md) | The PHP Artisan | Craft expressive, maintainable PHP applications using Laravel's elegant syntax and rich ecosystem. Every eloquent que... |
+| [Low-Code Platform Engineer](engineering-dev/low-code-platform-engineer.md) | The Rapid Application Architect | Low-code platforms accelerate development by 10x for common patterns — CRUD apps, dashboards, admin panels, and workf... |
+| [MEAN Stack Engineer](engineering-dev/mean-stack-engineer.md) | The Enterprise Full-Stack Architect | MEAN brings Angular's structure to the full stack. TypeScript everywhere, dependency injection, reactive forms, and m... |
+| [MERN Stack Engineer](engineering-dev/mern-stack-engineer.md) | The Full-Stack JavaScript Architect | MERN is JavaScript end-to-end — MongoDB, Express, React, Node.js. Own the full stack from database schema to React co... |
+| [Message Queue Engineer](engineering-dev/message-queue-engineer.md) | The Queue Orchestrator | Messages must be delivered, processed, and acknowledged — in order when needed, at least once always, and exactly onc... |
+| [Microservices Engineer](engineering-dev/microservices-engineer.md) | The Service Boundary Architect | A microservice is not small — it is cohesive. Its boundary is defined by the domain, not the technology. Services com... |
+| [Mobile Engineer](engineering-dev/mobile-engineer.md) | The Pocket Architect | Mobile is not desktop — battery, network, screen size, and touch change everything. Build for the constraints of the ... |
+| [Monorepo Engineer](engineering-dev/monorepo-engineer.md) | The Workspace Orchestrator | A monorepo is a trade-off: unified versioning and shared tooling in exchange for build complexity. The right tooling ... |
+| [NestJS Engineer](engineering-dev/nestjs-engineer.md) | The Modular Node Architect | Architect enterprise-grade Node.js applications using NestJS's modular system, dependency injection, and decorator-dr... |
+| [Next.js Engineer](engineering-dev/nextjs-engineer.md) | The React Full-Stack Architect | Build modern full-stack React applications using Next.js App Router, React Server Components, and strategic rendering... |
+| [Nuxt Engineer](engineering-dev/nuxt-engineer.md) | The Vue Full-Stack Architect | Build universal Vue applications with Nuxt 3 — auto-imports, file-based routing, hybrid rendering, and Nitro server e... |
+| [Rails Engineer](engineering-dev/rails-engineer.md) | The Convention Over Configuration Advocate | Ship rapidly without sacrificing quality by embracing Rails conventions. RESTful routing, Active Record migrations, a... |
+| [React Native Engineer](engineering-dev/react-native-engineer.md) | The Native Bridge | React Native brings React's component model to native mobile. Navigate the bridge, native modules, and platform-speci... |
+| [Reviewer](engineering-dev/reviewer.md) | The Gatekeeper | Nothing ships without explicit sign-off. Code is not ready because it compiles — it is ready because it has been brok... |
+| [Serverless Stack Engineer](engineering-dev/serverless-stack-engineer.md) | The Cloud-Native Full-Stack Architect | SST and CDK bring full-stack development to serverless. Define infrastructure in code alongside your application — La... |
+| [Spring Boot Engineer](engineering-dev/spring-boot-engineer.md) | The Enterprise JVM Architect | Build production-grade Java applications with Spring Boot's auto-configuration, dependency injection, and ecosystem. ... |
+| [Streaming Pipeline Engineer](engineering-dev/streaming-pipeline-engineer.md) | The Continuous Flow Operator | Data never stops flowing. Design stream processing pipelines with Kafka Streams, Flink, and Spark Streaming that oper... |
+| [TALL Stack Engineer](engineering-dev/tall-stack-engineer.md) | The Modern PHP Artisan | TALL is the modern full-stack PHP toolkit — Tailwind for styling, Alpine for interactivity, Laravel for backend, Live... |
+| [TUI Application Engineer](engineering-dev/tui-application-engineer.md) | The Terminal Designer | Terminal UIs are the most responsive interfaces — they work over SSH, in CI, and on any terminal emulator. Design for... |
+| [WebGL/3D Engineer](engineering-dev/webgl-3d-engineer.md) | The Pixel Sorcerer | The browser is a 3D platform. WebGL, WebGPU, and WebXR unlock immersive experiences. Master the graphics pipeline, sh... |
+| [WebSocket/Real-Time Engineer](engineering-dev/websocket-realtime-engineer.md) | The Persistent Connection Manager | Real-time communication demands persistent connections, graceful degradation, and horizontal scale. Design WebSocket ... |
 
 ### Testing & Quality
 
 | Agent | Codename | Purpose |
 |-------|----------|---------|
-| [Tester](testing-quality/tester.md) | The Quality Advocate | Test automation, QA strategy, bug tracking, quality metrics |
-| [QA Engineer](testing-quality/qa-engineer.md) | The Quality Sentinel | QA process, test case design, defect management, quality metrics |
-| [E2E Automation Engineer](testing-quality/e2e-automation-engineer.md) | The Automation Forge | End-to-end test automation, Playwright/Cypress, visual testing |
-| [Performance Engineer](testing-quality/performance-engineer.md) | The Velocity Analyst | Load testing, profiling, bottleneck identification, optimization |
-| [Penetration Tester](testing-quality/penetration-tester.md) | The Ethical Hacker | Offensive security, vulnerability assessment, ethical hacking |
+| [API Testing Engineer](testing-quality/api-testing-engineer.md) | The Contract Validator | APIs are contracts. Every endpoint, every schema, every status code must be validated, tested, and performance-baseli... |
+| [Contract Testing Engineer](testing-quality/contract-testing-engineer.md) | The Contract Negotiator | APIs are contracts between services. Contract testing catches breaking changes before they reach production — without... |
+| [E2E Automation Engineer](testing-quality/e2e-automation-engineer.md) | The Automation Forge | Automate user-critical workflows end-to-end. Write tests that are fast, reliable, maintainable, and provide real conf... |
+| [Fuzz Testing Engineer](testing-quality/fuzz-testing-engineer.md) | The Chaos Generator | Fuzzing finds the bugs that unit tests miss — edge cases, memory corruption, unexpected inputs, and security vulnerab... |
+| [Mobile Testing Engineer](testing-quality/mobile-testing-engineer.md) | The Gesture Automator | Swipe, tap, scroll, pinch. Every user gesture must be simulated, every screen transition verified, every device confi... |
+| [Penetration Tester](testing-quality/penetration-tester.md) | The Ethical Hacker | Think like an attacker to find vulnerabilities before they do. Test every assumption, probe every boundary, and docum... |
+| [Performance Engineer](testing-quality/performance-engineer.md) | The Velocity Analyst | Measure, optimize, repeat. If it can't be measured, it can't be improved. Establish baselines before claiming progress. |
+| [QA Engineer](testing-quality/qa-engineer.md) | The Quality Sentinel | Quality is not the responsibility of a single team — it's embedded in every phase of development. QA engineers provid... |
+| [Security Testing Engineer](testing-quality/security-testing-engineer.md) | The Vulnerability Hunter | Every application has vulnerabilities. The question is whether you find them before the attackers do. Master DAST, SA... |
+| [Tester](testing-quality/tester.md) | The Quality Advocate | Quality is not the QA team's responsibility — it's everyone's. But someone has to champion it, automate it, and prove... |
+| [Visual Testing Engineer](testing-quality/visual-testing-engineer.md) | The Pixel Comparer | Every pixel tells a story, but only if it's the right pixel. Master visual regression testing with Chromatic, Percy, ... |
 
 ### Cloud & Infrastructure Architecture
 
 | Agent | Codename | Purpose |
 |-------|----------|---------|
-| [Cloud Architect](cloud-infra-architecture/cloud-architect.md) | The Sky Architect | Multi-cloud strategy, Well-Architected Framework, cost architecture |
-| [AWS Engineer](cloud-infra-architecture/aws-engineer.md) | The Cloud Native | AWS-specific infrastructure, services, best practices |
-| [Azure Engineer](cloud-infra-architecture/azure-engineer.md) | The Enterprise Azure | Azure-specific infrastructure, enterprise identity, hybrid |
-| [GCP Engineer](cloud-infra-architecture/gcp-engineer.md) | The Data-First Cloud Architect | GCP-specific infrastructure, data/ML, GKE |
-| [Terraform Engineer](cloud-infra-architecture/terraform-engineer.md) | The Infrastructure Sculptor | IaC with Terraform, module design, state management, CI/CD |
+| [AWS Engineer](cloud-infra-architecture/aws-engineer.md) | The Cloud Native | Design, build, and operate AWS infrastructure using best practices from the Well-Architected Framework. Every service... |
+| [Azure Engineer](cloud-infra-architecture/azure-engineer.md) | The Enterprise Azure | Design and operate Azure infrastructure using the Cloud Adoption Framework. Leverage Azure's enterprise strengths: hy... |
+| [Cloud Architect](cloud-infra-architecture/cloud-architect.md) | The Sky Architect | Design cloud architectures that balance cost, performance, security, and operability. Choose the right cloud for the ... |
+| [Cloud Migration Engineer](cloud-infra-architecture/cloud-migration-engineer.md) | The Landing Zone Builder | Cloud migration is a journey, not a lift-and-shift. Assess, plan, migrate, and optimize using the 6 Rs — and always h... |
+| [GCP Engineer](cloud-infra-architecture/gcp-engineer.md) | The Data-First Cloud Architect | Design and operate GCP infrastructure leveraging Google's strengths in data, ML, networking, and Kubernetes. Optimize... |
+| [HashiCorp Stack Engineer](cloud-infra-architecture/hashicorp-stack-engineer.md) | The Stack Orchestrator | The HashiCorp stack — Terraform, Vault, Consul, Nomad — provides a complete infrastructure lifecycle: provision, secu... |
+| [Pulumi Engineer](cloud-infra-architecture/pulumi-engineer.md) | The Code-First Infrastructurist | Pulumi redefines IaC by using real programming languages instead of DSLs. TypeScript, Python, Go, and .NET replace HC... |
+| [Serverless Engineer](cloud-infra-architecture/serverless-engineer.md) | The Ephemeral Architect | Serverless isn't a service — it's a mindset. Design event-driven, auto-scaling, pay-per-execution systems that elimin... |
+| [Terraform Engineer](cloud-infra-architecture/terraform-engineer.md) | The Infrastructure Sculptor | Infrastructure defined as code, managed declaratively, and executed repeatably. Terraform is the single source of tru... |
 
 ### Infrastructure & Operations
 
 | Agent | Codename | Purpose |
 |-------|----------|---------|
-| [DevOps](infrastructure-ops/devops.md) | The Steward | IaC, CI/CD, containers, observability, security, disaster recovery |
-| [Operations](infrastructure-ops/operations.md) | The Caretaker | Day-to-day system operations, monitoring, incident response, runbooks |
-| [Site Reliability Engineer](infrastructure-ops/site-reliability-engineer.md) | The Reliability Guardian | SLOs, error budgets, toil reduction, capacity planning |
-| [Platform Engineer](infrastructure-ops/platform-engineer.md) | The Platform Builder | Internal developer platform, Backstage, golden paths, DevEx |
-| [Network Engineer](infrastructure-ops/network-engineer.md) | The Connectivity Architect | Network architecture, routing, segmentation, NetDevOps |
-| [Chaos Engineer](infrastructure-ops/chaos-engineer.md) | The Mayhem Conductor | Resilience testing, fault injection, game days, chaos experiments |
-| [Kubernetes Engineer](infrastructure-ops/kubernetes-engineer.md) | The Cluster Whisperer | K8s cluster lifecycle, networking, security, GitOps |
-| [ArgoCD Engineer](infrastructure-ops/argocd-engineer.md) | The GitOps Guardian | GitOps deployments, ApplicationSets, sync strategies, multi-cluster |
-| [Service Mesh Engineer](infrastructure-ops/service-mesh-engineer.md) | The Mesh Weaver | Istio, Linkerd, mTLS, traffic policies, observability |
-| [Helm Engineer](infrastructure-ops/helm-engineer.md) | The Chart Smith | Chart authoring, packaging, templating, dependency management |
-| [DBRE Engineer](infrastructure-ops/dbre-engineer.md) | The Data Guardian | Database reliability, HA, backup/recovery, query performance, SRE |
-| [CI/CD Pipeline Engineer](infrastructure-ops/cicd-engineer.md) | The Pipeline Architect | GitHub Actions, GitLab CI, pipeline optimization, quality gates |
-| [Edge / CDN Engineer](infrastructure-ops/edge-engineer.md) | The Edge Runner | CDN config, edge compute, Cloudflare Workers, DDoS mitigation |
-| [Redis Engineer](infrastructure-ops/redis-engineer.md) | The Memory Maestro | Caching, real-time data, session management, Redis infrastructure |
+| [Ansible Engineer](infrastructure-ops/ansible-engineer.md) | The Playbook Artisan | Ansible automates IT at scale without agents. Design idempotent playbooks, reusable roles, and inventory strategies t... |
+| [ArgoCD Engineer](infrastructure-ops/argocd-engineer.md) | The GitOps Guardian | Git is the single source of truth. Every deployment, every config, every change flows through Git. Automate, audit, a... |
+| [Chaos Engineer](infrastructure-ops/chaos-engineer.md) | The Controlled Destabilizer | Break things in production (carefully). If it hasn't failed, you don't know it works. Build confidence by proving res... |
+| [CI/CD Pipeline Engineer](infrastructure-ops/cicd-engineer.md) | The Pipeline Architect | The pipeline is the path to production. Make it fast, reliable, secure, and observable. Every commit should become a ... |
+| [Database Proxy Engineer](infrastructure-ops/database-proxy-engineer.md) | The Connection Manager | Database proxies handle what applications shouldn't: connection pooling, failover, read/write splitting, query routin... |
+| [Database Reliability Engineer (DBRE)](infrastructure-ops/dbre-engineer.md) | The Data Guardian | Databases are the most critical state in the system. Apply SRE principles to databases — automate operations, enforce... |
+| [DevOps](infrastructure-ops/devops.md) | The Steward of Uptime | Infrastructure is code, operations are automated, and every deploy is boring. |
+| [Docker Engineer](infrastructure-ops/docker-engineer.md) | The Container Sculptor | Docker is the universal container runtime. Master image layering, multi-stage builds, security scanning, and orchestr... |
+| [Edge / CDN Engineer](infrastructure-ops/edge-engineer.md) | The Edge Runner | Millisecond matters. Every request should be served from the closest possible location. Cache aggressively, protect a... |
+| [GitOps Engineer](infrastructure-ops/gitops-engineer.md) | The Declarative Deployer | Git is the single source of truth for infrastructure and deployments. Push-based deploys are legacy — pull-based GitO... |
+| [Helm Engineer](infrastructure-ops/helm-engineer.md) | The Chart Smith | Kubernetes manifests are code. Helm charts are the packages. Master templating, dependency management, chart lifecycl... |
+| [Infrastructure Testing Engineer](infrastructure-ops/infrastructure-testing-engineer.md) | The Compliance Verifier | Infrastructure as code needs testing as much as application code. Validate that Terraform plans are correct, servers ... |
+| [Kubernetes Engineer](infrastructure-ops/kubernetes-engineer.md) | The Cluster Whisperer | Design, deploy, and operate Kubernetes clusters that are secure, reliable, efficient, and observable. Every cluster i... |
+| [Network Engineer](infrastructure-ops/network-engineer.md) | The Connectivity Architect | The network is the foundation of every distributed system. Design it for performance, security, and reliability. Auto... |
+| [Nix Engineer](infrastructure-ops/nix-engineer.md) | The Pure Builder | Nix solves the reproducibility problem. Every build is deterministic, every environment is declarative, and every dev... |
+| [Operations](infrastructure-ops/operations.md) | The Caretaker | Keep the lights on. Monitor, respond, document, improve. Operations is not heroics — it's boring, automated, and resi... |
+| [Platform Engineer](infrastructure-ops/platform-engineer.md) | The Platform Builder | The platform team's customers are developers. Treat the platform as a product. Every abstraction removes toil, every ... |
+| [Policy Engine Engineer](infrastructure-ops/policy-engine-engineer.md) | The Rule Enforcer | Policy-as-code makes authorization and compliance auditable, testable, and version-controlled. Every access decision ... |
+| [Redis Engineer](infrastructure-ops/redis-engineer.md) | The Memory Maestro | Redis is the fastest data structure server on the planet. Use it for caching, real-time data, queuing, and session ma... |
+| [Service Mesh Engineer](infrastructure-ops/service-mesh-engineer.md) | The Mesh Weaver | Secure, observe, and control service-to-service communication. mTLS by default, fine-grained traffic policies, and de... |
+| [Site Reliability Engineer](infrastructure-ops/site-reliability-engineer.md) | The Reliability Guardian | Reliability is a feature. Error budgets allow velocity. Toil must be automated. Every incident is a learning opportun... |
+| [Virtualization Engineer](infrastructure-ops/virtualization-engineer.md) | The Hypervisor Operator | Virtualization is the foundation of cloud computing. Master hypervisors, VM lifecycle, storage virtualization, and ca... |
+| [WebAssembly Engineer](infrastructure-ops/wasm-engineer.md) | The Binary Portability Pro | WebAssembly runs anywhere — browser, server, edge, blockchain. Write once in any language, run securely at near-nativ... |
 
 ### Data & Intelligence
 
 | Agent | Codename | Purpose |
 |-------|----------|---------|
-| [Data Engineer](data-intelligence/data-engineer.md) | The Pipeline Architect | Data pipelines, ETL/ELT, warehouses, data quality, orchestration |
-| [Data Architect](data-intelligence/data-architect.md) | The Data Cartographer | Enterprise data modeling, data strategy, governance framework |
-| [Analytics Engineer](data-intelligence/analytics-engineer.md) | The Data Refiner | dbt transformations, data modeling, quality testing, documentation |
-| [Data Scientist](data-intelligence/data-scientist.md) | The Insight Architect | ML models, experimentation, MLOps, analytics, responsible AI |
-| [AI Engineer](data-intelligence/ai-engineer.md) | The Intelligence Crafter | LLM integration, RAG, AI agents, prompt engineering, AI safety |
-| [LLM Engineer](data-intelligence/llm-engineer.md) | The Language Architect | Prompt engineering, RAG, fine-tuning, LLM evaluation, safety |
-| [ML Engineer](data-intelligence/ml-engineer.md) | The Production Modeler | Production model serving, feature pipelines, model monitoring |
-| [Deep Learning Engineer](data-intelligence/deep-learning-engineer.md) | The Neural Architect | TensorFlow, PyTorch, neural architecture, GPU optimization, training |
-| [MLOps Engineer](data-intelligence/mlops-engineer.md) | The ML Guardian | ML infrastructure, model serving, feature stores, training pipelines |
-| [Data Quality Engineer](data-intelligence/data-quality-engineer.md) | The Data Purifier | Data cleaning, quality monitoring, validation automation, observability |
-| [Database Administrator](data-intelligence/database-administrator.md) | The Data Steward | Schema design, performance tuning, backup/recovery, HA |
-| [Kafka Engineer](data-intelligence/kafka-engineer.md) | The Stream Master | Event streaming, topic design, Kafka Connect, Streams, Schema Registry |
-| [BI Engineer](data-intelligence/bi-engineer.md) | The Data Visualizer | BI dashboards, semantic layer, Looker/Tableau/PowerBI, metric stores |
-| [Scientific Computing Engineer](data-intelligence/scientific-computing-engineer.md) | The Number Cruncher | Numerical computing, HPC, simulation, bioinformatics, scientific algorithms |
+| [AI Engineer](data-intelligence/ai-engineer.md) | The Intelligence Crafter | Build AI-powered features that create real user value. Bridge the gap between model capabilities and production appli... |
+| [Analytics Engineer](data-intelligence/analytics-engineer.md) | The Data Refiner | Transform raw data into reliable, documented, tested data models that analysts and business users can trust and explore. |
+| [BI Engineer](data-intelligence/bi-engineer.md) | The Data Visualizer | Data is only valuable when it's understood. Build semantic layers, dashboards, and reports that turn raw data into ac... |
+| [BigQuery Engineer](data-intelligence/bigquery-engineer.md) | The Serverless Analyst | BigQuery is Google's serverless data warehouse. No clusters, no tuning — just SQL at petabyte scale. Design partition... |
+| [Bioinformatics Engineer](data-intelligence/bioinformatics-engineer.md) | The Genomic Analyst | Biology is becoming computational. Analyze genomic data, design analysis pipelines, and build reproducible bioinforma... |
+| [ClickHouse Engineer](data-intelligence/clickhouse-engineer.md) | The Columnar Colossus | ClickHouse is the fastest columnar OLAP database for real-time analytics. Design table engines, partitioning, and mat... |
+| [Computer Vision Engineer](data-intelligence/computer-vision-engineer.md) | The Visual Perception Architect | Teach machines to see. Build pipelines for classification, detection, segmentation, and generation using CNNs, Vision... |
+| [Data Architect](data-intelligence/data-architect.md) | The Data Cartographer | Design the data landscape — models, flows, governance, and platforms — so that data is trustworthy, accessible, and v... |
+| [Data Engineer](data-intelligence/data-engineer.md) | The Pipeline Architect | Data should flow reliably from source to insight with zero data loss, minimal latency, and maximum trust. |
+| [Data Governance Engineer](data-intelligence/data-governance-engineer.md) | The Data Sentinel | Data has no value if it can't be found, trusted, and governed. Build data catalogs, track lineage, classify sensitive... |
+| [Data Lake Engineer](data-intelligence/data-lake-engineer.md) | The Lake Architect | A data lake without ACID is a data swamp. Schema enforcement, catalog registration, and partition optimization are no... |
+| [Data Orchestration Engineer](data-intelligence/data-orchestration-engineer.md) | The DAG Architect | Data pipelines are the backbone of the data platform. Design, schedule, monitor, and debug workflows that move and tr... |
+| [Data Platform Engineer](data-intelligence/data-platform-engineer.md) | The Infrastructure for Data | A data platform is the infrastructure that data teams build ON, not the pipelines they build WITH. Design self-serve ... |
+| [Data Product Engineer](data-intelligence/data-product-engineer.md) | The Metric Definer | A data product is a curated, trustworthy dataset or insight that teams can consume with confidence. Define metrics, i... |
+| [Data Quality Engineer](data-intelligence/data-quality-engineer.md) | The Data Purifier | Ensure data is accurate, complete, consistent, and timely. Build automated quality checks, monitoring, and remediatio... |
+| [Data Scientist](data-intelligence/data-scientist.md) | The Insight Architect | Extract insights and build intelligence from data at any scale. Master the full data science lifecycle — from raw dis... |
+| [Database Administrator](data-intelligence/database-administrator.md) | The Data Steward | Data is the most valuable asset. Protect it, optimize it, and make it available — in that order. |
+| [Databricks Engineer](data-intelligence/databricks-engineer.md) | The Lakehouse Architect | Databricks unifies data engineering, data science, and analytics on the lakehouse. Delta Lake brings reliability to d... |
+| [Deep Learning Engineer](data-intelligence/deep-learning-engineer.md) | The Neural Architect | Design, train, and deploy deep neural networks for tasks that classical ML cannot solve. Push the boundary of what's ... |
+| [DuckDB Engineer](data-intelligence/duckdb-engineer.md) | The OLAP Lighter | DuckDB is the SQL OLAP database that runs in-process. No server, no configuration — just fast analytical queries on P... |
+| [ETL/ELT Engineer](data-intelligence/etl-engineer.md) | The Data Mover | Data pipelines must be reliable, observable, and idempotent. A broken pipeline is a broken trust with every data cons... |
+| [Feature Flag/Experiment Engineer](data-intelligence/feature-flag-engineer.md) | The Release Controller | Every feature is a hypothesis until it ships to real users. Design feature flag systems that enable gradual rollouts,... |
+| [Feature Store Engineer](data-intelligence/feature-store-engineer.md) | The Feature Craftsman | Features are the DNA of ML models. A feature store ensures consistent feature computation between training and servin... |
+| [Kafka Engineer](data-intelligence/kafka-engineer.md) | The Stream Master | Apache Kafka is the backbone of event-driven architecture. Master topic design, partitioning, consumers, streaming pi... |
+| [LLM Engineer](data-intelligence/llm-engineer.md) | The Language Architect | Build production systems powered by large language models. Master prompt engineering, RAG, fine-tuning, evaluation, a... |
+| [ML Engineer](data-intelligence/ml-engineer.md) | The Production Modeler | Build, deploy, and maintain machine learning models that work reliably in production. Bridge the gap between data sci... |
+| [MLOps Engineer](data-intelligence/mlops-engineer.md) | The Pipeline Alchemist | A model in a notebook is not a product. Automate the pipeline, version everything, monitor continuously — ML in produ... |
+| [NLP Engineer](data-intelligence/nlp-engineer.md) | The Language Alchemist | Natural language is the next UI. Build systems that understand, generate, and translate text — from search and classi... |
+| [RAG Architect](data-intelligence/rag-architect.md) | The Retrieval Synthesizer | RAG grounds LLMs in real data. Design chunking strategies, embedding pipelines, retrieval systems, and generation tem... |
+| [Real-Time Analytics Engineer](data-intelligence/real-time-analytics-engineer.md) | The Streaming Analyst | Analytics should be real-time, not retrospective. Design systems where data is queryable within seconds of ingestion ... |
+| [Redshift Engineer](data-intelligence/redshift-engineer.md) | The Columnar Warehouse Architect | Redshift is AWS's petabyte-scale data warehouse. Master distribution keys, sort keys, and workload management for que... |
+| [Scientific Computing Engineer](data-intelligence/scientific-computing-engineer.md) | The Number Cruncher | Science demands computational accuracy, reproducibility, and scale. Every floating-point operation, every parallel al... |
+| [Snowflake Engineer](data-intelligence/snowflake-engineer.md) | The Virtual Warehouse Architect | Snowflake's architecture decouples storage and compute for limitless elasticity. Design warehouses, schemas, and data... |
+| [Supabase Engineer](data-intelligence/supabase-engineer.md) | The Firebase Alternative Architect | Supabase is an open-source Firebase alternative built on PostgreSQL. Databases, auth, real-time, storage, and Edge Fu... |
 
 ### Specialized Engineering
 
 | Agent | Codename | Purpose |
 |-------|----------|---------|
-| [API Engineer](specialized-engineering/api-engineer.md) | The Interface Architect | API design, OpenAPI, versioning, gateway management |
-| [Integration Engineer](specialized-engineering/integration-engineer.md) | The Connector | System integration, middleware, message queues, contract testing |
-| [Migration Engineer](specialized-engineering/migration-engineer.md) | The Transition Architect | Data/infrastructure/application migrations, rollback planning |
-| [Security Engineer](specialized-engineering/security-engineer.md) | The Guardian | Threat modeling, secure architecture, vulnerability management, compliance |
-| [DevSecOps Engineer](specialized-engineering/devsecops-engineer.md) | The Security Automator | Pipeline security automation, policy-as-code, shift-left controls |
-| [IAM Engineer](specialized-engineering/iam-engineer.md) | The Gatekeeper of Identity | Identity, SSO, MFA, RBAC, zero-trust architecture |
-| [Incident Response Engineer](specialized-engineering/incident-response-engineer.md) | The First Responder | Security incident response, forensics, containment, recovery |
-| [Data Protection Engineer](specialized-engineering/data-protection-engineer.md) | The Data Guardian | Encryption, key management, tokenization, data security standards |
-| [Observability Engineer](specialized-engineering/observability-engineer.md) | The Signal Analyst | Metrics, logging, tracing, alerting, SLOs, dashboards |
-| [Release Engineer](specialized-engineering/release-engineer.md) | The Release Conductor | Release planning, artifact management, deployment orchestration |
-| [Secrets & Vault Engineer](specialized-engineering/secrets-vault-engineer.md) | The Key Guardian | HashiCorp Vault, secrets rotation, encryption, PKI, policy management |
-| [Application Security Engineer](specialized-engineering/appsec-engineer.md) | The Code Sentinel | SAST/DAST/SCA, threat modeling, secure coding, shift-left security |
-| [SOC Analyst](specialized-engineering/soc-analyst.md) | The Signal Watcher | SIEM monitoring, alert triage, threat detection, incident escalation |
-| [Blockchain Engineer](specialized-engineering/blockchain-engineer.md) | The Trustless Architect | Smart contracts, DeFi, Web3, Solidity, EVM, decentralized applications |
-| [Temporal Engineer](specialized-engineering/temporal-engineer.md) | The Time Bender | Durable execution, workflow orchestration, activity idempotency, deterministic code |
+| [ACP/MCP Protocol Engineer](specialized-engineering/acp-protocol-engineer.md) | The Protocol Architect | Agents need standards to communicate — MCP for tool access, ACP for agent-to-agent coordination. Design protocols tha... |
+| [AdTech Engineer](specialized-engineering/adtech-engineer.md) | The Bid Stream Architect | Every ad impression is a micro-auction. In under 100 milliseconds, billions of decisions must be made — who to show, ... |
+| [AI Agent Framework Engineer](specialized-engineering/agent-framework-engineer.md) | The Agent Architect | AI agents are the new application primitive. Design agent systems that are reliable, observable, and controllable — t... |
+| [AI Safety & Alignment Engineer](specialized-engineering/ai-safety-engineer.md) | The Alignment Guardian | AI capabilities advance faster than safety. Build guardrails, red-team models, benchmark truthfulness, and ensure AI ... |
+| [Algolia/Search Engineer](specialized-engineering/algolia-search-engineer.md) | The Relevance Scorer | A search engine is only as good as its relevance. The best index is invisible — users find what they need on the firs... |
+| [API Documentation Engineer](specialized-engineering/api-documentation-engineer.md) | The Docs as Code Architect | API documentation is the developer's first impression. Every endpoint must have clear descriptions, accurate examples... |
+| [API Engineer](specialized-engineering/api-engineer.md) | The Interface Architect | An API is a contract. Once published, it must be reliable, discoverable, and backward-compatible until the deprecatio... |
+| [API Gateway Engineer](specialized-engineering/api-gateway-engineer.md) | The Traffic Controller | The API gateway is the single entry point for all client traffic. It handles auth, rate limiting, routing, transforma... |
+| [Application Security Engineer](specialized-engineering/appsec-engineer.md) | The Code Sentinel | Security is not a gate at the end — it's embedded in every commit, every dependency, every deployment. Shift left wit... |
+| [AR/VR Engineer](specialized-engineering/ar-vr-engineer.md) | The Spatial Architect | AR and VR transform computing from 2D screens to 3D spaces. Design spatial interactions, rendering pipelines, and imm... |
+| [Audio/Video Processing Engineer](specialized-engineering/audio-video-engineer.md) | The Media Pipeline Architect | Media processing is the most compute-intensive workload in software. Every pixel, every sample, every frame must be p... |
+| [Auth Engineer](specialized-engineering/auth-engineer.md) | The Identity Guardian | Identity is the new perimeter. Every token must be verifiable, every session revocable, and every access decision aud... |
+| [Blockchain Engineer](specialized-engineering/blockchain-engineer.md) | The Trustless Architect | Blockchain removes the need for trust by making every transaction verifiable. Write immutable, deterministic, gas-eff... |
+| [Cloud Security Engineer](specialized-engineering/cloud-security-engineer.md) | The Cloud Guardian | Cloud security is shared responsibility. Secure IAM, data, networks, and workloads across AWS, Azure, GCP with cloud-... |
+| [Code Generation Engineer](specialized-engineering/code-generation-engineer.md) | The Code Forger | Code generation eliminates repetitive patterns. Scaffold new modules, generate API clients, create CRUD endpoints, an... |
+| [Cryptography Engineer](specialized-engineering/crypto-engineer.md) | The Key Manager | Encryption is the foundation of trust. Choose algorithms wisely, manage keys securely, ensure entropy sources are rob... |
+| [Data Observability Engineer](specialized-engineering/data-observability-engineer.md) | The Data Watchdog | Data pipelines break silently — missing rows, schema changes, late data, null spikes. Data observability detects thes... |
+| [Data Protection Engineer](specialized-engineering/data-protection-engineer.md) | The Data Guardian | Protect data at rest, in transit, and in use. Implement encryption, key management, and data security controls that m... |
+| [Database Migration Engineer](specialized-engineering/db-migration-tools-engineer.md) | The Schema Versioner | Database schema changes are production deployments — every migration must be reversible, testable, and zero-downtime.... |
+| [Developer Portal Engineer](specialized-engineering/developer-portal-engineer.md) | The Platform Evangelist | An internal developer portal is the front door to your platform. It's where developers discover services, request res... |
+| [DevSecOps Engineer](specialized-engineering/devsecops-engineer.md) | The Security Automator | Shift security left — embed security into every phase of the development lifecycle. Make security a feature of the pi... |
+| [Digital Forensics Engineer](specialized-engineering/digital-forensics-engineer.md) | The Evidence Keeper | When a breach happens, forensic analysis determines what happened, how, and what was taken. Follow procedure, preserv... |
+| [E-commerce Engineer](specialized-engineering/ecommerce-engineer.md) | The Digital Store Architect | Every click is a potential conversion. Every page load costs sales. Build commerce systems that minimize friction, ma... |
+| [EdTech Engineer](specialized-engineering/edtech-engineer.md) | The Learning Platform Architect | Learning should never be interrupted by technology. Educational platforms must deliver content reliably, track progre... |
+| [Environment & Configuration Engineer](specialized-engineering/environment-config-engineer.md) | The Config Guardian | Configuration is code — it must be versioned, reviewed, and tested. Secrets must never touch disk unencrypted. Every ... |
+| [FinTech Engineer](specialized-engineering/fintech-engineer.md) | The Financial System Architect | Money moves through code. Every transaction must be atomic, every ledger must balance, every audit trail must be comp... |
+| [Firebase Engineer](specialized-engineering/firebase-engineer.md) | The BaaS Architect | Firebase is not a collection of services — it is a unified platform for building apps without managing servers. Secur... |
+| [FPGA Engineer](specialized-engineering/fpga-engineer.md) | The Reconfigurable Logic Designer | FPGAs are reconfigurable hardware. Design digital circuits with HDLs, optimize for timing and area, and accelerate wo... |
+| [Game Server Engineer](specialized-engineering/game-server-engineer.md) | The Netcode Architect | The server is the single source of truth. Players may lag, cheat, or disconnect, but the game state must always be co... |
+| [Geospatial Engineer](specialized-engineering/gis-engineer.md) | The Spatial Data Architect | Location is a first-class data type. Every point, polygon, and raster must be georeferenced, accurately projected, an... |
+| [GPU/CUDA Engineer](specialized-engineering/gpu-cuda-engineer.md) | The Parallel Processor | GPUs aren't just for graphics — they're parallel processors. CUDA, ROCm, oneAPI — write kernels that maximize occupan... |
+| [GraphQL Engineer](specialized-engineering/graphql-engineer.md) | The Schema Architect | GraphQL gives clients exactly what they need. Design schemas that make sense, resolvers that perform, and security th... |
+| [gRPC/Protobuf Engineer](specialized-engineering/grpc-engineer.md) | The Binary Contract Designer | gRPC and Protocol Buffers define service contracts in code. Design efficient, versioned, cross-language APIs with str... |
+| [HealthTech Engineer](specialized-engineering/healthtech-engineer.md) | The Healthcare Data Architect | Healthcare data is the most sensitive data a person has. Every exchange of clinical information must be secure, stand... |
+| [IAM Engineer](specialized-engineering/iam-engineer.md) | The Gatekeeper of Identity | Ensure the right people have access to the right resources at the right time for the right reasons. Build identity in... |
+| [Incident Response Engineer](specialized-engineering/incident-response-engineer.md) | The First Responder | Detect, contain, eradicate, and recover from security incidents. Minimize damage, preserve evidence, and ensure the o... |
+| [Integration Engineer](specialized-engineering/integration-engineer.md) | The Connector | Every integration is a contract between systems. Contracts must be explicit, versioned, and resilient to failure. |
+| [Kubernetes Security Engineer](specialized-engineering/k8s-security-engineer.md) | The Pod Guardian | Kubernetes security is multi-layered — from the container runtime to the API server. Harden clusters, enforce least p... |
+| [LegalTech Engineer](specialized-engineering/legaltech-engineer.md) | The Legal System Architect | The law runs on documents, deadlines, and due process. Legal systems must track every version, calculate every deadli... |
+| [LLMOps Engineer](specialized-engineering/llmops-engineer.md) | The LLM Pipeline Operator | LLMs are not magic — they are infrastructure. Every prompt must be versioned, every response must be monitored, every... |
+| [Local-First Engineer](specialized-engineering/local-first-engineer.md) | The Offline Architect | Local-first means the app works offline by default. The local device is the primary data store — the cloud is for syn... |
+| [Migration Engineer](specialized-engineering/migration-engineer.md) | The Transition Architect | Every migration has a plan, a rollback, and zero data loss. Move fast without breaking things. |
+| [Mobile Distribution Engineer](specialized-engineering/mobile-distribution-engineer.md) | The App Publisher | Mobile app distribution is the most complex deployment pipeline in software — code signing, provisioning profiles, ap... |
+| [n8n Workflow Engineer](specialized-engineering/n8n-engineer.md) | The Pipeline Weaver | n8n connects anything to anything. Design workflows that are robust, observable, and self-healing — every node must h... |
+| [Observability Platform Engineer](specialized-engineering/observability-datadog-engineer.md) | The Telemetry Architect | Every signal tells a story. Metrics show the trend, logs reveal the detail, traces map the journey — and together the... |
+| [Observability Engineer](specialized-engineering/observability-engineer.md) | The Signal Analyst | If it isn't measured, it can't be improved. If it can't be debugged, it can't be fixed. Observability is the foundati... |
+| [OpenTelemetry Engineer](specialized-engineering/open-telemetry-engineer.md) | The Telemetry Weaver | OpenTelemetry is the common language of observability. Metrics, traces, and logs must be correlated — every request s... |
+| [Package & Artifact Registry Engineer](specialized-engineering/package-registry-engineer.md) | The Package Steward | A package registry is the distribution channel for your software. Every artifact must be signed, versioned, and immut... |
+| [Payment Integration Engineer](specialized-engineering/payment-integration-engineer.md) | The Transaction Router | Money flows through payment systems. Every transaction must reach its destination exactly once, every webhook must be... |
+| [Quantum Engineer](specialized-engineering/quantum-engineer.md) | The Qubit Navigator | Quantum computing solves classically intractable problems. Design quantum algorithms, error mitigation strategies, an... |
+| [Real-Time Engineer](specialized-engineering/real-time-engineer.md) | The Stream Weaver | Real-time features are now table stakes. WebSockets, Server-Sent Events, WebRTC, and pub/sub systems deliver live exp... |
+| [Real-Time Collaboration Engineer](specialized-engineering/realtime-collaboration-engineer.md) | The Sync Architect | Real-time collaboration means multiple users editing simultaneously with zero data loss. CRDTs and OT make conflict-f... |
+| [Red Team Engineer](specialized-engineering/red-team-engineer.md) | The Adversary Emulator | Red teams simulate real adversaries to test defenses. Execute controlled, authorized attacks across people, processes... |
+| [Release Engineer](specialized-engineering/release-engineer.md) | The Release Conductor | Every release is repeatable, auditable, and reversible. The process is the product. |
+| [Reverse Engineering Engineer](specialized-engineering/reverse-engineering-engineer.md) | The Binary Deconstructor | Every binary holds secrets. Decompile, disassemble, analyze protocols, deobfuscate, and understand malware — all whil... |
+| [RISC-V Engineer](specialized-engineering/risc-v-engineer.md) | The Open ISA Architect | RISC-V is the open standard ISA. Design cores, implement extensions, build SoCs, and bring custom silicon to applicat... |
+| [Robotics Engineer](specialized-engineering/robotics-engineer.md) | The Automaton Programmer | Robotics integrates sensing, planning, and actuation. Design robot software that perceives the environment, plans mot... |
+| [RPA Automation Engineer](specialized-engineering/rpa-automation-engineer.md) | The Digital Worker | RPA automates repetitive, rule-based tasks that humans shouldn't do. Design bots that are resilient, auditable, and m... |
+| [RTOS/Firmware Engineer](specialized-engineering/rtos-engineer.md) | The Deterministic Scheduler | Real-time means the right answer at the right time — every time. Design RTOS-based firmware where task deadlines, int... |
+| [Secrets & Vault Engineer](specialized-engineering/secrets-vault-engineer.md) | The Key Guardian | Secrets are the crown jewels. Encrypt everything, rotate everything, audit everything. No secrets in code, no secrets... |
+| [Security Engineer](specialized-engineering/security-engineer.md) | The Guardian | Assume breach. Design for resilience. Security is not a feature — it's a property of the entire system. |
+| [SIEM Engineer](specialized-engineering/siem-engineer.md) | The Signal Correlator | SIEM turns logs into signals. Design ingestion pipelines, correlation rules, and response playbooks that surface real... |
+| [SOC Analyst](specialized-engineering/soc-analyst.md) | The Signal Watcher | Monitor, detect, triage, and escalate. Turn a firehose of alerts into a clear picture of threats. Know what's real, w... |
+| [Stripe/Payments Engineer](specialized-engineering/stripe-engineer.md) | The Payment Flow Architect | Every payment must succeed exactly once. Idempotency is not optional — it is the foundation of payment reliability. |
+| [Supply Chain Security Engineer](specialized-engineering/supply-chain-security-engineer.md) | The Chain Guardian | Software supply chain attacks are the #1 vector. Secure the chain from source to deployment with signed commits, atte... |
+| [Temporal Engineer](specialized-engineering/temporal-engineer.md) | The Time Bender | Temporal is the durable execution platform for mission-critical workflows. Every workflow must be deterministic, ever... |
+| [Threat Modeling Engineer](specialized-engineering/threat-modeling-engineer.md) | The Attack Tree Analyst | You can't secure what you don't understand. Model systems, identify threats, and design mitigations before attackers ... |
+| [Vercel/Edge Engineer](specialized-engineering/vercel-engineer.md) | The Edge Deployer | Every deployment is a preview. Every page should be fast. The edge is not a destination — it's the starting point. |
+| [WebGPU Engineer](specialized-engineering/webgpu-engineer.md) | The Browser GPGPU Architect | WebGPU is the future of graphics and compute on the web. Design compute shaders, render pipelines, and GPU-accelerate... |
+| [WebRTC Engineer](specialized-engineering/webrtc-engineer.md) | The Peer Connector | WebRTC brings peer-to-peer audio, video, and data to the browser. Every stream must handle NAT traversal, codec negot... |
+| [Zero Trust Engineer](specialized-engineering/zero-trust-engineer.md) | The Perimeter Eraser | The perimeter is dead. Zero Trust means no implicit trust — verify every request, enforce least privilege, assume bre... |
 
 ### Compliance, Legal & Finance
 
 | Agent | Codename | Purpose |
 |-------|----------|---------|
-| [Compliance Officer](compliance-legal-finance/compliance-officer.md) | The Policy Guardian | Regulatory compliance, audit preparation, evidence collection, risk assessment |
-| [Legal Engineer](compliance-legal-finance/legal-engineer.md) | The Compliance Automator | Privacy engineering, contract automation, data governance, open source compliance |
-| [Accessibility Engineer](compliance-legal-finance/accessibility-engineer.md) | The Inclusion Champion | WCAG compliance, auditing, inclusive design, ARIA implementation |
-| [FinOps Engineer](compliance-legal-finance/finops-engineer.md) | The Cost Optimizer | Cloud cost optimization, savings plans, cost allocation, anomaly detection |
-| [Privacy Engineer](compliance-legal-finance/privacy-engineer.md) | The Privacy Guardian | Consent management, DSR automation, data mapping, privacy-by-design |
+| [Accessibility Engineer](compliance-legal-finance/accessibility-engineer.md) | The Inclusion Champion | The web should work for everyone. Accessibility is not a feature — it's a fundamental property of good design. |
+| [AI Governance Engineer](compliance-legal-finance/ai-governance-engineer.md) | The Ethical AI Guardian | AI must be fair, transparent, and accountable. Evaluate models for bias, enforce explainability, mandate human oversi... |
+| [Audit Engineer](compliance-legal-finance/audit-engineer.md) | The Evidence Automator | Audit engineering automates the boring part of compliance. Continuous control monitoring, automated evidence collecti... |
+| [Compliance Officer](compliance-legal-finance/compliance-officer.md) | The Policy Guardian | If it isn't documented, it didn't happen. If it isn't auditable, it isn't compliant. |
+| [Data Breach Response Engineer](compliance-legal-finance/data-breach-engineer.md) | The Incident Disclosure Coordinator | When data is compromised, every minute counts. Coordinate notification timelines, satisfy regulatory requirements, pr... |
+| [FedRAMP Engineer](compliance-legal-finance/fedramp-engineer.md) | The Government Cloud Approver | FedRAMP standardizes cloud security for US government agencies. Navigate the JAB authorization process, implement NIS... |
+| [FinOps Engineer](compliance-legal-finance/finops-engineer.md) | The Cost Optimizer | Cloud spend is not a fixed cost — it's an optimization opportunity. Every dollar saved is a dollar that can be reinve... |
+| [GDPR Engineer](compliance-legal-finance/gdpr-engineer.md) | The Data Subject Rights Enforcer | GDPR gives individuals control over their personal data. Engineer systems that respect data subject rights, document ... |
+| [HIPAA Engineer](compliance-legal-finance/hipaa-engineer.md) | The Health Data Guardian | HIPAA governs protected health information (PHI) in healthcare. Implement administrative, physical, and technical saf... |
+| [ISO 27001 Engineer](compliance-legal-finance/iso27001-engineer.md) | The ISMS Architect | ISO 27001 is the international standard for Information Security Management Systems. Design the ISMS, implement Annex... |
+| [Legal Engineer](compliance-legal-finance/legal-engineer.md) | The Compliance Automator | Bridge law and technology. Automate compliance, encode legal requirements as code, and make regulatory compliance a b... |
+| [PCI DSS Engineer](compliance-legal-finance/pci-dss-engineer.md) | The Cardholder Data Protector | PCI DSS protects cardholder data across the payment ecosystem. Scope the cardholder data environment, implement 12 re... |
+| [Privacy Engineer](compliance-legal-finance/privacy-engineer.md) | The Privacy Guardian | Privacy is not a legal checklist — it's an engineering discipline. Build systems that respect user privacy by default... |
+| [Records Management Engineer](compliance-legal-finance/records-management-engineer.md) | The Information Lifecycle Guardian | Every piece of information has a lifecycle: create, store, retain, dispose. Manage retention schedules, ensure defens... |
+| [SOC 2 Engineer](compliance-legal-finance/soc2-engineer.md) | The Trust Services Sentinel | SOC 2 is the de facto standard for SaaS security. Design, implement, and maintain controls across the five trust serv... |
+| [Vendor Risk Engineer](compliance-legal-finance/vendor-risk-engineer.md) | The Third-Party Assessor | Every vendor is a risk vector. Assess due diligence, measure SLA compliance, identify contract risks, and track remed... |
 
 ### Content & Communication
 
 | Agent | Codename | Purpose |
 |-------|----------|---------|
-| [Technical Writer](content-communication/technical-writer.md) | The Clarifier | Documentation, API docs, runbooks, knowledge management |
-| [Content Strategist](content-communication/content-strategist.md) | The Narrative Architect | Content strategy, editorial calendar, SEO, lifecycle management |
-| [Tech Translator](content-communication/tech-translator.md) | The Clarifier | Plain-language translation of complex technical concepts |
-| [Proposal Writer](content-communication/proposal-writer.md) | The Persuasive Architect | Technical proposals, RFP responses, bid management |
-| [Localization Engineer](content-communication/localization-engineer.md) | The Global Connector | i18n/l10n, translation pipelines, RTL support, ICU formatting |
-| [Support Engineer](content-communication/support-engineer.md) | The Troubleshooter | Technical support, issue resolution, debugging, knowledge base |
-| [Visual Creator](content-communication/visual-creator.md) | The Pixel Alchemist | AI image generation, graphic design, visual assets, prompt engineering |
-| [Video Producer](content-communication/video-producer.md) | The Frame Weaver | Video production, editing, motion graphics, post-production |
+| [Content Strategist](content-communication/content-strategist.md) | The Narrative Architect | Plan, create, and manage content that attracts, educates, and converts the right audience. Every piece has a purpose,... |
+| [Localization Engineer](content-communication/localization-engineer.md) | The Global Connector | Every user deserves an experience that feels native to their language and culture. Build for the world from day one. |
+| [Proposal Writer](content-communication/proposal-writer.md) | The Persuasive Architect | Translate technical capabilities into compelling, clear, and compliant proposals that win business. |
+| [Support Engineer](content-communication/support-engineer.md) | The Troubleshooter | Every issue has a root cause. Every customer deserves a clear answer. Escalate early, document always. |
+| [Tech Translator](content-communication/tech-translator.md) | The Clarifier | Take complex technical concepts and make them understandable to any audience — without losing accuracy. |
+| [Technical Writer](content-communication/technical-writer.md) | The Clarifier | If it isn't documented, it doesn't exist. If it isn't findable, it might as well not exist. Good documentation answer... |
+| [Video Producer](content-communication/video-producer.md) | The Frame Weaver | Video is the highest-bandwidth medium. Every frame, every transition, every sound cue must serve the story. Nothing l... |
+| [Visual Creator](content-communication/visual-creator.md) | The Pixel Alchemist | Every pixel tells a story. Master AI image generation, composition, color theory, and style consistency to produce vi... |
 
 ### IT & Internal Support
 
 | Agent | Codename | Purpose |
 |-------|----------|---------|
-| [IT Support Engineer](it-support/it-support-engineer.md) | The Internal Fixer | Internal hardware, software, account management, onboarding/offboarding |
+| [IT Support Engineer](it-support/it-support-engineer.md) | The Internal Fixer | Keep the company's internal technology running so everyone else can do their work. Resolve issues quickly, document s... |
 
 ### Planning & Oversight
 
 | Agent | Codename | Purpose |
 |-------|----------|---------|
-| [Cost Estimator](planning-oversight/cost-estimator.md) | The Informed Forecaster | Engineering effort estimation, cost projection, resource planning |
-| [Risk Manager](planning-oversight/risk-manager.md) | The Risk Sentinel | Risk identification, assessment, mitigation planning, monitoring |
-| [Change Manager](planning-oversight/change-manager.md) | The Transition Guide | Organizational change management, adoption, stakeholder engagement |
-| [Vendor Manager](planning-oversight/vendor-manager.md) | The Partnership Steward | Vendor selection, contract management, performance monitoring, risk |
+| [Capacity Planner](planning-oversight/capacity-planner.md) | The Growth Forecaster | Systems grow or they die. Project resource demands, identify bottlenecks before they cause incidents, model threshold... |
+| [Change Manager](planning-oversight/change-manager.md) | The Transition Guide | Organizational change is won or lost on adoption. Ensure that changes are understood, adopted, and sustained by the p... |
+| [Cost Estimator](planning-oversight/cost-estimator.md) | The Informed Forecaster | Estimate engineering effort, cost, and timeline with transparent assumptions and calibrated confidence ranges. |
+| [Disaster Recovery Engineer](planning-oversight/disaster-recovery-engineer.md) | The Business Continuity Architect | When disaster strikes, resilience is tested. Define RTO and RPO targets, practice failover procedures, verify runbook... |
+| [Lean Engineer](planning-oversight/lean-engineer.md) | The Waste Eliminator | Lean maximizes customer value while minimizing waste. Map value streams, identify bottlenecks, eliminate handoffs, an... |
+| [OKR Coach](planning-oversight/okr-coach.md) | The Goal Aligner | OKRs connect strategic vision to daily work. Design ambitious objectives, measurable key results, and cascading goals... |
+| [Product Operations Engineer](planning-oversight/product-operations-engineer.md) | The Product System Builder | Product Ops builds the system that product teams operate within. Standardize processes, manage tools, curate insights... |
+| [Risk Manager](planning-oversight/risk-manager.md) | The Risk Sentinel | Identify, assess, and mitigate risks before they become problems. Enable informed decision-making through transparent... |
+| [Technical Debt Manager](planning-oversight/technical-debt-manager.md) | The Quality Balance Keeper | Technical debt is not inherently bad — uncontrolled debt is. Quantify, prioritize, and strategically retire debt whil... |
+| [Value Stream Mapping Specialist](planning-oversight/value-stream-mapping-specialist.md) | The Flow Visualizer | A value stream map is the X-ray of your delivery process. Map every step, every handoff, every delay — then redesign ... |
+| [Vendor Manager](planning-oversight/vendor-manager.md) | The Partnership Steward | Maximize value from vendor relationships while minimizing risk. Ensure vendors deliver on their commitments, stay wit... |
 
 ### Game Development
 
 | Agent | Codename | Purpose |
 |-------|----------|---------|
-| [Game Engineer](game-development/game-engineer.md) | The Play Crafter | Game development, engine programming, gameplay, rendering, Unity/Unreal/Godot |
+| [Game Engineer](game-development/game-engineer.md) | The Play Crafter | Games are the most demanding real-time applications. Every frame must render, every input must respond, every system ... |
 
-### Frontend Frameworks
+### Frontend Framework Specialists
 
 | Agent | Codename | Purpose |
 |-------|----------|---------|
-| [React Engineer](frontend-frameworks/react-engineer.md) | The Component Alchemist | React, Next.js, server components, state management, frontend architecture |
-| [Vue Engineer](frontend-frameworks/vue-engineer.md) | The Reactive Craftsman | Vue, Nuxt, composition API, Pinia, reactive frontend development |
+| [Angular Engineer](frontend-frameworks/angular-engineer.md) | The Reactive Architect | Angular is a framework, not a library — embrace its conventions, dependency injection, reactive streams, and module s... |
+| [React Engineer](frontend-frameworks/react-engineer.md) | The Component Alchemist | React is a paradigm, not a library. Think in components, effects, and state — not DOM operations and imperative logic. |
+| [SolidJS Engineer](frontend-frameworks/solidjs-engineer.md) | The Signal Purist | SolidJS proves reactive UI can be both fast and simple. Signals, not virtual DOM — every update goes directly to the ... |
+| [Svelte Engineer](frontend-frameworks/svelte-engineer.md) | The Reactive Minimalist | Svelte shifts the work from browser to compiler. Write less code, build faster apps, with reactive declarations and S... |
+| [Vue Engineer](frontend-frameworks/vue-engineer.md) | The Reactive Craftsman | Vue is the progressive framework — start simple, scale to complex. The reactivity system is the superpower; use it wi... |
 
 ### Database Specialists
 
 | Agent | Codename | Purpose |
 |-------|----------|---------|
-| [PostgreSQL Engineer](database-specialists/postgresql-engineer.md) | The Query Whisperer | PostgreSQL performance, query optimization, indexing, replication, migration |
-| [MongoDB Engineer](database-specialists/mongodb-engineer.md) | The Documentarian | MongoDB document modeling, aggregation pipelines, indexing, sharding, replication |
-| [Redis Engineer](database-specialists/redis-engineer.md) | The Memory Alchemist | Redis caching, data structures, eviction policies, cluster topology, persistence |
-| [Elasticsearch Engineer](database-specialists/elasticsearch-engineer.md) | The Relevance Scorer | Elasticsearch mappings, query DSL, shard strategy, cluster health, ILM policies |
-| [Cassandra Engineer](database-specialists/cassandra-engineer.md) | The Ring Guardian | Cassandra data modeling, CQL, consistency tuning, cluster topology, anti-entropy repair |
-| [Pinecone Engineer](database-specialists/pinecone-engineer.md) | The Vector Alchemist | Pinecone vector search, pod sizing, metadata filtering, hybrid search, embedding strategy |
-| [Qdrant Engineer](database-specialists/qdrant-engineer.md) | The Vector Sculptor | Qdrant vector search, HNSW tuning, quantization strategies, payload indexing, segment optimization |
-| [Neo4j Engineer](database-specialists/neo4j-engineer.md) | The Relationship Mapper | Neo4j graph modeling, Cypher queries, traversal optimization, graph algorithms |
-| [InfluxDB Engineer](database-specialists/influxdb-engineer.md) | The Temporal Weaver | InfluxDB time-series design, Flux queries, cardinality management, downsampling, retention policies |
+| [Cassandra Engineer](database-specialists/cassandra-engineer.md) | The Ring Guardian | Cassandra is a distributed wide-column store with no single point of failure. Design for partition tolerance, tune fo... |
+| [CockroachDB Engineer](database-specialists/cockroachdb-engineer.md) | The Resilient Operator | CockroachDB is PostgreSQL-compatible distributed SQL built for survivability. Design for multi-region resilience, geo... |
+| [Couchbase Engineer](database-specialists/couchbase-engineer.md) | The Memory-First Data Guardian | Couchbase combines document flexibility with key-value speed and SQL-like querying. Design for memory-first performan... |
+| [DynamoDB Engineer](database-specialists/dynamodb-engineer.md) | The Partition Key Architect | DynamoDB is serverless NoSQL at scale. Design tables around access patterns, not relationships. Master partitions, GS... |
+| [Elasticsearch Engineer](database-specialists/elasticsearch-engineer.md) | The Relevance Scorer | Elasticsearch is the world's most popular search engine and observability platform. Every query must return relevant ... |
+| [Firestore Engineer](database-specialists/firestore-engineer.md) | The Real-Time Sync Master | Firestore is a flexible, scalable NoSQL document database with real-time sync. Design collections, subcollections, an... |
+| [InfluxDB Engineer](database-specialists/influxdb-engineer.md) | The Temporal Weaver | InfluxDB is the leading time-series database purpose-built for IoT, observability, and real-time analytics. Every nan... |
+| [Milvus Engineer](database-specialists/milvus-engineer.md) | The Vector Indexer | Milvus is the leading open-source vector database for AI applications. Design indexes, partitioning, and sharding str... |
+| [MongoDB Engineer](database-specialists/mongodb-engineer.md) | The Documentarian | MongoDB is the leading document database. Design schemas for query patterns, not storage convenience. Every document ... |
+| [MySQL Engineer](database-specialists/mysql-engineer.md) | The Relational Guardian | MySQL powers the majority of the web. Master its storage engines, query optimization, replication topologies, and con... |
+| [Neo4j Engineer](database-specialists/neo4j-engineer.md) | The Relationship Mapper | Neo4j is the world's leading graph database. Relationships are first-class citizens — every traversal is a story, eve... |
+| [Pinecone Engineer](database-specialists/pinecone-engineer.md) | The Vector Alchemist | Pinecone is the leading managed vector database for production AI. Transform unstructured data into semantic vectors,... |
+| [PostgreSQL Engineer](database-specialists/postgresql-engineer.md) | The Query Whisperer | PostgreSQL is the world's most advanced open-source relational database. Wield its power wisely — every query plan, e... |
+| [Qdrant Engineer](database-specialists/qdrant-engineer.md) | The Vector Sculptor | Qdrant is the open-source vector database built in Rust. It delivers high-performance similarity search with rich fil... |
+| [Redis Database Engineer](database-specialists/redis-engineer.md) | The Memory Alchemist | Redis is the world's fastest data structure server. Every millisecond of latency is a design choice — choose wisely, ... |
+| [SQLite Engineer](database-specialists/sqlite-engineer.md) | The Zero-Config Keeper | SQLite is everywhere — mobile, desktop, embedded, edge. Understand its concurrency model, WAL mode, extensions, and o... |
 
-### Cloud Providers
+### Additional Cloud Providers
 
 | Agent | Codename | Purpose |
 |-------|----------|---------|
-| [Oracle Cloud Engineer](cloud-providers/oracle-cloud-engineer.md) | The Enterprise Cloud Architect | OCI infrastructure, Autonomous DB, Exadata, enterprise cloud architecture |
-
----
+| [Cloudflare Engineer](cloud-providers/cloudflare-engineer.md) | The Edge Optimizer | Cloudflare is the world's largest edge network. Secure, accelerate, and build on the edge — Workers, R2, D1, Durable ... |
+| [Oracle Cloud Engineer](cloud-providers/oracle-cloud-engineer.md) | The Enterprise Cloud Architect | Oracle Cloud Infrastructure is built for enterprise workloads. Design for high availability, regulatory compliance, a... |
 
 ## 6. How Agents Communicate: Handoff Protocol
 
@@ -827,13 +1092,13 @@ Product Manager ──→ Business Analyst ──→ Architect ──→ Develop
 
 ## 7. How to Create a New Agent
 
-> **⚠️ Before creating a new agent: Check the 144 existing profiles first. 99% of roles are already covered. Only create if no existing profile fits.**
+> **⚠️ Before creating a new agent: Check the 332 existing profiles first. 99% of roles are already covered. Only create if no existing profile fits.**
 
 ### Step 1: Verify the Gap
 
-Is there a domain or expertise **not covered** by the 144 existing profiles?
+Is there a domain or expertise **not covered** by the 332 existing profiles?
 
-- Check all 20 categories in [Section 5](#5-complete-agent-roster)
+- Check all 22 categories in [Section 5](#5-complete-agent-roster)
 - Fetch and read at least 3 profiles from the closest-matching category
 - Confirm: no existing agent has this role, responsibility, or domain
 
@@ -950,7 +1215,7 @@ description: "Establishes the multi-agent system at session start. Orchestrator 
 1. Give `skill.md` to your AI at the start of EVERY chat session
 2. The AI becomes the **Orchestrator** — routing tasks to specialists
 3. The AI auto-analyzes your project and selects the right agents
-4. The AI loads agents from the repo by task, not by keeping all 144 in context
+4. The AI loads agents from the repo by task, not by keeping all 332 in context
 5. The AI delegates specialized work instead of doing everything itself
 
 This is the single most important file for users who want the multi-agent system to work properly in every session.
@@ -961,16 +1226,16 @@ The file **[`skill.md`](skill.md)** at the repository root is a ready-to-use ski
 
 ```yaml
 name: "select-deploy-agents"
-description: "Analyze any project and select the right agents from the 144 pre-built profiles"
+description: "Analyze any project and select the right agents from the 332 pre-built profiles"
 ```
 
 **How to use it:**
 1. Load `skill.md` into any AI agent
-2. The AI will analyze your project and **select** the matching agents from the 144 existing profiles
+2. The AI will analyze your project and **select** the matching agents from the 332 existing profiles
 3. It presents the recommended roster for your confirmation
 4. It only generates a new profile if no existing one covers the role
 
-The primary goal is **selection**, not generation. The 144 profiles are the library.
+The primary goal is **selection**, not generation. The 332 profiles are the library.
 
 ---
 
@@ -1182,7 +1447,7 @@ Try this pattern:
 
 ### Step 3: Add a New Agent (If Genuinely Needed)
 
-Found a gap not covered by the 144 existing profiles? Follow [How to Create a New Agent](#7-how-to-create-a-new-agent). But first verify — 99% of roles already exist.
+Found a gap not covered by the 332 existing profiles? Follow [How to Create a New Agent](#7-how-to-create-a-new-agent). But first verify — 99% of roles already exist.
 
 ### Step 4: Create Your First Skill
 

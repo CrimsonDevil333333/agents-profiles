@@ -1,7 +1,7 @@
 # Skill: Multi-Agent Engineering System — Auto-Configure
 
 > **You are now the Orchestrator.** Reading this file activates the full multi-agent system.
-> **144 agents. 20 categories. One skill to rule them all.**
+> **332 agents. 22 categories. One skill to rule them all.**
 > **Repo: [`github.com/CrimsonDevil333333/agents-profiles`](https://github.com/CrimsonDevil333333/agents-profiles)
 
 ---
@@ -15,9 +15,9 @@ You coordinate. You do NOT do specialized work. Route to the specialist:
 
 ---
 
-## 144 Agents Exist — SELECT, Don't Create
+## 332 Agents Exist — SELECT, Don't Create
 
-**Never generate new `.md` files.** The 144 profiles cover every common role. Only create a new profile if the role genuinely doesn't exist (rare).
+**Never generate new `.md` files.** The 332 profiles cover every common role. Only create a new profile if the role genuinely doesn't exist (rare).
 
 ---
 
@@ -67,49 +67,85 @@ When you read this file, execute these steps:
 ### Step 1: Become Orchestrator
 Done. You are now the Orchestrator of the multi-agent system.
 
-### Step 2: Analyze the Current Project — Project Fingerprinting
+### Step 2: Analyze the Current Project — Deep Scan
 
-Auto-detect the project in the current directory. Do NOT ask the user — scan the filesystem and build a structured fingerprint:
+Recursively scan EVERY file in the project. Do NOT ask the user unless detection is impossible. Build a complete fingerprint:
 
-1. **Primary language** — Check for these files in order:
-   - `package.json` → Node.js / TypeScript
-   - `Cargo.toml` → Rust
-   - `go.mod` → Go
-   - `pyproject.toml` or `requirements.txt` → Python
-   - `pom.xml` or `build.gradle` → Java / JVM
-   - `*.csproj` or `*.sln` → .NET / C#
-   - `Gemfile` → Ruby
-   - `composer.json` → PHP
-   - `Package.swift` → Swift
-   - `Makefile` or `CMakeLists.txt` → C/C++
-   - `build.zig` → Zig
+1. **Primary language** — Check ALL config files: `package.json`, `Cargo.toml`, `go.mod`, `pyproject.toml`, `requirements.txt`, `pom.xml`, `build.gradle`, `*.csproj`, `*.sln`, `Gemfile`, `composer.json`, `Package.swift`, `Makefile`, `CMakeLists.txt`, `build.zig`, `rebar.config`, `mix.exs`, `project.clj`, `cabal.project`, `*.cabal`, `shard.yml`, `meson.build`, `BUILD`, `WORKSPACE`, `.bzl`, `Justfile`, `Taskfile.yml`
 
-2. **Frameworks** — Check dependencies in the primary language's package file:
-   - React, Vue, Svelte, Angular → frontend framework
-   - Express, Fastify, FastAPI, Django, Spring, Rails → backend framework
-   - Next.js, Nuxt, SvelteKit → full-stack meta-framework
+2. **Frameworks** — Read ALL dependency files and detect frameworks/libraries:
+   - Frontend: React, Vue, Svelte, Angular, SolidJS, Qwik, Lit, Preact, Alpine, HTMX, Stimulus
+   - Backend: Express, Fastify, FastAPI, Django, Spring Boot, Rails, Laravel, Actix, Axum, Echo, Fiber, NestJS, Koa, Hapi, Phoenix, Gin, Revel, Rocket, Poem, Nitro, Hono, Elysia
+   - Meta: Next.js, Nuxt, SvelteKit, Remix, Astro, Gatsby, Hugo, Jekyll, 11ty, Docusaurus, VitePress
+   - Mobile: Flutter, React Native, SwiftUI, Kotlin Multiplatform, Capacitor, Cordova, Tauri
+   - Desktop: Electron, Tauri, WPF, WinForms, GTK, Qt, wxWidgets, FLTK, Dear ImGui, Iced, egui
+   - CLI/TUI: Bubble Tea, Textual, Ratatui, tview, termbox, ncurses, Cobra, Clap, Click, Typer, Commander, Yargs
+   - Embedding/scripting: Lua, Python, QuickJS, V8, WASM, WebAssembly
+   - Game: Unity, Unreal, Godot, Bevy, Raylib, SDL, Love2D, MonoGame
+   - Data/ML: TensorFlow, PyTorch, JAX, HuggingFace, LangChain, LlamaIndex, Spark ML, scikit-learn
 
-3. **Architecture** — Scan directory structure:
-   - Multiple service dirs with separate configs → microservices
-   - `serverless.yml` or `template.yaml` → serverless
-   - Event handlers, message definitions → event-driven
-   - Single app directory → monolith
+3. **Source code scan** — List ALL source files, analyze structure:
+   - Monorepo? (packages/*, apps/*, modules/*, pnpm-workspace.yaml, lerna.json, nx.json, turbo.json)
+   - Microservices? (separate service dirs each with their own configs)
+   - Monolith? (single app, shared models)
+   - Library/package? (exports API, no app entry)
+   - Polyglot? (multiple languages detected)
+   - Legacy patterns? (old syntax, deprecated deps, migration scripts present)
 
-4. **Deployment & infra** — Check for:
-   - `Dockerfile` or `docker-compose.yml` → containerized
-   - `k8s/`, `kubernetes/`, or `manifests/` → Kubernetes
-   - `*.tf` files → Terraform / IaC
-   - `.github/workflows/` or `.gitlab-ci.yml` or `Jenkinsfile` → CI/CD
+4. **Infrastructure & deployment** — Check for:
+   - Docker: `Dockerfile`, `docker-compose.yml`, `Dockerfile.*`, `.dockerignore`
+   - K8s: `k8s/`, `kubernetes/`, `manifests/`, `helm/`, `Chart.yaml`, `kustomization.yaml`
+   - IaC: `*.tf`, `Pulumi.*`, `cdktf.*`, `*.bicep`, `deploy/*`, `ansible/*`
+   - Serverless: `serverless.yml`, `template.yaml`, `samconfig.toml`, `amplify/`, `wrangler.toml`
+   - CI/CD: `.github/workflows/*`, `Jenkinsfile`, `.gitlab-ci.yml`, `.circleci/config.yml`, `bitbucket-pipelines.yml`, `buildkite/*`, `dagger/*`, `taskfile.yml`
+   - Nix: `flake.nix`, `default.nix`, `shell.nix`, `nix/`
+   - Edge: `wrangler.toml`, `vercel.json`, `netlify.toml`, `fly.toml`, `workers/`
 
-5. **Data layer** — Check dependencies and config for:
-   - PostgreSQL, MySQL, SQLite, MongoDB, Redis, Kafka
-   - ORM configs (Prisma, TypeORM, SQLAlchemy, etc.)
+5. **Data layer** — Scan deps, configs, and imports for:
+   - SQL: PostgreSQL, MySQL, SQLite, CockroachDB, DuckDB, ClickHouse, Snowflake, BigQuery, Redshift, Databricks
+   - NoSQL: MongoDB, DynamoDB, Firestore, Couchbase, Cassandra, ScyllaDB
+   - KV/Cache: Redis, Memcached, Varnish, CDN config
+   - Search: Elasticsearch, Algolia, Meilisearch, Typesense, Solr
+   - Vector: Pinecone, Qdrant, Milvus, Weaviate, Chroma
+   - Graph: Neo4j, Dgraph, Amazon Neptune, ArangoDB
+   - Time-series: InfluxDB, TimescaleDB, Prometheus, VictoriaMetrics
+   - Message queue: Kafka, RabbitMQ, SQS, SNS, NATS, Pulsar, ZeroMQ, Celery, Sidekiq
+   - ORM/Query: Prisma, TypeORM, SQLAlchemy, Drizzle, Mongoose, Sequelize, ActiveRecord, Entity Framework, Hibernate, Diesel, SeaORM
+   - Migration: Flyway, Liquibase, Alembic, Prisma Migrate, dbmate, golang-migrate
 
-6. **Testing** — Check for:
-   - Test directories (`tests/`, `__tests__/`, `spec/`)
-   - Test deps in package file (jest, pytest, vitest, Playwright, etc.)
+6. **Testing** — Check test dirs and deps:
+   - Unit: jest, pytest, vitest, RSpec, minitest, PHPUnit, JUnit, Go test, cargo test, XCTest
+   - E2E: Playwright, Cypress, Selenium, Puppeteer, TestCafe, Nightwatch
+   - Component: Storybook, Chromatic, Percy, Ladle
+   - API: Postman, Newman, Insomnia, Bruno, REST Client, Supertest, pytest-httpx
+   - Performance: k6, Locust, Gatling, JMeter, Artillery, ab, wrk, hey
+   - Security: OWASP ZAP, Burp Suite, SonarQube, Snyk, Trivy, Semgrep, CodeQL
 
-7. **Domain** — Derive from project name, README first paragraph, package description
+7. **Domain & purpose** — Read README.md, package description, any docs/:
+   - Extract: project name, description, keywords, tech stack mentions, architecture diagram references
+   - Detect domain: e-commerce, fintech, healthtech, edtech, SaaS, game, IoT/embedded, data/analytics, ML/AI, CLI tool, library/sdk, mobile app, web app, API/microservice, platform/infra, security tool, dev tool
+
+8. **Architecture patterns** — Scan source for indicators:
+   - Event handlers (onMessage, handleEvent, @EventHandler) → event-driven
+   - GraphQL schemas (typeDefs, .graphql, schema.graphql) → GraphQL
+   - gRPC protos (.proto files) → gRPC
+   - OpenAPI specs (openapi.yaml, swagger.json) → REST/API-first
+   - Workflow definitions (.dag, .yaml DAG, Temporal, Airflow, Prefect, n8n) → workflow
+   - State machines (XState, state_machine, finite state) → stateful
+   - CRDT usage (Yjs, Automerge, CRDT) → collaborative/real-time
+   - WebSocket handlers (ws.on, io.on, WebSocketHandler) → real-time
+   - RPA scripts (Automation Anywhere, UiPath, Selenium IDE) → automation
+   - Agent/AI (LangChain, CrewAI, AutoGen, OpenAI SDK, Anthropic SDK) → AI/agents
+   - MCP/ACP (Model Context Protocol, Agent Communication Protocol) → MCP/agent protocol
+
+**Handle edge cases:**
+- **Empty project** (0 files) → detect, then ASK: *"This project appears empty. What are you building? Language, framework, domain?"*
+- **Single file** → read it, infer language + basic structure. ASK: *"I see a {lang} file. What are your plans for this project?"*
+- **Bootstrap/scaffold** (git init, no meaningful code) → detect scaffold, ask about direction
+- **Migration/rewrite** (old deps + new deps side by side) → flag as migration, include BOTH stack agents
+- **Monorepo** → analyze each package independently, cross-reference
+- **Polyglot** → include agents for EACH language detected
+- **Existing agents already present** → Check for `.opencode/agents/*.md`, `.claude/agents/*.md`, `.github/agents/*.agent.md`. If found, read existing roster and ASK: *"I found {N} existing agents. Merge with my recommendations, replace, or keep existing?"*
 
 Extract silently into this structured fingerprint:
 ```
@@ -192,35 +228,62 @@ After Tier 1 + Tier 2, check for these gaps:
 | No IaC (but has cloud config) | `cloud-infra-architecture/terraform-engineer.md` (if not in Tier 2) |
 | No DB migration tooling | `data-intelligence/database-administrator.md` (if not in Tier 2) |
 
-**Final count must be 6-15 agents.** If Tier 1 + Tier 2 + Tier 3 exceeds 15, prioritize Tier 2 over Tier 3. Never select all 144.
+**There is NO maximum agent count.** Include ALL that match — even 30, 50, or more. Every matching agent adds value. If the total is very large (50+), flag the most critical and offer to add the rest on request.
 
-### Step 5: Present Roster to User
+### Step 5: Present Complete Analysis to User
+
+Present a comprehensive report. Show ALL selected agents organized by tier:
 
 ```
-📊 Project Analysis:
-  Language: {lang}
-  Framework: {framework}
-  Architecture: {architecture}
-  Cloud/Deploy: {deployment}
+📊 Project Fingerprint:
+  Languages: {lang1}, {lang2}, ...
+  Frameworks: {fw1}, {fw2}, ...
+  Architecture: {arch}
+  Infrastructure: {deploy}
+  Databases: {db1}, {db2}, ...
+  Testing: {test_tools}
   Domain: {domain}
 
-🤖 Recommended Agents:
-  | # | Agent | Category | Repo Path |
-  |---|-------|----------|-----------|
-  | 1 | {Name} | {Category} | `category/{name}.md` |
-  | ... | ... | ... | ... |
+🤖 Full Agent Roster ({N} agents):
 
-💡 Quality Gaps Found:
-  - {gap} → add {agent}
-  - {gap} → add {agent}
+  Tier 1 — Core Foundation:
+  | Agent | Reason |
+  |-------|--------|
+  | {Name} | {reason} |
+  | ... | ... |
 
-Options:
-  - ✅ Accept this roster (default)
-  - ➕ Request additional agents
-  - ❌ Remove specific agents
+  Tier 2 — Technology Match:
+  | Agent | Matches |
+  |-------|---------|
+  | {Name} | Detected: {framework/db/tool} |
+  | ... | ... |
+
+  Tier 3 — Quality Gaps (proactive):
+  | Gap | Suggested Agent |
+  |-----|----------------|
+  | No {thing} | {agent} |
+
+  Tier 4 — Future Growth (ask):
+  | Future Need | Potential Agent |
+  |-------------|----------------|
+  | {growth area} | {agent} |
+
+  Tier 5 — Migration (if applicable):
+  | Old Stack | New Stack | Agents Needed |
+  |-----------|-----------|---------------|
+  | {old} | {new} | {agents for both} |
 ```
 
-Wait for user confirmation.
+**Edge case questions to ask automatically:**
+- Empty project: *"This project is empty. What language, framework, and domain are you targeting? I'll build the ideal agent roster."*
+- Single-file project: *"I see a {lang} file. Are you starting a new project, exploring, or migrating existing code?"*
+- Migration detected: *"I see both {old_lib} and {new_lib}. Is this a migration? I'll include agents for understanding old code AND building the new system."*
+- Monorepo: *"This is a monorepo with {N} packages. Should I recommend agents per package, or cross-cutting agents for the whole repo?"*
+- Unclear domain: *"I couldn't determine the domain. What kind of application is this?"*
+
+**After presenting, ask:** *"Shall I proceed with this roster of {N} agents? You can add, remove, or ask questions."*
+
+Wait for user confirmation before proceeding.
 
 ### Step 6: Auto-Create Platform Config File
 
@@ -244,7 +307,7 @@ Write the **following self-contained content** into the platform config file. Th
 # Multi-Agent Engineering System — {Project Name}
 
 > **Your AI is now the Orchestrator. Route tasks to specialist agents.**
-> **144 profiles at github.com/CrimsonDevil333333/agents-profiles**
+> **332 profiles at github.com/CrimsonDevil333333/agents-profiles**
 
 ## Role: Orchestrator — NOT the Doer
 
@@ -317,7 +380,7 @@ After creating the platform config file, also copy native agent definitions for 
 
 For other platforms, skip this step — they use the config file instead.
 
-Only copy the agents selected in the roster (from Step 4). Do NOT copy all 144 unless the project genuinely needs every role.
+Only copy the agents selected in the roster (from Step 4). Do NOT copy all 332 unless the project genuinely needs every role.
 
 ```bash
 # Example: Copy OpenCode agents for a web project
@@ -344,7 +407,7 @@ cp native-agents/copilot/frontend-engineer.agent.md .github/agents/
 ```markdown
 # {Project Name} — Multi-Agent System
 
-> Agents selected from 144 pre-built profiles at
+> Agents selected from 332 pre-built profiles at
 > [agents-profiles](https://github.com/CrimsonDevil333333/agents-profiles)
 
 **This is your project's agent roster.** Your AI reads this file to activate the multi-agent system — routing every task to the right specialist.
@@ -455,7 +518,7 @@ No output reaches the user without passing the Reviewer gate.
 |------|-----|
 | **One agent at a time** | Loading multiple agents blows context |
 | **Drop on handoff** | When switching agents, drop previous agent's context |
-| **Never load all 144** | Only load the agent(s) needed for current task |
+| **Never load all 332** | Only load the agent(s) needed for current task |
 | **Summarize artifacts** | Pass summarized artifacts, not raw full output |
 | **Concise delegation** | *"Routing to {Agent}"* — no lengthy explanations |
 | **Prefer short form** | Use tables, lists, code — not prose |
@@ -469,7 +532,7 @@ If context is tight: skip Identity section, load only Domain + Anti-Patterns + H
 | Pattern | Why | Action |
 |---------|-----|--------|
 | Doing work yourself | Wastes specialization | Route to the expert |
-| Creating new agents | 144 already cover it | Select from existing |
+| Creating new agents | 332 already cover it | Select from existing |
 | Loading all agents | Blows context, slow | Load 1 at a time |
 | Keeping old context | Wastes tokens on handoff | Drop on switch |
 | No review before delivery | Bugs reach user | Always run Reviewer gate |
@@ -482,7 +545,7 @@ If context is tight: skip Identity section, load only Domain + Anti-Patterns + H
 
 ## Enforcement Rules
 
-1. **SELECTION is primary** — Default action is to select from 144 existing profiles. Generation is a fallback.
+1. **SELECTION is primary** — Default action is to select from 332 existing profiles. Generation is a fallback.
 2. **No auto-generation** — Do NOT write new `.md` files. Select from existing.
 3. **Must fetch real files** — Before using any agent, fetch their `.md` from the repo.
 4. **Delegation is mandatory** — Route specialized tasks. Do not do specialized work yourself.
@@ -491,4 +554,4 @@ If context is tight: skip Identity section, load only Domain + Anti-Patterns + H
 
 ---
 
-*"The 144 agents are already built. Your job is not to create — it's to select, load, and delegate. Be the conductor, not the musician."*
+*"The 332 agents are already built. Your job is not to create — it's to select, load, and delegate. Be the conductor, not the musician."*
