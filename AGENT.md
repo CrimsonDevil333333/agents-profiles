@@ -6,7 +6,7 @@
 
 ## What This Repo Is
 
-A collection of **332 structured role description files** (`.md`), each defining a specialized engineering agent. Together they form a complete multi-agent engineering organization covering every domain of modern software development.
+A collection of **340 structured role description files** (`.md`), each defining a specialized engineering agent. Together they form a complete multi-agent engineering organization covering every domain of modern software development.
 
 ## Directory Layout
 
@@ -41,16 +41,16 @@ A collection of **332 structured role description files** (`.md`), each defining
 | `design-architecture/` | 12 | Architect, Sol Arch, Designer, UX, Researcher, Workflow, Enterprise, Domain, Security, Mobile, Event-Driven, Info |
 | `system-extensibility/` | 6 | Agent Builder, Skill Creator, MCP, Prompt, Knowledge, Evaluator |
 | `language-specific/` | 35 | Node, Python, Rust, Go, Java, PHP, Ruby, .NET, C/C++, Zig, Swift, Scala, Kotlin, TS, R, Elixir, Haskell, Dart, Lua, Erlang, Julia, Clojure, OCaml/F#, Mainframe, Perl, Nim, Crystal, Mojo, D, Ada/SPARK, Scheme/Racket, Prolog, Fortran, V, Odin |
-| `engineering-dev/` | 42 | Frontend, Mobile, iOS, Android, Embedded, Backend, Dev, Reviewer, Automation, Flutter, CSS/DS, Desktop, RN, WebGL/3D, BFF, IoT, MERN, MEAN, JAMstack, LAMP, ELK, Full-Stack, TALL, Serverless Stack, Express, FastAPI, Django, Spring Boot, NestJS, Rails, Laravel, Next.js, Nuxt, Actix/Axum, Echo/Fiber, Microservices, CQRS/ES, Caching, Message Queue, WebSocket/RT, Streaming Pipeline, Edge Compute |
+| `engineering-dev/` | 46 | Frontend, Mobile, iOS, Android, Embedded, Backend, Dev, Reviewer, Automation, Flutter, CSS/DS, Desktop, RN, WebGL/3D, BFF, IoT, MERN, MEAN, JAMstack, LAMP, ELK, Full-Stack, TALL, Serverless Stack, Express, FastAPI, Django, Spring Boot, NestJS, Rails, Laravel, Next.js, Nuxt, Actix/Axum, Echo/Fiber, Microservices, CQRS/ES, Caching, Message Queue, WebSocket/RT, Streaming Pipeline, Edge Compute, Dependency Manager, Commit Message Generator, Pre-commit Auditor, Code Style Enforcer |
 | `testing-quality/` | 9 | Tester, QA, E2E, Performance, Pen Tester, Visual, API, Mobile, Security Testing |
 | `cloud-infra-architecture/` | 9 | Cloud Arch, AWS, Azure, GCP, Terraform, Pulumi, Serverless, Cloud Migration, HashiCorp |
 | `infrastructure-ops/` | 20 | DevOps, SRE, Platform, Network, Chaos, K8s, ArgoCD, Helm, Service Mesh, DBRE, CI/CD, Edge, Ops, Ansible, Docker, GitOps, Nix, Virtualization, WASM, Redis |
 | `data-intelligence/` | 34 | Data Eng, Arch, Analytics, Sci, AI, LLM, ML, DL, MLOps, DQ, DBA, Kafka, BI, Scientific, DuckDB, ClickHouse, Snowflake, BigQuery, Redshift, Databricks, Supabase, Gov, Feature Store, NLP, CV, RAG, Orchestration, Platform, Product, Bioinformatics, Data Lake, ETL/ELT, Real-Time Analytics, Feature Flag |
 | `specialized-engineering/` | 53 | API, Integration, Migration, Security, DevSecOps, IAM, Incident Response, Data Protection, Observability, Release, AppSec, SOC, Secrets, Blockchain, Temporal, Cloud Sec, K8s Sec, Supply Chain, Threat Model, Zero Trust, SIEM, Forensics, Red Team, GraphQL, gRPC, Real-Time, AI Safety, Quantum, AR/VR, Robotics, Firebase, Vercel/Edge, Stripe/Payments, Auth, Algolia/Search, Observability Platform, GPU/CUDA, FPGA, RISC-V, WebGPU, RTOS/FW, Reverse Eng, Crypto, E-commerce, FinTech, HealthTech, Game Server, Geospatial, Payment Integration, LLMOps, LegalTech, EdTech, AdTech |
 | `compliance-legal-finance/` | 16 | Compliance, Legal, Accessibility, FinOps, Privacy, SOC2, HIPAA, PCI, GDPR, FedRAMP, Audit, ISO27001, Data Breach, Vendor Risk, AI Gov, Records Mgmt |
-| `content-communication/` | 8 | Tech Writer, Content Strategist, Translator, Proposal, Localization, Support, Visual Creator, Video Producer |
+| `content-communication/` | 10 | Tech Writer, Content Strategist, Translator, Proposal, Localization, Support, Visual Creator, Video Producer, Documentation Updater, Changelog Manager |
 | `it-support/` | 1 | IT Support |
-| `planning-oversight/` | 11 | Cost Estimator, Risk, Change, Vendor, Tech Debt, Lean, VSM, OKR Coach, Product Ops, DR, Capacity Planner |
+| `planning-oversight/` | 13 | Cost Estimator, Risk, Change, Vendor, Tech Debt, Lean, VSM, OKR Coach, Product Ops, DR, Capacity Planner, Implementation Plan Generator, Progress Tracker |
 | `game-development/` | 1 | Game Engineer |
 | `frontend-frameworks/` | 5 | React, Vue, Angular, Svelte, SolidJS |
 | `database-specialists/` | 16 | PostgreSQL, MongoDB, Redis DB, Elasticsearch, Cassandra, Pinecone, Qdrant, Neo4j, InfluxDB, MySQL, SQLite, CockroachDB, DynamoDB, Firestore, Milvus, Couchbase |

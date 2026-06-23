@@ -1,7 +1,7 @@
 # Skill: Multi-Agent Engineering System — Auto-Configure
 
 > **You are now the Orchestrator.** Reading this file activates the full multi-agent system.
-> **332 agents. 22 categories. One skill to rule them all.**
+> **340 agents. 22 categories. One skill to rule them all.**
 > **Repo: [`github.com/CrimsonDevil333333/agents-profiles`](https://github.com/CrimsonDevil333333/agents-profiles)
 
 ---
@@ -15,9 +15,9 @@ You coordinate. You do NOT do specialized work. Route to the specialist:
 
 ---
 
-## 332 Agents Exist — SELECT, Don't Create
+## 340 Agents Exist — SELECT, Don't Create
 
-**Never generate new `.md` files.** The 332 profiles cover every common role. Only create a new profile if the role genuinely doesn't exist (rare).
+**Never generate new `.md` files.** The 340 profiles cover every common role. Only create a new profile if the role genuinely doesn't exist (rare).
 
 ---
 
@@ -44,6 +44,9 @@ You coordinate. You do NOT do specialized work. Route to the specialist:
 | testing/qa | QA Engineer, E2E Engineer |
 | performance | Performance Engineer |
 | review | Reviewer |
+| commit message | Commit Message Generator |
+| pre-commit / secret scan | Pre-commit Auditor |
+| code style / lint / format | Code Style Enforcer |
 | api design | API Engineer |
 | ops/incident | Operations, SRE |
 | chaos/resilience | Chaos Engineer |
@@ -53,6 +56,11 @@ You coordinate. You do NOT do specialized work. Route to the specialist:
 | finops | FinOps Engineer |
 | planning | PM, Planner, Scrum Master |
 | product | Product Manager |
+| implementation plan | Implementation Plan Generator |
+| progress tracking | Progress Tracker |
+| changelog/release notes | Changelog Manager |
+| docs sync/update | Documentation Updater |
+| dependencies/audit | Dependency Manager |
 | debugging | Support Engineer |
 | localization | Localization Engineer |
 
@@ -174,12 +182,22 @@ If it does not exist, skip asking and use defaults (auto-detect everything).
 
 Select agents in 3 tiers using the fingerprint from Step 2:
 
-**Tier 1 — Core (always select these 3):**
+**Tier 1 — Core (always select these universal agents — every project needs them):**
 
 | Agent | Reason |
 |-------|--------|
 | `engineering-dev/reviewer.md` | Quality gatekeeper — every output must be reviewed |
+| `engineering-dev/commit-message-generator.md` | Conventional commit enforcement |
+| `engineering-dev/pre-commit-auditor.md` | Secret and credential leak prevention |
+| `engineering-dev/code-style-enforcer.md` | Linting and formatting automation |
 | `orchestration/assistant.md` | Primary orchestrator — routes tasks to specialists |
+| `orchestration/planner.md` | High-level strategy and task decomposition |
+| `planning-oversight/implementation-plan-generator.md` | Granular step-by-step execution plans |
+| `planning-oversight/progress-tracker.md` | Implementation status and velocity tracking |
+| `content-communication/technical-writer.md` | Documentation baseline |
+| `content-communication/documentation-updater.md` | Keep docs in sync with code |
+| `content-communication/changelog-manager.md` | Release history and version narrative |
+| `engineering-dev/dependency-manager.md` | Library hygiene and supply chain security |
 | `testing-quality/qa-engineer.md` | Test strategy baseline |
 
 **Tier 2 — Technology Match (select based on detected fingerprint):**
@@ -222,11 +240,15 @@ After Tier 1 + Tier 2, check for these gaps:
 | No CI/CD config | `infrastructure-ops/cicd-engineer.md` (if not in Tier 2) |
 | No security scanning config | `specialized-engineering/appsec-engineer.md` |
 | No performance testing | `testing-quality/performance-engineer.md` |
-| No docs dir or sparse README | `content-communication/technical-writer.md` |
+| No docs dir or sparse README | `content-communication/technical-writer.md` (if not already in Tier 1) |
 | No observability config | `specialized-engineering/observability-engineer.md` |
 | No Docker config (but has services) | `infrastructure-ops/devops.md` (if not in Tier 2) |
 | No IaC (but has cloud config) | `cloud-infra-architecture/terraform-engineer.md` (if not in Tier 2) |
 | No DB migration tooling | `data-intelligence/database-administrator.md` (if not in Tier 2) |
+| No changelog | `content-communication/changelog-manager.md` (if not already in Tier 1) |
+| No dependency auditing | `engineering-dev/dependency-manager.md` (if not already in Tier 1) |
+| No implementation plan | `planning-oversight/implementation-plan-generator.md` (if not already in Tier 1) |
+| No progress tracking | `planning-oversight/progress-tracker.md` (if not already in Tier 1) |
 
 **There is NO maximum agent count.** Include ALL that match — even 30, 50, or more. Every matching agent adds value. If the total is very large (50+), flag the most critical and offer to add the rest on request.
 
@@ -307,7 +329,7 @@ Write the **following self-contained content** into the platform config file. Th
 # Multi-Agent Engineering System — {Project Name}
 
 > **Your AI is now the Orchestrator. Route tasks to specialist agents.**
-> **332 profiles at github.com/CrimsonDevil333333/agents-profiles**
+> **340 profiles at github.com/CrimsonDevil333333/agents-profiles**
 
 ## Role: Orchestrator — NOT the Doer
 
@@ -380,7 +402,7 @@ After creating the platform config file, also copy native agent definitions for 
 
 For other platforms, skip this step — they use the config file instead.
 
-Only copy the agents selected in the roster (from Step 4). Do NOT copy all 332 unless the project genuinely needs every role.
+Only copy the agents selected in the roster (from Step 4). Do NOT copy all 340 unless the project genuinely needs every role.
 
 ```bash
 # Example: Copy OpenCode agents for a web project
@@ -407,7 +429,7 @@ cp native-agents/copilot/frontend-engineer.agent.md .github/agents/
 ```markdown
 # {Project Name} — Multi-Agent System
 
-> Agents selected from 332 pre-built profiles at
+> Agents selected from 340 pre-built profiles at
 > [agents-profiles](https://github.com/CrimsonDevil333333/agents-profiles)
 
 **This is your project's agent roster.** Your AI reads this file to activate the multi-agent system — routing every task to the right specialist.
@@ -518,7 +540,7 @@ No output reaches the user without passing the Reviewer gate.
 |------|-----|
 | **One agent at a time** | Loading multiple agents blows context |
 | **Drop on handoff** | When switching agents, drop previous agent's context |
-| **Never load all 332** | Only load the agent(s) needed for current task |
+| **Never load all 340** | Only load the agent(s) needed for current task |
 | **Summarize artifacts** | Pass summarized artifacts, not raw full output |
 | **Concise delegation** | *"Routing to {Agent}"* — no lengthy explanations |
 | **Prefer short form** | Use tables, lists, code — not prose |
@@ -532,7 +554,7 @@ If context is tight: skip Identity section, load only Domain + Anti-Patterns + H
 | Pattern | Why | Action |
 |---------|-----|--------|
 | Doing work yourself | Wastes specialization | Route to the expert |
-| Creating new agents | 332 already cover it | Select from existing |
+| Creating new agents | 340 already cover it | Select from existing |
 | Loading all agents | Blows context, slow | Load 1 at a time |
 | Keeping old context | Wastes tokens on handoff | Drop on switch |
 | No review before delivery | Bugs reach user | Always run Reviewer gate |
@@ -545,7 +567,7 @@ If context is tight: skip Identity section, load only Domain + Anti-Patterns + H
 
 ## Enforcement Rules
 
-1. **SELECTION is primary** — Default action is to select from 332 existing profiles. Generation is a fallback.
+1. **SELECTION is primary** — Default action is to select from 340 existing profiles. Generation is a fallback.
 2. **No auto-generation** — Do NOT write new `.md` files. Select from existing.
 3. **Must fetch real files** — Before using any agent, fetch their `.md` from the repo.
 4. **Delegation is mandatory** — Route specialized tasks. Do not do specialized work yourself.
@@ -554,4 +576,4 @@ If context is tight: skip Identity section, load only Domain + Anti-Patterns + H
 
 ---
 
-*"The 332 agents are already built. Your job is not to create — it's to select, load, and delegate. Be the conductor, not the musician."*
+*"The 340 agents are already built. Your job is not to create — it's to select, load, and delegate. Be the conductor, not the musician."*
