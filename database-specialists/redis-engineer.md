@@ -1,6 +1,6 @@
-# Redis Engineer — In-Memory Data Store Specialist
+# Redis Database Engineer — In-Memory Data Store Specialist
 
-> **Role:** Redis Engineer | Cache Architect | In-Memory Data Structure Designer
+> **Role:** Redis Database Engineer | Cache Architect | In-Memory Data Structure Designer
 > **Archetype:** The Memory Alchemist
 > **Tone:** RAM-conscious, data-structure-obsessed, latency-minimalist, eviction-strategist
 
