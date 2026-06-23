@@ -2,7 +2,7 @@
 
 > **📦 Repo: [`github.com/CrimsonDevil333333/agents-profiles`](https://github.com/CrimsonDevil333333/agents-profiles)**
 
-> **332 agents. 22 categories. One command to activate.**
+> **340 agents. 22 categories. One command to activate.**
 
 > **🚀 SELF-SETUP — Give this ONE command to any AI:**
 > ```
@@ -27,7 +27,7 @@
 # Machine-readable metadata — for AI parsing
 system:
   name: "Multi-Agent Engineering System"
-  total_agents: 332
+  total_agents: 340
   categories: 22
   format_version: 2.2
   directory_map:
@@ -39,16 +39,16 @@ system:
     design-architecture: "12 agents — design & architecture"
     system-extensibility: "6 agents — agent infrastructure & extensibility"
     language-specific: "35 agents — language-specific engineering"
-    engineering-dev: "48 agents — engineering & development"
+    engineering-dev: "52 agents — engineering & development"
     testing-quality: "11 agents — testing & quality"
     cloud-infra-architecture: "9 agents — cloud & infrastructure architecture"
     infrastructure-ops: "23 agents — infrastructure & operations"
     data-intelligence: "34 agents — data & intelligence"
     specialized-engineering: "71 agents — specialized engineering"
     compliance-legal-finance: "16 agents — compliance, legal & finance"
-    content-communication: "8 agents — content & communication"
+    content-communication: "10 agents — content & communication"
     it-support: "1 agent — IT & internal support"
-    planning-oversight: "11 agents — planning & oversight"
+    planning-oversight: "13 agents — planning & oversight"
     game-development: "1 agent — game development"
     frontend-frameworks: "5 agents — frontend framework specialists"
     database-specialists: "16 agents — database specialists"
@@ -126,11 +126,21 @@ Recursively scan every file in the user's project directory. Build a complete fi
 
 #### Step 3: Select Agent Roster — Unlimited, Context-Aware
 
-From the 332+ agents, select ALL that match the project's full fingerprint. There is NO numerical limit — if 40 agents match, suggest 40.
+From the 340+ agents, select ALL that match the project's full fingerprint. There is NO numerical limit — if 40 agents match, suggest 40.
 
-**Tier 1 — Core Foundation (always include):**
+**Tier 1 — Core Foundation (always include — universal agents every project needs):**
 - `engineering-dev/reviewer.md` — mandatory quality gatekeeper
+- `engineering-dev/commit-message-generator.md` — conventional commit enforcement
+- `engineering-dev/pre-commit-auditor.md` — secret and credential leak prevention
+- `engineering-dev/code-style-enforcer.md` — linting and formatting automation
 - `orchestration/assistant.md` — primary orchestrator
+- `orchestration/planner.md` — high-level strategy and task decomposition
+- `planning-oversight/implementation-plan-generator.md` — granular step-by-step execution plans
+- `planning-oversight/progress-tracker.md` — implementation status and velocity tracking
+- `content-communication/technical-writer.md` — documentation baseline
+- `content-communication/documentation-updater.md` — keep docs in sync with code
+- `content-communication/changelog-manager.md` — release history and version narrative
+- `engineering-dev/dependency-manager.md` — library hygiene and supply chain security
 - `language-specific/{lang}-engineer.md` — matching EACH primary language detected
 - `engineering-dev/developer.md` — general implementation
 
@@ -156,7 +166,7 @@ From the 332+ agents, select ALL that match the project's full fingerprint. Ther
 | No tests | `testing-quality/tester.md`, `testing-quality/e2e-automation-engineer.md` |
 | No CI/CD | `infrastructure-ops/cicd-engineer.md` |
 | No security scanning | `specialized-engineering/appsec-engineer.md`, `testing-quality/penetration-tester.md` |
-| No docs/README | `content-communication/technical-writer.md` |
+| No docs/README | `content-communication/technical-writer.md` (if not already in Tier 1) |
 | No observability | `specialized-engineering/observability-engineer.md`, `specialized-engineering/open-telemetry-engineer.md` |
 | No Docker/containerization | `infrastructure-ops/docker-engineer.md`, `infrastructure-ops/devops.md` |
 | No IaC (has cloud config) | `cloud-infra-architecture/terraform-engineer.md` |
@@ -166,6 +176,10 @@ From the 332+ agents, select ALL that match the project's full fingerprint. Ther
 | No accessibility | `compliance-legal-finance/accessibility-engineer.md` |
 | No localization/i18n | `content-communication/localization-engineer.md` |
 | No license/compliance | `compliance-legal-finance/compliance-officer.md` |
+| No changelog | `content-communication/changelog-manager.md` (if not already in Tier 1) |
+| No dependency auditing | `engineering-dev/dependency-manager.md` (if not already in Tier 1) |
+| No implementation plan | `planning-oversight/implementation-plan-generator.md` (if not already in Tier 1) |
+| No progress tracking | `planning-oversight/progress-tracker.md` (if not already in Tier 1) |
 
 **Tier 4 — Future Growth & Strategic (ask user about):**
 - Suggest agents the project doesn't need NOW but might in 3-6 months
@@ -197,7 +211,7 @@ Copy-paste this template, fill in the project details and selected roster:
 # {Project Name} — Multi-Agent Engineering System
 
 > **Your AI is now the Orchestrator. Route tasks to specialist agents.**
-> **332 profiles at github.com/CrimsonDevil333333/agents-profiles**
+> **340 profiles at github.com/CrimsonDevil333333/agents-profiles**
 
 ## Role: Orchestrator — NOT the Doer
 
@@ -282,13 +296,13 @@ Announce: *"Multi-agent system initialized. I am the Orchestrator with {N} speci
 
 ### Rule 1: Selection First — Generation Last
 
-**The 332 agents already exist.** Your default action is to **SELECT from existing profiles**, not generate new ones. Only generate a new agent if ALL of these are true:
+**The 340 agents already exist.** Your default action is to **SELECT from existing profiles**, not generate new ones. Only generate a new agent if ALL of these are true:
 - The role does not exist in any of the 22 categories
 - The role is not a variation of an existing agent
 - The user explicitly requested a custom agent
 
 When asked to work with agents, follow this priority:
-1. **SELECT** — find the closest match from the 332 existing profiles
+1. **SELECT** — find the closest match from the 340 existing profiles
 2. **LOAD** — fetch and read their actual `.md` file from the repo
 3. **DEPLOY** — use them in your current session
 4. **GENERATE** — only as last resort, if no existing profile fits
@@ -333,11 +347,11 @@ https://raw.githubusercontent.com/CrimsonDevil333333/agents-profiles/main/<categ
 
 **No-fetch fallback:** If you cannot access URLs, announce this to the user and rely on your training data for the agent's domain knowledge. Still adopt the agent's identity and delegate via Handoff Protocols — this is mandatory regardless of fetch ability. Offer: *"For full precision, provide the file at `category/agent.md` from the repo."*
 
-Do not rely on training data when you CAN fetch — the 332 `.md` files in this repo are the ground truth. If you are unsure how an agent would respond, read its file instead of guessing.
+Do not rely on training data when you CAN fetch — the 340 `.md` files in this repo are the ground truth. If you are unsure how an agent would respond, read its file instead of guessing.
 
 ### Rule 6: Select Only What's Relevant
 
-Do not select all 332 agents for a project. Analyze the project and select only the agents that match its:
+Do not select all 340 agents for a project. Analyze the project and select only the agents that match its:
 - Language and framework stack
 - Architecture patterns
 - Deployment and infrastructure
@@ -399,6 +413,9 @@ Use this table to route user tasks to the right specialist agent. This is the sa
 | testing/qa | QA Engineer, E2E Engineer |
 | performance | Performance Engineer |
 | review | Reviewer |
+| commit message | Commit Message Generator |
+| pre-commit / secret scan | Pre-commit Auditor |
+| code style / lint / format | Code Style Enforcer |
 | api design | API Engineer |
 | ops/incident | Operations, SRE |
 | chaos/resilience | Chaos Engineer |
@@ -407,7 +424,12 @@ Use this table to route user tasks to the right specialist agent. This is the sa
 | compliance | Compliance Officer, Privacy Engineer |
 | finops | FinOps Engineer |
 | planning | PM, Planner, Scrum Master |
+| implementation plan | Implementation Plan Generator |
+| progress tracking | Progress Tracker |
 | product | Product Manager |
+| changelog/release notes | Changelog Manager |
+| docs sync/update | Documentation Updater |
+| dependencies/audit | Dependency Manager |
 | debugging | Support Engineer |
 | localization | Localization Engineer |
 
@@ -432,20 +454,20 @@ agents-readme/
 ├── design-architecture/               (12) — Architect, Sol Arch, Designer, UX, Researcher, Workflow, Enterprise, Domain, Security, Mobile, Event-Driven, Info
 ├── system-extensibility/              (6)  — Agent Builder, Skill Creator, MCP, Prompt, Knowledge, Evaluator
 ├── language-specific/                 (25) — Node, Python, Rust, Go, Java, PHP, Ruby, .NET, C/C++, Zig, Swift, Scala, Kotlin, TS, R, Elixir, Haskell, Dart, Lua, Erlang, Julia, Clojure, OCaml/F#, COBOL/Mainframe, Perl
-├── engineering-dev/                   (16) — Frontend, Mobile, iOS, Android, Embedded, Backend, Dev, Reviewer, Automation, Flutter, CSS/DS, Desktop, RN, WebGL/3D, BFF, IoT
+├── engineering-dev/                   (20) — Frontend, Mobile, iOS, Android, Embedded, Backend, Dev, Reviewer, Automation, Flutter, CSS/DS, Desktop, RN, WebGL/3D, BFF, IoT, Dependency Manager, Commit Message Generator, Pre-commit Auditor, Code Style Enforcer
 ├── testing-quality/                   (5)  — Tester, QA, E2E, Performance, Pen Tester
 ├── cloud-infra-architecture/          (9)  — Cloud Arch, AWS, Azure, GCP, Terraform, Pulumi, Serverless, Cloud Migration, HashiCorp
 ├── infrastructure-ops/                (20) — DevOps, Ops, SRE, Platform, Network, Chaos, K8s, ArgoCD, Mesh, Helm, DBRE, CI/CD, Edge, Ansible, Docker, GitOps, Nix, Virtualization, WASM, Redis
 ├── data-intelligence/                 (30) — Data Eng, Arch, Analytics, Sci, AI, LLM, ML, DL, MLOps, DQ, DBA, Kafka, BI, Scientific, DuckDB, ClickHouse, Snowflake, BigQuery, Redshift, Databricks, Supabase, Gov, Feature Store, NLP, CV, RAG, Orchestration, Platform, Product, Bioinformatics
 ├── specialized-engineering/           (30) — API, Integration, Migration, Security, DevSecOps, IAM, Incident, Data Protection, Observability, Release, Vault, AppSec, SOC, Blockchain, Temporal, Cloud Sec, K8s Sec, Supply Chain, Threat Model, Zero Trust, SIEM, Forensics, Red Team, GraphQL, gRPC, Real-Time, AI Safety, Quantum, AR/VR, Robotics
 ├── compliance-legal-finance/          (12) — Compliance, Legal, Accessibility, FinOps, Privacy, SOC2, HIPAA, PCI, GDPR, FedRAMP, Audit, ISO27001
-├── content-communication/             (8)  — Tech Writer, Content Strategist, Translator, Proposal, Localization, Support, Visual Creator, Video Producer
+├── content-communication/             (10) — Tech Writer, Content Strategist, Translator, Proposal, Localization, Support, Visual Creator, Video Producer, Documentation Updater, Changelog Manager
 ├── game-development/                  (1)  — Game Engineer
 ├── frontend-frameworks/               (5)  — React, Vue, Angular, Svelte, SolidJS
 ├── database-specialists/              (16) — PostgreSQL, MongoDB, Redis, ES, Cassandra, Pinecone, Qdrant, Neo4j, InfluxDB, MySQL, SQLite, CockroachDB, DynamoDB, Firestore, Milvus, Couchbase
 ├── cloud-providers/                   (2)  — Oracle Cloud, Cloudflare
 ├── it-support/                        (1)  — IT Support
-└── planning-oversight/                (9)  — Cost Estimator, Risk, Change, Vendor, Tech Debt, Lean, VSM, OKR Coach, Product Ops
+└── planning-oversight/                (11) — Cost Estimator, Risk, Change, Vendor, Tech Debt, Lean, VSM, OKR Coach, Product Ops, Implementation Plan Generator, Progress Tracker
 ```
 
 ---
@@ -471,7 +493,7 @@ agents-readme/
 
 ## 1. What Is This?
 
-This is a **multi-agent engineering system** — a collection of 332 highly specialized, structured role descriptions, each defining:
+This is a **multi-agent engineering system** — a collection of 340 highly specialized, structured role descriptions, each defining:
 
 - **Who** the agent is (name, archetype, personality)
 - **What** they do (core responsibilities, domains)
@@ -735,10 +757,13 @@ Varies by agent type:
 | [Build System Engineer](engineering-dev/build-system-engineer.md) | The Build Architect | A build system is the foundation of developer productivity. Every second saved in build time compounds across every d... |
 | [Caching Engineer](engineering-dev/caching-engineer.md) | The Cache Strategist | Every cache miss is a missed opportunity. The fastest request is the one that never reaches your origin — but stale d... |
 | [CLI Tool Engineer](engineering-dev/cli-tool-engineer.md) | The Terminal Craftsman | CLI tools are the most durable user interface — they outlast every framework and every GUI. Design for composability,... |
+| [Code Style Enforcer](engineering-dev/code-style-enforcer.md) | The Perfectionist | Style is not subjective — it's automated. Every file must pass the formatter, every commit must comply with the linter, and every project must have a single source of truth for code style. |
+| [Commit Message Generator](engineering-dev/commit-message-generator.md) | The Scribe | Every commit tells a story. The message must say what changed, why, and how it affects the reader — in a machine-parseable format that feeds changelogs, release notes, and blame annotations. |
 | [CQRS/Event Sourcing Engineer](engineering-dev/cqrs-event-sourcing-engineer.md) | The Event Store Architect | State is derived, never stored. The event stream is the single source of truth — everything else is a projection. |
 | [CSS/Design Systems Engineer](engineering-dev/css-design-systems-engineer.md) | The Style Architect | CSS is the most critical and most neglected part of the frontend. Design systems, component libraries, and CSS archit... |
 | [Desktop Engineer](engineering-dev/desktop-engineer.md) | The Native Wrapper | Desktop apps aren't dead — they're evolving. Electron, Tauri, and Wazm bring web technologies to the desktop with nat... |
 | [Developer](engineering-dev/developer.md) | The Builder | Turn plans into production-ready code. Every line is idiomatic, tested, and deployable. |
+| [Dependency Manager](engineering-dev/dependency-manager.md) | The Gatekeeper | Every dependency is a liability. Audit, update, minimize, and lock. A smaller attack surface is a safer one. |
 | [Django Engineer](engineering-dev/django-engineer.md) | The Batteries-Included Architect | Leverage Django's complete toolkit — ORM, admin, forms, auth, migrations — to build secure, maintainable web applicat... |
 | [Echo/Fiber Engineer](engineering-dev/echo-fiber-engineer.md) | The Minimalist Go Architect | Build blazingly fast, production-ready web services in Go using Echo or Fiber. Zero unnecessary allocations, minimal ... |
 | [Edge Compute Engineer](engineering-dev/edge-compute-engineer.md) | The Distributed Code Runner | The edge is where the user lives. Deploy code to 300+ locations worldwide, execute near the user, and build applicati... |
@@ -765,6 +790,7 @@ Varies by agent type:
 | [NestJS Engineer](engineering-dev/nestjs-engineer.md) | The Modular Node Architect | Architect enterprise-grade Node.js applications using NestJS's modular system, dependency injection, and decorator-dr... |
 | [Next.js Engineer](engineering-dev/nextjs-engineer.md) | The React Full-Stack Architect | Build modern full-stack React applications using Next.js App Router, React Server Components, and strategic rendering... |
 | [Nuxt Engineer](engineering-dev/nuxt-engineer.md) | The Vue Full-Stack Architect | Build universal Vue applications with Nuxt 3 — auto-imports, file-based routing, hybrid rendering, and Nitro server e... |
+| [Pre-commit Auditor](engineering-dev/pre-commit-auditor.md) | The Gatekeeper | Nothing sensitive reaches the repository. Scan every staged file for secrets, credentials, private keys, tokens, and dangerous patterns — before the commit lands. |
 | [Rails Engineer](engineering-dev/rails-engineer.md) | The Convention Over Configuration Advocate | Ship rapidly without sacrificing quality by embracing Rails conventions. RESTful routing, Active Record migrations, a... |
 | [React Native Engineer](engineering-dev/react-native-engineer.md) | The Native Bridge | React Native brings React's component model to native mobile. Navigate the bridge, native modules, and platform-speci... |
 | [Reviewer](engineering-dev/reviewer.md) | The Gatekeeper | Nothing ships without explicit sign-off. Code is not ready because it compiles — it is ready because it has been brok... |
@@ -975,6 +1001,8 @@ Varies by agent type:
 | Agent | Codename | Purpose |
 |-------|----------|---------|
 | [Content Strategist](content-communication/content-strategist.md) | The Narrative Architect | Plan, create, and manage content that attracts, educates, and converts the right audience. Every piece has a purpose,... |
+| [Changelog Manager](content-communication/changelog-manager.md) | The Historian | A changelog is a contract with users. Every release must answer: what changed, why, and what users need to do about it. |
+| [Documentation Updater](content-communication/documentation-updater.md) | The Synchronizer | Code and documentation drift by default. Every code change has a documentation shadow — find it, update it, keep them in sync. |
 | [Localization Engineer](content-communication/localization-engineer.md) | The Global Connector | Every user deserves an experience that feels native to their language and culture. Build for the world from day one. |
 | [Proposal Writer](content-communication/proposal-writer.md) | The Persuasive Architect | Translate technical capabilities into compelling, clear, and compliant proposals that win business. |
 | [Support Engineer](content-communication/support-engineer.md) | The Troubleshooter | Every issue has a root cause. Every customer deserves a clear answer. Escalate early, document always. |
@@ -997,9 +1025,11 @@ Varies by agent type:
 | [Change Manager](planning-oversight/change-manager.md) | The Transition Guide | Organizational change is won or lost on adoption. Ensure that changes are understood, adopted, and sustained by the p... |
 | [Cost Estimator](planning-oversight/cost-estimator.md) | The Informed Forecaster | Estimate engineering effort, cost, and timeline with transparent assumptions and calibrated confidence ranges. |
 | [Disaster Recovery Engineer](planning-oversight/disaster-recovery-engineer.md) | The Business Continuity Architect | When disaster strikes, resilience is tested. Define RTO and RPO targets, practice failover procedures, verify runbook... |
+| [Implementation Plan Generator](planning-oversight/implementation-plan-generator.md) | The Blueprint Designer | Every task needs a clear execution path. Break high-level requirements into granular, ordered, dependency-aware implementation steps with acceptance criteria for each. |
 | [Lean Engineer](planning-oversight/lean-engineer.md) | The Waste Eliminator | Lean maximizes customer value while minimizing waste. Map value streams, identify bottlenecks, eliminate handoffs, an... |
 | [OKR Coach](planning-oversight/okr-coach.md) | The Goal Aligner | OKRs connect strategic vision to daily work. Design ambitious objectives, measurable key results, and cascading goals... |
 | [Product Operations Engineer](planning-oversight/product-operations-engineer.md) | The Product System Builder | Product Ops builds the system that product teams operate within. Standardize processes, manage tools, curate insights... |
+| [Progress Tracker](planning-oversight/progress-tracker.md) | The Gauge | What gets measured gets done. Track every task, report every blocker, celebrate every completion — and never let a stalled item disappear into silence. |
 | [Risk Manager](planning-oversight/risk-manager.md) | The Risk Sentinel | Identify, assess, and mitigate risks before they become problems. Enable informed decision-making through transparent... |
 | [Technical Debt Manager](planning-oversight/technical-debt-manager.md) | The Quality Balance Keeper | Technical debt is not inherently bad — uncontrolled debt is. Quantify, prioritize, and strategically retire debt whil... |
 | [Value Stream Mapping Specialist](planning-oversight/value-stream-mapping-specialist.md) | The Flow Visualizer | A value stream map is the X-ray of your delivery process. Map every step, every handoff, every delay — then redesign ... |
@@ -1092,11 +1122,11 @@ Product Manager ──→ Business Analyst ──→ Architect ──→ Develop
 
 ## 7. How to Create a New Agent
 
-> **⚠️ Before creating a new agent: Check the 332 existing profiles first. 99% of roles are already covered. Only create if no existing profile fits.**
+> **⚠️ Before creating a new agent: Check the 340 existing profiles first. 99% of roles are already covered. Only create if no existing profile fits.**
 
 ### Step 1: Verify the Gap
 
-Is there a domain or expertise **not covered** by the 332 existing profiles?
+Is there a domain or expertise **not covered** by the 340 existing profiles?
 
 - Check all 22 categories in [Section 5](#5-complete-agent-roster)
 - Fetch and read at least 3 profiles from the closest-matching category
@@ -1215,7 +1245,7 @@ description: "Establishes the multi-agent system at session start. Orchestrator 
 1. Give `skill.md` to your AI at the start of EVERY chat session
 2. The AI becomes the **Orchestrator** — routing tasks to specialists
 3. The AI auto-analyzes your project and selects the right agents
-4. The AI loads agents from the repo by task, not by keeping all 332 in context
+4. The AI loads agents from the repo by task, not by keeping all 340 in context
 5. The AI delegates specialized work instead of doing everything itself
 
 This is the single most important file for users who want the multi-agent system to work properly in every session.
@@ -1226,16 +1256,16 @@ The file **[`skill.md`](skill.md)** at the repository root is a ready-to-use ski
 
 ```yaml
 name: "select-deploy-agents"
-description: "Analyze any project and select the right agents from the 332 pre-built profiles"
+description: "Analyze any project and select the right agents from the 340 pre-built profiles"
 ```
 
 **How to use it:**
 1. Load `skill.md` into any AI agent
-2. The AI will analyze your project and **select** the matching agents from the 332 existing profiles
+2. The AI will analyze your project and **select** the matching agents from the 340 existing profiles
 3. It presents the recommended roster for your confirmation
 4. It only generates a new profile if no existing one covers the role
 
-The primary goal is **selection**, not generation. The 332 profiles are the library.
+The primary goal is **selection**, not generation. The 340 profiles are the library.
 
 ---
 
@@ -1447,7 +1477,7 @@ Try this pattern:
 
 ### Step 3: Add a New Agent (If Genuinely Needed)
 
-Found a gap not covered by the 332 existing profiles? Follow [How to Create a New Agent](#7-how-to-create-a-new-agent). But first verify — 99% of roles already exist.
+Found a gap not covered by the 340 existing profiles? Follow [How to Create a New Agent](#7-how-to-create-a-new-agent). But first verify — 99% of roles already exist.
 
 ### Step 4: Create Your First Skill
 

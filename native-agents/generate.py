@@ -81,6 +81,15 @@ CLASSIFICATION = {
     "Disaster Recovery Engineer": "read-only", "Capacity Planner": "read-only",
     "Vendor Risk Engineer": "read-only", "AI Governance Engineer": "read-only",
     "Records Management Engineer": "read-only", "Data Breach Engineer": "read-only",
+    # universal — read-write (planning, content, engineering)
+    "Implementation Plan Generator": "read-write",
+    "Progress Tracker": "read-write",
+    "Documentation Updater": "read-write",
+    "Changelog Manager": "read-write",
+    "Dependency Manager": "read-write",
+    "Commit Message Generator": "read-write",
+    "Pre-commit Auditor": "read-write",
+    "Code Style Enforcer": "read-write",
     # read-write — hands-on development and implementation roles
     "Developer": "read-write", "Frontend Engineer": "read-write",
     "Backend Engineer": "read-write", "Mobile Engineer": "read-write",
